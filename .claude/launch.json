@@ -3,9 +3,10 @@
   "configurations": [
     {
       "name": "efhsanrx-dist",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "4321", "-d", "dist"],
-      "port": 4321
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "python3 -m http.server \"${PORT:-4899}\" -d dist"],
+      "port": 4899,
+      "autoPort": true
     }
   ]
 }

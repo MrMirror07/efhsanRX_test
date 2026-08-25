@@ -1,0 +1,204 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import { SITE, PRICING, PORTAL_URL, DOCTOR } from "../config";
+import calmTea from "../assets/calm-tea.png";
+
+const included = [PRICING.initial, PRICING.followUp];
+
+const comparisons = [
+  { label: "Average in person new patient gynecology visit, self pay", price: "about $256" },
+  { label: "Cash price at leading virtual menopause clinics", price: "$250 to $350" },
+  { label: "EfhsanRX initial visit with our doctors", price: `$${PRICING.initial.price}`, highlight: true },
+];
+
+const faqs = [
+  {
+    q: "When am I charged?",
+    a: "Your card is saved when you book and charged only after your visit takes place. Cancel or reschedule ahead of time and you pay nothing.",
+  },
+  {
+    q: "Can I use my HSA or FSA?",
+    a: "Yes. Telehealth visits with a physician are a qualified medical expense, and we accept HSA and FSA cards directly.",
+  },
+  {
+    q: "What is not included?",
+    a: "Lab work is billed by the lab and medications by your pharmacy, at their usual cash or insurance prices. We order only what your plan truly needs, and we tell you before we order it.",
+  },
+  {
+    q: "Can I get money back from my insurance?",
+    a: "If your plan includes out of network benefits, we can provide a superbill, an itemized receipt you submit to your insurer for possible reimbursement. Many PPO plans reimburse a meaningful portion.",
+  },
+  {
+    q: "Why not just take insurance?",
+    a: "Insurance based visits are often squeezed to a few minutes and priced after the fact. A flat fee lets us give you a long, unhurried visit and a price you know before you book. Nothing arrives in the mail later.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+---
+
+<Layout
+  title={`Pricing — One Flat Fee, No Insurance | ${SITE.name}`}
+  description={`EfhsanRX pricing is simple: $${PRICING.initial.price} initial visit, $${PRICING.followUp.price} follow up. One time payment, no membership, no insurance needed, HSA and FSA accepted.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <section class="section">
+    <div class="max-w-2xl">
+      <p class="eyebrow">Pricing</p>
+      <h1 class="display mt-4 text-4xl sm:text-5xl">
+        One visit. One price. Nothing hidden.
+      </h1>
+      <p class="mt-6 text-lg leading-relaxed text-ink/70">
+        Healthcare pricing is usually a mystery you solve after the bill
+        arrives. We do the opposite. You see the full price here, before you
+        book, and it never changes. No insurance, no membership, no surprises.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="section">
+      <div class="grid gap-6 md:grid-cols-2">
+        {
+          included.map((tier) => (
+            <div class="card flex flex-col">
+              <h2 class="font-display text-xl font-medium text-pine-900">{tier.label}</h2>
+              <p class="mt-3">
+                <span class="font-display text-6xl text-pine-900">${tier.price}</span>
+                <span class="ml-2 inline-block text-sm text-ink/60">one time · {tier.duration}</span>
+              </p>
+              <ul class="mt-6 flex-1 space-y-3">
+                {tier.includes.map((item) => (
+                  <li class="flex gap-3 text-sm leading-relaxed text-ink/70">
+                    <svg
+                      class="mt-0.5 h-4 w-4 shrink-0 text-pine-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" />
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <a href={PORTAL_URL} class="btn-primary mt-8 w-full">Book this visit</a>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-8 grid gap-4 rounded-3xl border border-pine-900/10 bg-cream p-8 sm:grid-cols-3">
+        <div>
+          <h3 class="font-semibold text-pine-900">HSA and FSA accepted</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink/70">
+            Pay with your health savings or flexible spending card.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-pine-900">Charged after your visit</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink/70">
+            Your card is saved at booking and charged only once you have been seen.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-pine-900">Superbill on request</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink/70">
+            Out of network benefits? We provide the receipt your insurer needs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">How we compare</p>
+        <h2 class="display mt-4 text-3xl sm:text-4xl">
+          Specialist care, priced fairly.
+        </h2>
+        <p class="mt-4 leading-relaxed text-ink/70">
+          A new patient gynecology visit without insurance typically costs far
+          more than our flat fee, and virtual clinics with comparable
+          physician credentials charge well above it.
+        </p>
+        <ul class="mt-8 space-y-3">
+          {
+            comparisons.map((c) => (
+              <li
+                class:list={[
+                  "flex items-center justify-between gap-4 rounded-2xl px-5 py-4",
+                  c.highlight
+                    ? "bg-pine-800 text-cream"
+                    : "border border-pine-900/10 bg-white text-ink/70",
+                ]}
+              >
+                <span class="text-sm leading-snug">{c.label}</span>
+                <span
+                  class:list={[
+                    "font-display text-xl whitespace-nowrap",
+                    c.highlight ? "text-apricot-300" : "text-pine-900",
+                  ]}
+                >
+                  {c.price}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-4 text-xs text-ink/50">
+          Market figures from published cash price data, August 2026. Sources in
+          our research notes.
+        </p>
+      </div>
+      <figure class="overflow-hidden rounded-[2.5rem]">
+        <Image
+          src={calmTea}
+          alt="A woman holding a warm cup of tea in soft morning light"
+          class="h-full w-full object-cover"
+          widths={[480, 768, 1080]}
+          sizes="(min-width: 1024px) 45vw, 90vw"
+        />
+      </figure>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="section max-w-3xl">
+      <p class="eyebrow">Pricing questions</p>
+      <h2 class="display mt-4 text-3xl sm:text-4xl">Asked and answered.</h2>
+      <div class="mt-10 divide-y divide-pine-900/10">
+        {
+          faqs.map((f) => (
+            <details class="group py-5">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-medium text-pine-900">
+                {f.q}
+                <span class="text-pine-400 transition-transform group-open:rotate-45">
+                  <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" d="M12 5v14M5 12h14" />
+                  </svg>
+                </span>
+              </summary>
+              <p class="mt-3 text-sm leading-relaxed text-ink/70">{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+      <div class="mt-12 text-center">
+        <a href={PORTAL_URL} class="btn-primary !px-8 !py-4 !text-base">Book a visit</a>
+      </div>
+    </div>
+  </section>
+</Layout>

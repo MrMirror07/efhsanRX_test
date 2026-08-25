@@ -2,6 +2,8 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { SITE, DOCTOR, PRACTICE, PRICING, PORTAL_URL } from "../config";
+import heroPortrait from "../assets/hero-portrait.png";
 
 interface Props {
   title?: string;
@@ -9,9 +11,33 @@ interface Props {
 }
 
 const {
-  title = "EfhsanRX — Expert care, wherever you are",
-  description = "EfhsanRX is a virtual care clinic connecting you with licensed clinicians for personalized treatment plans, prescriptions when appropriate, and ongoing support — all from home.",
+  title = "EfhsanRX — Women's Telehealth with a Board Certified ObGyn",
+  description = "EfhsanRX is a virtual women's health clinic led by board certified doctors. One flat fee, no insurance needed. Expert menopause, gynecology, and hormone care from home.",
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+
+// The sticky mobile booking bar stays hidden on the booking page itself.
+const showMobileCta = Astro.url.pathname.replace(/\/$/, "") !== PORTAL_URL.replace(/\/$/, "");
+
+// Fully virtual practice: no street address in the schema, a service area
+// instead, so search engines never advertise a walk in location.
+const clinicSchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  name: SITE.name,
+  url: SITE.url,
+  email: SITE.email,
+  telephone: PRACTICE.phone,
+  medicalSpecialty: "Gynecologic",
+  areaServed: { "@type": "State", name: "New Jersey" },
+  founder: {
+    "@type": "Physician",
+    name: DOCTOR.name,
+    medicalSpecialty: "Gynecologic",
+    url: `${SITE.url}/doctor`,
+  },
+};
 ---
 
 <!doctype html>
@@ -21,16 +47,24 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#faf7f2" />
+    <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(heroPortrait.src, SITE.url).href} />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script type="application/ld+json" set:html={JSON.stringify(clinicSchema)} />
   </head>
   <body class="flex min-h-screen flex-col">
     <Header />
@@ -38,5 +72,62 @@ const {
       <slot />
     </main>
     <Footer />
+    {
+      showMobileCta && (
+        <>
+          <div
+            class="fixed inset-x-0 bottom-0 z-40 border-t border-pine-900/10 bg-cream/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur lg:hidden"
+          >
+            <a href={PORTAL_URL} class="btn-primary w-full !py-3.5">
+              Book a visit · ${PRICING.initial.price} flat
+            </a>
+          </div>
+          <div class="h-20 lg:hidden" aria-hidden="true" />
+        </>
+      )
+    }
+    <script>
+      // Refresh the Google rating and review count from /api/reviews (a
+      // Cloudflare Pages Function backed by the Places API). If the endpoint
+      // is not configured or fails, the verified snapshot already rendered on
+      // the page simply stays as is.
+      const ratingNodes = document.querySelectorAll("[data-google-rating]");
+      const countNodes = document.querySelectorAll("[data-google-count]");
+      if (ratingNodes.length || countNodes.length) {
+        fetch("/api/reviews")
+          .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+          .then(({ rating, count }: { rating?: number; count?: number }) => {
+            if (typeof rating !== "number" || typeof count !== "number") return;
+            ratingNodes.forEach((el) => (el.textContent = rating.toFixed(1)));
+            countNodes.forEach((el) => (el.textContent = String(count)));
+          })
+          .catch(() => {});
+      }
+
+      // Scroll reveal: every section after the first drifts in as it appears.
+      // The CSS only animates when the visitor allows motion.
+      const sections = document.querySelectorAll("main section");
+      if ("IntersectionObserver" in window && sections.length > 1) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-in");
+                io.unobserve(entry.target);
+              }
+            }
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.05 },
+        );
+        sections.forEach((s, i) => {
+          // Skip the first section and any section that manages its own
+          // motion; a reveal transform on an ancestor would break sticky
+          // positioning inside the scroll film.
+          if (i === 0 || s.hasAttribute("data-no-reveal")) return;
+          s.classList.add("reveal");
+          io.observe(s);
+        });
+      }
+    </script>
   </body>
 </html>

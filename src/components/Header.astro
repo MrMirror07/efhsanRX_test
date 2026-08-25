@@ -1,10 +1,13 @@
 ---
 import Logo from "./Logo.astro";
+import { PORTAL_URL } from "../config";
 
 const links = [
   { href: "/services", label: "What we treat" },
   { href: "/how-it-works", label: "How it works" },
-  { href: "/about", label: "About us" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/doctor", label: "Our doctors" },
+  { href: "/about", label: "About" },
 ];
 const current = Astro.url.pathname;
 ---
@@ -15,7 +18,7 @@ const current = Astro.url.pathname;
       <Logo />
     </a>
 
-    <nav class="hidden items-center gap-8 md:flex" aria-label="Main">
+    <nav class="hidden items-center gap-7 lg:flex" aria-label="Main">
       {
         links.map((link) => (
           <a
@@ -29,12 +32,12 @@ const current = Astro.url.pathname;
           </a>
         ))
       }
-      <a href="/book" class="btn-primary">Book a visit</a>
+      <a href={PORTAL_URL} class="btn-primary">Book a visit</a>
     </nav>
 
     <button
       id="menu-toggle"
-      class="md:hidden"
+      class="rounded-lg p-2 transition-colors hover:bg-pine-900/5 lg:hidden"
       aria-label="Open menu"
       aria-expanded="false"
       aria-controls="mobile-menu"
@@ -45,16 +48,19 @@ const current = Astro.url.pathname;
     </button>
   </div>
 
-  <div id="mobile-menu" class="hidden border-t border-pine-900/10 bg-cream px-6 py-4 md:hidden">
-    <nav class="flex flex-col gap-4" aria-label="Mobile">
+  <div id="mobile-menu" class="hidden border-t border-pine-900/10 bg-cream px-6 py-5 lg:hidden">
+    <nav class="flex flex-col gap-1" aria-label="Mobile">
       {
         links.map((link) => (
-          <a href={link.href} class="text-base font-medium text-ink/90">
+          <a
+            href={link.href}
+            class="rounded-xl px-3 py-3 text-base font-medium text-ink/90 transition-colors hover:bg-pine-900/5"
+          >
             {link.label}
           </a>
         ))
       }
-      <a href="/book" class="btn-primary w-full">Book a visit</a>
+      <a href={PORTAL_URL} class="btn-primary mt-3 w-full">Book a visit</a>
     </nav>
   </div>
 </header>

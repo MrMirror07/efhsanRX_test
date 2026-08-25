@@ -1,5 +1,6 @@
 ---
 import Logo from "./Logo.astro";
+import { SITE, DOCTOR, PRACTICE, PORTAL_URL } from "../config";
 
 const year = new Date().getFullYear();
 ---
@@ -8,13 +9,21 @@ const year = new Date().getFullYear();
   <div class="mx-auto max-w-6xl px-6 py-16">
     <div class="grid gap-12 md:grid-cols-4">
       <div class="md:col-span-2">
-        <div class="[&_span]:!text-cream [&_.text-apricot-500]:!text-apricot-300">
+        <div class="[&_span]:!text-cream [&_.text-apricot-600]:!text-apricot-300">
           <Logo />
         </div>
         <p class="mt-4 max-w-sm text-sm leading-relaxed">
-          Expert virtual care, personalized treatment plans, and ongoing support
-          from licensed clinicians — wherever you are.
+          Virtual women's health care from a small team of doctors who know
+          your story. One flat fee, no insurance needed.
         </p>
+        <address class="mt-6 space-y-1 text-sm not-italic text-cream/60">
+          <p>A fully virtual practice serving patients across New Jersey</p>
+          <p>
+            <a href={PRACTICE.phoneHref} class="hover:text-cream">{PRACTICE.phone}</a>
+            &nbsp;·&nbsp;
+            <a href={`mailto:${SITE.email}`} class="hover:text-cream">{SITE.email}</a>
+          </p>
+        </address>
       </div>
 
       <div>
@@ -22,15 +31,24 @@ const year = new Date().getFullYear();
         <ul class="mt-4 space-y-3 text-sm">
           <li><a href="/services" class="hover:text-cream">What we treat</a></li>
           <li><a href="/how-it-works" class="hover:text-cream">How it works</a></li>
-          <li><a href="/book" class="hover:text-cream">Book a visit</a></li>
+          <li><a href="/pricing" class="hover:text-cream">Pricing</a></li>
+          <li><a href={PORTAL_URL} class="hover:text-cream">Book a visit</a></li>
         </ul>
       </div>
 
       <div>
-        <h3 class="text-sm font-semibold uppercase tracking-wider text-cream">Company</h3>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-cream">Practice</h3>
         <ul class="mt-4 space-y-3 text-sm">
+          <li><a href="/doctor" class="hover:text-cream">Meet our doctors</a></li>
           <li><a href="/about" class="hover:text-cream">About us</a></li>
-          <li><a href="/book" class="hover:text-cream">Contact</a></li>
+          <li>
+            <a
+              href={PRACTICE.googleMapsUrl}
+              rel="noopener"
+              target="_blank"
+              class="hover:text-cream">Google reviews</a
+            >
+          </li>
         </ul>
       </div>
     </div>
@@ -40,9 +58,11 @@ const year = new Date().getFullYear();
         EfhsanRX does not provide emergency services. If you are experiencing a
         medical emergency, call 911 or go to the nearest emergency room.
         Treatment plans and prescriptions are issued only when a licensed
-        clinician determines they are appropriate.
+        clinician determines they are appropriate. Telehealth visits are
+        available to patients located in states where our clinicians hold an
+        active license.
       </p>
-      <p class="mt-4">&copy; {year} EfhsanRX. All rights reserved.</p>
+      <p class="mt-4">&copy; {year} {SITE.name}. All rights reserved.</p>
     </div>
   </div>
 </footer>

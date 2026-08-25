@@ -1,72 +1,141 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
+import Stars from "../components/Stars.astro";
+import FilmScroll from "../components/FilmScroll.astro";
+import { SITE, DOCTOR, DOCTOR2, PRACTICE, PRICING, PORTAL_URL, REVIEWS, TREATMENTS } from "../config";
+import heroPortrait from "../assets/hero-portrait.png";
+import telehealthVisit from "../assets/telehealth-visit.png";
+import vitalityOutdoors from "../assets/vitality-outdoors.png";
+import calmTea from "../assets/calm-tea.png";
+import tileBirthControl from "../assets/tile-birth-control.png";
+import tileMenopause from "../assets/tile-menopause.png";
+import tileHormone from "../assets/tile-hormone.png";
+import tileIntimacy from "../assets/tile-intimacy.png";
+import tileLabs from "../assets/tile-labs.png";
 
-const conditions = [
+const tileImages = {
+  "birth-control": tileBirthControl,
+  menopause: tileMenopause,
+  "hormone-therapy": tileHormone,
+  "sexual-health": tileIntimacy,
+  periods: calmTea,
+  labs: tileLabs,
+} as const;
+
+/**
+ * Care matcher: each concern maps to a personalized result that shows the
+ * visitor we treat exactly what she came for. Nothing here is stored; the
+ * quiz exists to demonstrate fit, not to collect data.
+ */
+const concerns = [
   {
-    title: "Weight management",
-    body: "Medical weight care built around your metabolism, habits, and goals — with clinician-led follow-up, not one-size-fits-all plans.",
+    key: "menopause",
+    label: "Menopause or perimenopause symptoms",
+    slug: "menopause",
+    img: "menopause",
+    headline: "Menopause care is our deepest specialty.",
+    body: "Hot flashes, night sweats, broken sleep, and mood swings are treated together in one plan. Hormone therapy and non hormonal options are prescribed in your visit when they are right for you.",
+    cardTitle: "Menopause relief",
+    cardSub: "Hormone therapy · Non hormonal options · Sleep and mood support",
   },
   {
-    title: "Hormonal health",
-    body: "Evidence-based evaluation and treatment for hormone-related symptoms, from energy and sleep to mood and cycles.",
+    key: "birth-control",
+    label: "Birth control",
+    slug: "birth-control",
+    img: "birth-control",
+    headline: "The right method, prescribed in one visit.",
+    body: "Pills, the patch, or the ring, matched to your body and your plans. Your prescription goes to your pharmacy the same day when it is appropriate.",
+    cardTitle: "Birth control",
+    cardSub: "Combined pills · Progestin only pills · Patch and ring options",
   },
   {
-    title: "Hair & skin",
-    body: "Dermatologist-informed treatment plans for hair loss, acne, and skin health, delivered discreetly to your door.",
+    key: "intimacy",
+    label: "Intimacy or comfort concerns",
+    slug: "sexual-health",
+    img: "sexual-health",
+    headline: "Real treatment, zero awkward waiting rooms.",
+    body: "Dryness, discomfort, and low desire are medical concerns with medical answers. Vaginal estrogen and comfort care can be prescribed in your visit, discussed in complete privacy.",
+    cardTitle: "Sexual health",
+    cardSub: "Vaginal estrogen · Comfort care · Libido evaluation",
   },
   {
-    title: "Sexual health",
-    body: "Judgment-free care and effective treatment options, handled with total privacy from consult to delivery.",
+    key: "periods",
+    label: "Period problems",
+    slug: "periods",
+    img: "periods",
+    headline: "Your cycle is telling us something. We listen.",
+    body: "Heavy, painful, or unpredictable periods get a structured evaluation and a clear plan, from cycle regulation to PCOS care, with labs ordered only when they change the answer.",
+    cardTitle: "Period problems",
+    cardSub: "Cycle regulation · Bleeding evaluation · PCOS care",
   },
   {
-    title: "Everyday primary care",
-    body: "Same-week virtual visits for common conditions, prescription renewals, and lab orders — without the waiting room.",
+    key: "else",
+    label: "Something else in women's health",
+    slug: null,
+    img: "labs",
+    headline: "If it touches women's health, start here.",
+    body: "From hormone questions to screenings you have been putting off, a visit with our clinicians is the fastest way to a clear answer. If we are not the right fit, we will say so and point you to who is.",
+    cardTitle: "Whole woman care",
+    cardSub: "Hormone panels · Preventive screenings · Honest guidance",
   },
-  {
-    title: "Mental wellness",
-    body: "Support for stress, sleep, and mood with structured check-ins and care plans that adapt as you do.",
-  },
-];
+] as const;
 
 const steps = [
   {
     n: "01",
-    title: "Tell us about you",
-    body: "Complete a short online health intake in about five minutes. Your answers help us match you with the right clinician.",
+    title: "Tell us what feels off",
+    body: "Pick a time that suits you and answer a few gentle questions. Nothing clinical happens before you are ready, and your card is charged only after your visit takes place.",
   },
   {
     n: "02",
-    title: "Meet your clinician",
-    body: "Connect by video or message with a licensed clinician who reviews your history and builds a plan that fits your life.",
+    title: "Talk it through on video",
+    body: "A real conversation with a clinician who has already read your story. No waiting room, no rushed seven minutes, no explaining yourself twice.",
   },
   {
     n: "03",
-    title: "Start your plan",
-    body: "If treatment is appropriate, prescriptions ship to your door or your local pharmacy — with ongoing check-ins included.",
+    title: "Leave with a plan",
+    body: "A written plan you can reread, prescriptions sent to your pharmacy when appropriate, and two weeks of follow up messaging included with every visit.",
   },
 ];
 
 const faqs = [
   {
-    q: "Is EfhsanRX right for me?",
-    a: "EfhsanRX is designed for ongoing, non-emergency care. If you want expert guidance for conditions like weight, hormones, skin, or everyday health — without travel and waiting rooms — we're built for you. For emergencies, always call 911.",
+    q: "How much does a visit cost?",
+    a: `Exactly $${PRICING.initial.price} for your initial visit and $${PRICING.followUp.price} for follow ups. One payment per visit, nothing recurring, no membership, no surprise bills. HSA and FSA cards are accepted.`,
   },
   {
-    q: "Will I see a real, licensed clinician?",
-    a: "Yes. Every visit is with a licensed clinician who reviews your full intake, meets with you, and is responsible for your treatment plan. Prescriptions are only issued when your clinician determines they're appropriate.",
+    q: "Do you take insurance?",
+    a: "No, and that is by design. Skipping insurance lets us offer longer visits at one honest price, with zero paperwork for you. If you have out of network benefits, we can provide a superbill you can submit to your plan.",
   },
   {
-    q: "How much does it cost?",
-    a: "Pricing depends on your care program, and we'll always show you the full cost before you commit — no surprise bills. Many plans include visits, ongoing messaging, and follow-ups in one simple price.",
+    q: "Who will I actually see?",
+    a: `Every visit is with our doctors, the same small team each time: a board certified ObGyn with four decades of experience and a doctorally prepared nurse midwife, rated ${REVIEWS.google.rating} stars across ${REVIEWS.google.count} verified Google reviews. Never a rotating call center.`,
   },
   {
     q: "Is my information private?",
-    a: "Your health information is handled confidentially and shared only with the care team treating you. Deliveries arrive in discreet packaging.",
+    a: "Yes. Your health information lives in a secure, HIPAA compliant patient portal, separate from this website. We never ask for medical details before you book, and we share your records only with the team treating you.",
+  },
+  {
+    q: "What if I need in person care?",
+    a: "EfhsanRX is a fully virtual practice, and we never pretend a camera can replace an exam. When your concern truly needs hands on care, imaging, or a procedure, we tell you plainly, refer you to the right in person specialist near you, and make sure your records follow you.",
   },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 ---
 
 <Layout>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
   <!-- Hero -->
   <section class="relative overflow-hidden">
     <div
@@ -74,93 +143,121 @@ const faqs = [
       aria-hidden="true"
     >
     </div>
-    <div
-      class="pointer-events-none absolute bottom-[-20%] left-[-8%] h-96 w-96 rounded-full bg-apricot-100 blur-3xl"
-      aria-hidden="true"
-    >
-    </div>
-
-    <div class="section relative grid items-center gap-12 lg:grid-cols-2">
+    <div class="section relative grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
       <div>
-        <p class="eyebrow">Virtual care clinic</p>
-        <h1 class="display mt-4 text-4xl leading-[1.1] sm:text-5xl lg:text-6xl">
-          Expert care that comes to you.
+        <p class="eyebrow">Women's telehealth, the unhurried kind</p>
+        <h1 class="display mt-4 text-4xl leading-[1.08] sm:text-5xl lg:text-6xl">
+          You know something is off. We listen until we find it.
         </h1>
         <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink/70">
-          EfhsanRX connects you with licensed clinicians for personalized
-          treatment plans, prescriptions when appropriate, and follow-up that
-          doesn't fall through the cracks — all from home.
+          Hormones, cycles, sleep, desire. When they shift, everything shifts.
+          EfhsanRX gives you real video visits with doctors who take the time
+          to understand, then a plan you can actually follow. One flat fee of
+          ${PRICING.initial.price}. No insurance needed.
         </p>
-        <div class="mt-8 flex flex-wrap gap-4">
-          <a href="/book" class="btn-accent">Book a visit</a>
-          <a href="/how-it-works" class="btn-secondary">See how it works</a>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a href={PORTAL_URL} class="btn-primary group !px-8 !py-4 !text-base">
+            Book a visit
+            <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
+            </svg>
+          </a>
+          <a href="/pricing" class="btn-secondary">See pricing</a>
         </div>
-        <ul class="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-ink/60">
-          <li class="flex items-center gap-2">
-            <span class="h-1.5 w-1.5 rounded-full bg-pine-500"></span>
-            Licensed clinicians
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="h-1.5 w-1.5 rounded-full bg-pine-500"></span>
-            Visits from home
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="h-1.5 w-1.5 rounded-full bg-pine-500"></span>
-            Discreet delivery
-          </li>
-        </ul>
+        <a
+          href={PRACTICE.googleMapsUrl}
+          rel="noopener"
+          target="_blank"
+          class="mt-8 inline-flex items-center gap-3 rounded-2xl border border-pine-900/10 bg-white/70 px-5 py-3 transition-colors hover:bg-white"
+        >
+          <Stars rating={REVIEWS.google.rating} />
+          <span class="text-sm">
+            <strong class="font-semibold text-pine-900" data-google-rating>{REVIEWS.google.rating}</strong>{" "}
+            <span class="text-ink/60">
+              from <span data-google-count>{REVIEWS.google.count}</span> verified Google reviews
+            </span>
+          </span>
+        </a>
       </div>
 
-      <div class="relative hidden lg:block" aria-hidden="true">
-        <div class="card !bg-pine-800 !p-10 text-cream">
-          <p class="font-display text-2xl leading-snug">
-            "Care shouldn't stop when the appointment ends."
+      <div class="relative">
+        <div class="overflow-hidden rounded-[2.5rem]">
+          <Image
+            src={heroPortrait}
+            alt="A woman in her forties holding a warm mug, smiling softly beside sage green curtains in golden light"
+            class="h-full w-full object-cover"
+            widths={[480, 768, 1080]}
+            sizes="(min-width: 1024px) 45vw, 90vw"
+            loading="eager"
+          />
+        </div>
+        <div
+          class="absolute -bottom-5 left-6 right-6 rounded-2xl bg-pine-800 px-6 py-4 text-cream shadow-xl sm:left-10 sm:right-auto"
+        >
+          <p class="font-display text-lg leading-snug">
+            "It's not in your head. It's your hormones."
           </p>
-          <p class="mt-6 text-sm text-cream/70">
-            Every EfhsanRX plan includes ongoing messaging with your care team,
-            so questions get answered in hours — not at your next visit.
-          </p>
-          <div class="mt-8 grid grid-cols-3 gap-4 border-t border-cream/15 pt-8 text-center">
-            <div>
-              <p class="font-display text-2xl text-apricot-300">5 min</p>
-              <p class="mt-1 text-xs text-cream/60">online intake</p>
-            </div>
-            <div>
-              <p class="font-display text-2xl text-apricot-300">50</p>
-              <p class="mt-1 text-xs text-cream/60">states, one clinic</p>
-            </div>
-            <div>
-              <p class="font-display text-2xl text-apricot-300">24/7</p>
-              <p class="mt-1 text-xs text-cream/60">care messaging</p>
-            </div>
-          </div>
+          <p class="mt-1 text-xs text-cream/60">The conversation every visit starts from</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- What we treat -->
-  <section class="bg-white">
+  <!-- Scroll driven brand film -->
+  <FilmScroll />
+
+  <!-- Treatment tiles -->
+  <section class="mt-6 bg-white">
     <div class="section">
-      <div class="max-w-2xl">
-        <p class="eyebrow">What we treat</p>
-        <h2 class="display mt-4 text-3xl sm:text-4xl">
-          One clinic for the care you actually use.
-        </h2>
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div class="max-w-2xl">
+          <p class="eyebrow">What we treat</p>
+          <h2 class="display mt-4 text-3xl sm:text-4xl">
+            Name the symptom. We know the medicine.
+          </h2>
+          <p class="mt-4 leading-relaxed text-ink/70">
+            From birth control to hormone therapy, treatment is prescribed in
+            your visit and sent straight to your pharmacy when it is right for
+            you.
+          </p>
+        </div>
+        <a href="/services" class="btn-secondary">Everything we treat</a>
       </div>
       <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {
-          conditions.map((c) => (
-            <article class="rounded-3xl border border-pine-900/10 bg-cream p-8 transition-shadow hover:shadow-lg">
-              <h3 class="font-display text-xl font-medium text-pine-900">{c.title}</h3>
-              <p class="mt-3 text-sm leading-relaxed text-ink/70">{c.body}</p>
-            </article>
+          TREATMENTS.map((t) => (
+            <a href={`/services#${t.slug}`} class="group tile">
+              <div class="tile-img">
+                <Image
+                  src={tileImages[t.slug]}
+                  alt={`${t.title} at EfhsanRX`}
+                  widths={[480, 768]}
+                  sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+                />
+              </div>
+              <div class="flex items-start justify-between gap-4 p-6">
+                <div>
+                  <h3 class="font-display text-xl font-medium text-pine-900">{t.title}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-ink/70">{t.blurb}</p>
+                  <p class="mt-3 text-xs font-medium uppercase tracking-wider text-pine-500">
+                    {t.examples.join(" · ")}
+                  </p>
+                </div>
+                <span class="arrow-chip mt-1">
+                  <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
+                  </svg>
+                </span>
+              </div>
+            </a>
           ))
         }
       </div>
-      <div class="mt-10">
-        <a href="/services" class="btn-secondary">Explore all services</a>
-      </div>
+      <p class="mt-6 text-xs text-ink/50">
+        Medications are examples of what can be prescribed when clinically
+        appropriate. Every prescription decision is made by your clinician
+        during your visit.
+      </p>
     </div>
   </section>
 
@@ -170,66 +267,313 @@ const faqs = [
       <div class="max-w-2xl">
         <p class="eyebrow">How it works</p>
         <h2 class="display mt-4 text-3xl sm:text-4xl">
-          From first question to first delivery, in days.
+          Booked in minutes. Seen this week.
         </h2>
       </div>
       <ol class="mt-12 grid gap-6 md:grid-cols-3">
         {
           steps.map((s) => (
             <li class="card">
-              <p class="font-display text-3xl text-apricot-500">{s.n}</p>
+              <p class="font-display text-3xl text-apricot-700">{s.n}</p>
               <h3 class="mt-4 font-display text-xl font-medium text-pine-900">{s.title}</h3>
               <p class="mt-3 text-sm leading-relaxed text-ink/70">{s.body}</p>
             </li>
           ))
         }
       </ol>
+      <div class="mt-10">
+        <a href="/how-it-works" class="btn-secondary">See the full process</a>
+      </div>
     </div>
   </section>
 
-  <!-- Why EfhsanRX -->
+  <!-- Fit check -->
   <section class="bg-pine-800 text-cream">
-    <div class="section grid gap-12 lg:grid-cols-2">
+    <div class="section grid items-center gap-12 lg:grid-cols-2">
       <div>
-        <p class="eyebrow !text-apricot-300">Why EfhsanRX</p>
+        <p class="eyebrow !text-apricot-300">Your care, matched</p>
         <h2 class="display mt-4 text-3xl !text-cream sm:text-4xl">
-          Built like a clinic, not an app store.
+          Tell us what's going on. We'll show you the plan.
         </h2>
         <p class="mt-6 max-w-lg leading-relaxed text-cream/70">
-          Telehealth is easy to start and easy to abandon. We designed EfhsanRX
-          around the part that matters most: what happens after your first
-          visit.
+          Three quick questions, answered anonymously, and you will see exactly
+          how EfhsanRX would treat what you are feeling, before you spend a
+          cent. Nothing you tap here is stored or sent anywhere.
+        </p>
+        <p class="mt-4 max-w-lg text-sm leading-relaxed text-cream/50">
+          EfhsanRX is a fully virtual practice. Every visit happens on video,
+          from wherever you are comfortable.
         </p>
       </div>
-      <ul class="space-y-6">
-        <li class="rounded-2xl bg-cream/5 p-6">
-          <h3 class="font-semibold">A clinician who knows your history</h3>
-          <p class="mt-2 text-sm leading-relaxed text-cream/70">
-            You're not re-explaining yourself to a stranger every visit. Your
-            care team sees your full record and picks up where you left off.
+
+      <div id="fit-check" class="rounded-[2rem] bg-cream p-6 text-ink shadow-2xl sm:p-8">
+        <div class="flex items-center justify-between">
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-pine-500">
+            <span id="fit-label">Question <span id="fit-qnum">1</span> of 3</span>
           </p>
-        </li>
-        <li class="rounded-2xl bg-cream/5 p-6">
-          <h3 class="font-semibold">Treatment only when it's right</h3>
-          <p class="mt-2 text-sm leading-relaxed text-cream/70">
-            We're not a prescription vending machine. Clinicians recommend
-            treatment when it's appropriate — and tell you honestly when it
-            isn't.
+          <button
+            type="button"
+            id="fit-back"
+            style="display: none"
+            class="inline-flex items-center gap-1 text-xs font-medium text-pine-500 transition-colors hover:text-pine-700"
+          >
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m6 6-6-6 6-6" />
+            </svg>
+            Back
+          </button>
+        </div>
+        <div class="mt-3 flex gap-1.5" aria-hidden="true">
+          <div class="fit-seg h-1 flex-1 rounded-full bg-pine-800 transition-colors duration-500"></div>
+          <div class="fit-seg h-1 flex-1 rounded-full bg-pine-900/10 transition-colors duration-500"></div>
+          <div class="fit-seg h-1 flex-1 rounded-full bg-pine-900/10 transition-colors duration-500"></div>
+        </div>
+
+        <div data-step="1" class="fit-step mt-6">
+          <p class="font-display text-xl text-pine-900">What brings you here today?</p>
+          <div class="mt-4 grid gap-2">
+            {
+              concerns.map((c) => (
+                <button
+                  type="button"
+                  data-answer="concern"
+                  data-value={c.key}
+                  class="group flex items-center gap-4 rounded-2xl border border-pine-900/15 bg-white p-2.5 pr-4 text-left transition-all duration-200 hover:border-pine-500 hover:shadow-md"
+                >
+                  <Image
+                    src={tileImages[c.img]}
+                    alt=""
+                    widths={[96, 192]}
+                    sizes="48px"
+                    class="h-12 w-12 shrink-0 rounded-xl object-cover"
+                  />
+                  <span class="flex-1 text-sm font-medium leading-snug">{c.label}</span>
+                  <svg class="h-4 w-4 shrink-0 text-pine-400 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6" />
+                  </svg>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        <div data-step="2" class="fit-step mt-6 hidden">
+          <p class="font-display text-xl text-pine-900">Are you currently pregnant, or hoping to be soon?</p>
+          <p class="mt-2 text-sm text-ink/60">Pregnancy changes which treatments are safe, so we ask early.</p>
+          <div class="mt-4 grid gap-2">
+            <button type="button" data-answer="pregnant" data-value="yes" class="rounded-2xl border border-pine-900/15 bg-white px-5 py-4 text-left text-sm font-medium transition-all duration-200 hover:border-pine-500 hover:shadow-md">Yes, or trying</button>
+            <button type="button" data-answer="pregnant" data-value="no" class="rounded-2xl border border-pine-900/15 bg-white px-5 py-4 text-left text-sm font-medium transition-all duration-200 hover:border-pine-500 hover:shadow-md">No</button>
+          </div>
+        </div>
+
+        <div data-step="3" class="fit-step mt-6 hidden">
+          <p class="font-display text-xl text-pine-900">Will you be in New Jersey at the time of your visit?</p>
+          <p class="mt-2 text-sm text-ink/60">Medical licensing means your clinician can treat you only while you are in the state.</p>
+          <div class="mt-4 grid gap-2">
+            <button type="button" data-answer="nj" data-value="yes" class="rounded-2xl border border-pine-900/15 bg-white px-5 py-4 text-left text-sm font-medium transition-all duration-200 hover:border-pine-500 hover:shadow-md">Yes</button>
+            <button type="button" data-answer="nj" data-value="no" class="rounded-2xl border border-pine-900/15 bg-white px-5 py-4 text-left text-sm font-medium transition-all duration-200 hover:border-pine-500 hover:shadow-md">No</button>
+          </div>
+        </div>
+
+        {
+          concerns.map((c) => (
+            <div data-step={`result-${c.key}`} class="fit-step mt-6 hidden">
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-apricot-700">You are in the right place</p>
+              <p class="mt-2 font-display text-xl text-pine-900">{c.headline}</p>
+              <p class="mt-2 text-sm leading-relaxed text-ink/70">{c.body}</p>
+              <div class="mt-4 flex items-center gap-4 rounded-2xl border border-pine-900/10 bg-white p-3">
+                <Image
+                  src={tileImages[c.img]}
+                  alt=""
+                  widths={[112, 224]}
+                  sizes="56px"
+                  class="h-14 w-14 shrink-0 rounded-xl object-cover"
+                />
+                <div class="flex-1">
+                  <p class="text-sm font-semibold text-pine-900">{c.cardTitle}</p>
+                  <p class="mt-0.5 text-xs leading-relaxed text-ink/60">{c.cardSub}</p>
+                </div>
+              </div>
+              <a href={PORTAL_URL} class="btn-primary mt-5 w-full">Book your visit · ${PRICING.initial.price}</a>
+              {c.slug && (
+                <a href={`/services#${c.slug}`} class="mt-3 block text-center text-xs font-medium text-pine-600 underline underline-offset-4 hover:text-pine-800">
+                  See exactly how we treat it
+                </a>
+              )}
+            </div>
+          ))
+        }
+
+        <div data-step="result-pregnant" class="fit-step mt-6 hidden">
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-pine-500">An honest answer</p>
+          <p class="mt-2 font-display text-xl text-pine-900">Pregnancy deserves hands on care.</p>
+          <p class="mt-2 text-sm leading-relaxed text-ink/70">
+            EfhsanRX is a fully virtual practice, and prenatal care needs
+            exams, ultrasounds, and a doctor in the room. We will not pretend a
+            camera can do that well. Write to us and we will point you toward
+            trusted in person obstetric care near you.
           </p>
-        </li>
-        <li class="rounded-2xl bg-cream/5 p-6">
-          <h3 class="font-semibold">Transparent pricing, up front</h3>
-          <p class="mt-2 text-sm leading-relaxed text-cream/70">
-            You'll see the full cost of your program before you commit. No
-            surprise bills, no fine print.
+          <a href={`mailto:${SITE.email}?subject=Prenatal%20care%20guidance`} class="btn-primary mt-5 w-full">Email us for guidance</a>
+        </div>
+
+        <div data-step="result-nj" class="fit-step mt-6 hidden">
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-pine-500">An honest answer</p>
+          <p class="mt-2 font-display text-xl text-pine-900">Not yet, and we will not pretend otherwise.</p>
+          <p class="mt-2 text-sm leading-relaxed text-ink/70">
+            Our clinicians are licensed in New Jersey, so we can treat you only
+            while you are physically in the state. Visiting soon? Book for a
+            day you will be here. Otherwise, tell us where you are and you
+            will be the first to know when we arrive.
           </p>
-        </li>
-      </ul>
+          <a href={`mailto:${SITE.email}?subject=Bring%20EfhsanRX%20to%20my%20state`} class="btn-primary mt-5 w-full">Tell us where you are</a>
+          <a href={PORTAL_URL} class="mt-3 block text-center text-xs font-medium text-pine-600 underline underline-offset-4 hover:text-pine-800">
+            I will be in New Jersey, let me book
+          </a>
+        </div>
+
+        <button
+          type="button"
+          id="fit-restart"
+          style="display: none"
+          class="mt-4 text-xs font-medium text-pine-500 underline underline-offset-4 transition-colors hover:text-pine-700"
+        >
+          Start over
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- The doctors -->
+  <section class="bg-white">
+    <div class="section grid items-center gap-12 lg:grid-cols-2">
+      <figure class="order-last overflow-hidden rounded-[2.5rem] lg:order-first">
+        <Image
+          src={telehealthVisit}
+          alt="A woman at home smiling during a telehealth video visit on her laptop"
+          class="h-full w-full object-cover"
+          widths={[480, 768, 1080]}
+          sizes="(min-width: 1024px) 45vw, 90vw"
+        />
+      </figure>
+      <div>
+        <p class="eyebrow">The people behind the plan</p>
+        <h2 class="display mt-4 text-3xl sm:text-4xl">
+          Doctors who stay with you.
+        </h2>
+        <p class="mt-6 max-w-lg leading-relaxed text-ink/70">
+          EfhsanRX is not a marketplace of strangers. Your care comes from our
+          doctors: a board certified ObGyn with four decades of listening
+          behind him, and a doctorally prepared nurse midwife focused on the
+          everyday side of women's health. When you come back, they already
+          know your story.
+        </p>
+        <ul class="mt-8 grid gap-3 text-sm text-ink/80 sm:grid-cols-2">
+          <li class="rounded-xl bg-cream px-4 py-3">Board certified since {DOCTOR.boardCertifiedSince}, FACOG</li>
+          <li class="rounded-xl bg-cream px-4 py-3">{REVIEWS.google.rating} stars, {REVIEWS.google.count} Google reviews</li>
+          <li class="rounded-xl bg-cream px-4 py-3">Care in English, Spanish, and Turkish</li>
+          <li class="rounded-xl bg-cream px-4 py-3">The same clinicians at every visit</li>
+        </ul>
+        <a href="/doctor" class="btn-accent group mt-8">
+          Meet our doctors
+          <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing preview -->
+  <section class="bg-sand/60">
+    <div class="section">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Simple pricing</p>
+        <h2 class="display mt-4 text-3xl sm:text-4xl">
+          One visit. One price. Nothing hidden.
+        </h2>
+        <p class="mt-4 leading-relaxed text-ink/70">
+          You will always know the full cost before you book. No insurance, no
+          membership, no bills that show up later.
+        </p>
+      </div>
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
+        {
+          [PRICING.initial, PRICING.followUp].map((tier) => (
+            <div class="card flex flex-col">
+              <h3 class="font-display text-xl font-medium text-pine-900">{tier.label}</h3>
+              <p class="mt-3">
+                <span class="font-display text-5xl text-pine-900">${tier.price}</span>
+                <span class="ml-2 inline-block text-sm text-ink/60">one time · {tier.duration}</span>
+              </p>
+              <ul class="mt-6 flex-1 space-y-3">
+                {tier.includes.map((item) => (
+                  <li class="flex gap-3 text-sm leading-relaxed text-ink/70">
+                    <svg
+                      class="mt-0.5 h-4 w-4 shrink-0 text-pine-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" />
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <a href={PORTAL_URL} class="btn-primary mt-8 w-full">Book a visit</a>
+            </div>
+          ))
+        }
+      </div>
+      <p class="mt-6 text-sm text-ink/60">
+        HSA and FSA accepted. Labs and medications are billed separately by your
+        lab and pharmacy. <a href="/pricing" class="font-medium text-apricot-700 underline underline-offset-4">Full pricing details</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="bg-white">
+    <div class="section">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div class="max-w-2xl">
+          <p class="eyebrow">Patient voices</p>
+          <h2 class="display mt-4 text-3xl sm:text-4xl">
+            Rated <span data-google-rating>{REVIEWS.google.rating}</span> by the women we treat.
+          </h2>
+        </div>
+        <a
+          href={PRACTICE.googleMapsUrl}
+          rel="noopener"
+          target="_blank"
+          class="btn-secondary"
+        >
+          <span>Read all <span data-google-count>{REVIEWS.google.count}</span> Google reviews</span>
+        </a>
+      </div>
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
+        {
+          REVIEWS.quotes.map((r) => (
+            <figure class="rounded-3xl border border-pine-900/10 bg-cream p-8">
+              <Stars rating={5} />
+              <blockquote class="mt-4 leading-relaxed text-ink/80">"{r.text}"</blockquote>
+              <figcaption class="mt-4 flex items-center justify-between text-sm">
+                <span class="font-semibold text-pine-900">{r.name}</span>
+                <span class="text-ink/50">Verified Google review · {r.when}</span>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+      <p class="mt-6 text-xs text-ink/50">
+        Reviews shown are from the practice's public Google listing as of {REVIEWS.google.asOf}.
+      </p>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="bg-white">
+  <section>
     <div class="section max-w-3xl">
       <p class="eyebrow">Questions</p>
       <h2 class="display mt-4 text-3xl sm:text-4xl">Frequently asked.</h2>
@@ -253,19 +597,108 @@ const faqs = [
     </div>
   </section>
 
-  <!-- CTA -->
-  <section>
-    <div class="section">
-      <div class="card !bg-apricot-100 !p-12 text-center sm:!p-16">
-        <h2 class="display mx-auto max-w-2xl text-3xl sm:text-4xl">
-          Feel like yourself again — starting this week.
-        </h2>
-        <p class="mx-auto mt-4 max-w-xl text-ink/70">
-          Book a virtual visit with a licensed clinician and get a plan built
-          for you.
-        </p>
-        <a href="/book" class="btn-primary mt-8">Book a visit</a>
+  <!-- Closing CTA -->
+  <section class="pb-16 sm:pb-24">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="relative overflow-hidden rounded-[2.5rem]">
+        <Image
+          src={vitalityOutdoors}
+          alt="A vibrant woman walking outdoors in golden evening light"
+          class="h-[26rem] w-full object-cover"
+          widths={[768, 1080, 1600]}
+          sizes="(min-width: 1152px) 1104px, 92vw"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-pine-900/85 via-pine-900/35 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-8 text-center sm:p-14">
+          <h2 class="display mx-auto max-w-2xl text-3xl !text-cream sm:text-4xl">
+            Feel like yourself again.
+          </h2>
+          <p class="mx-auto mt-3 max-w-xl text-cream/80">
+            Book a video visit and get answers this week.
+          </p>
+          <a href={PORTAL_URL} class="btn-accent mt-6 !px-8 !py-4 !text-base">Book a visit</a>
+        </div>
       </div>
     </div>
   </section>
 </Layout>
+
+<script>
+  // Care matcher: a three question, client side only quiz. Answers live in
+  // this closure and nowhere else; nothing is stored or transmitted. Its job
+  // is to show the visitor a personalized picture of her care.
+  const root = document.getElementById("fit-check");
+  if (root) {
+    const steps = root.querySelectorAll<HTMLElement>("[data-step]");
+    const segs = root.querySelectorAll<HTMLElement>(".fit-seg");
+    const label = document.getElementById("fit-label");
+    const qnum = document.getElementById("fit-qnum");
+    const back = document.getElementById("fit-back");
+    const restart = document.getElementById("fit-restart");
+    const questionNumber: Record<string, number> = { "1": 1, "2": 2, "3": 3 };
+
+    let current = "1";
+    let concern = "else";
+    const history: string[] = [];
+
+    const render = () => {
+      const n = questionNumber[current];
+      steps.forEach((el) => {
+        const on = el.dataset.step === current;
+        el.classList.toggle("hidden", !on);
+        if (on) {
+          el.classList.remove("fit-in");
+          void el.offsetWidth;
+          el.classList.add("fit-in");
+        }
+      });
+      if (label && qnum) {
+        if (n) {
+          label.innerHTML = `Question <span id="fit-qnum">${n}</span> of 3`;
+        } else {
+          label.textContent = "Your match";
+        }
+      }
+      segs.forEach((seg, i) => {
+        const filled = n === undefined || i < n;
+        seg.classList.toggle("bg-pine-800", filled);
+        seg.classList.toggle("bg-pine-900/10", !filled);
+      });
+      if (back) back.style.display = history.length ? "" : "none";
+      if (restart) restart.style.display = n === undefined ? "" : "none";
+    };
+
+    const go = (next: string) => {
+      history.push(current);
+      current = next;
+      render();
+    };
+
+    root.querySelectorAll<HTMLButtonElement>("button[data-answer]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const answer = btn.dataset.answer;
+        const value = btn.dataset.value ?? "";
+        if (answer === "concern") {
+          concern = value;
+          go("2");
+        } else if (answer === "pregnant") {
+          go(value === "yes" ? "result-pregnant" : "3");
+        } else if (answer === "nj") {
+          go(value === "yes" ? `result-${concern}` : "result-nj");
+        }
+      });
+    });
+    back?.addEventListener("click", () => {
+      const prev = history.pop();
+      if (prev) {
+        current = prev;
+        render();
+      }
+    });
+    restart?.addEventListener("click", () => {
+      history.length = 0;
+      current = "1";
+      render();
+    });
+  }
+</script>

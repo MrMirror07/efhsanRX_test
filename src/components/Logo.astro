@@ -2,18 +2,36 @@
 interface Props {
   class?: string;
 }
-const { class: className = "h-8 w-auto" } = Astro.props;
+const { class: className = "h-9 w-auto" } = Astro.props;
 ---
 
-<span class={`inline-flex items-center gap-2 ${className}`}>
-  <svg viewBox="0 0 32 32" class="h-full w-auto" aria-hidden="true">
-    <circle cx="16" cy="16" r="16" class="fill-pine-800" />
-    <path
-      d="M10 22V10h6a4 4 0 0 1 1.6 7.67L21.5 22h-3.4l-3.2-3.6H13V22h-3Zm3-6.2h3a1.4 1.4 0 1 0 0-2.8h-3v2.8Z"
-      class="fill-cream"
+<span class={`inline-flex items-center gap-2.5 ${className}`}>
+  <!-- Rx seal: prescription monogram with a hairline ring, drawn on a 48 grid -->
+  <svg viewBox="0 0 48 48" class="h-full w-auto" aria-hidden="true">
+    <rect x="0" y="0" width="48" height="48" rx="14.5" class="fill-pine-800" />
+    <rect
+      x="3.5"
+      y="3.5"
+      width="41"
+      height="41"
+      rx="11.5"
+      fill="none"
+      class="stroke-cream/20"
+      stroke-width="1"
     />
+    <g
+      class="stroke-cream"
+      fill="none"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M18 35V13h8a6 6 0 0 1 0 12h-8" />
+      <path d="M24.5 25 32 35" />
+      <path d="M33 26.5 24 35.5" class="stroke-apricot-300" />
+    </g>
   </svg>
-  <span class="font-display text-xl font-semibold tracking-tight text-pine-900">
-    Efhsan<span class="text-apricot-500">RX</span>
+  <span class="font-display text-[1.35rem] leading-none font-semibold tracking-tight text-pine-900">
+    Efhsan<span class="text-apricot-600">RX</span>
   </span>
 </span>

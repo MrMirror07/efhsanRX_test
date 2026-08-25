@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand palette — warm, calm, clinical-but-human */
+  /* Heritage Pine palette. See docs/color-design-research.md */
   --color-cream: #faf7f2;
   --color-sand: #f1eae0;
-  --color-ink: #1c2b26;
+  --color-ink: #1f2421;
 
   --color-pine-50: #eef4f1;
-  --color-pine-100: #d8e6e0;
+  --color-pine-100: #dce7e1;
   --color-pine-200: #b3cfc4;
   --color-pine-300: #86b1a2;
   --color-pine-400: #5b9182;
@@ -17,12 +17,18 @@
   --color-pine-800: #14453d;
   --color-pine-900: #0e332d;
 
+  /* Apricot is decorative below 700; 700+ is the only text safe range */
+  --color-apricot-50: #f8e3d3;
   --color-apricot-100: #fbeadf;
   --color-apricot-200: #f5d3bc;
   --color-apricot-300: #eeb593;
   --color-apricot-400: #e59a6d;
   --color-apricot-500: #dd7f48;
   --color-apricot-600: #c9662f;
+  --color-apricot-700: #a8552a;
+  --color-apricot-800: #8f4520;
+
+  --color-gold: #e9b84e;
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Fraunces", ui-serif, Georgia, serif;
@@ -50,7 +56,7 @@
     @apply border border-pine-800/30 text-pine-800 hover:bg-pine-800/5;
   }
   .btn-accent {
-    @apply bg-apricot-500 text-white hover:bg-apricot-600;
+    @apply bg-apricot-700 text-white hover:bg-apricot-800;
   }
   .section {
     @apply mx-auto w-full max-w-6xl px-6 py-16 sm:py-24;
@@ -63,5 +69,52 @@
   }
   .card {
     @apply rounded-3xl bg-white p-8 shadow-[0_1px_2px_rgba(20,43,38,0.06),0_12px_32px_-16px_rgba(20,43,38,0.18)];
+  }
+  /* Visual tile: an image-led card that acts as one big button, Hers style */
+  /* Pair with the `group` class in markup so hover states can cascade */
+  .tile {
+    @apply block overflow-hidden rounded-3xl border border-pine-900/10 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_2px_4px_rgba(20,43,38,0.06),0_20px_44px_-18px_rgba(20,43,38,0.28)];
+  }
+  .tile-img {
+    @apply aspect-[4/3] overflow-hidden bg-sand;
+  }
+  .tile-img img {
+    @apply h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04];
+  }
+  /* Circular arrow chip used inside visual buttons */
+  .arrow-chip {
+    @apply inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-pine-800 text-cream transition-all duration-300 group-hover:bg-apricot-700;
+  }
+}
+
+/* Care matcher steps drift in as they appear. */
+@media (prefers-reduced-motion: no-preference) {
+  .fit-in {
+    animation: fit-in 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @keyframes fit-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Gentle scroll reveal. Sections fade and rise as they enter the viewport. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
   }
 }
