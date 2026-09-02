@@ -9,16 +9,16 @@ import { SITE, OPTIMANTRA } from "../config";
  */
 const next = [
   {
-    title: "Check your email",
-    body: "Your confirmation and receipt include a link to the patient portal, your secure intake questionnaire, your consent forms, and your written Good Faith Estimate.",
+    title: "Complete two short forms before your visit",
+    body: "Your confirmation email contains two links: the telehealth consent to sign and your intake questionnaire. Together they take about ten minutes, and your clinician reviews every answer before the visit begins. Both also appear in the patient portal under Forms.",
   },
   {
-    title: "Complete your intake before the visit",
-    body: "It takes about ten minutes. Your answers are reviewed before the visit begins, so the thirty minutes are spent on you rather than on paperwork.",
+    title: "Set up your patient portal",
+    body: "Choose New Sign Up with the same email, first name, and date of birth you used to book. Your receipt, Good Faith Estimate, messages, and results live there.",
   },
   {
     title: "Join from a private place",
-    body: "Your video link is in the same email. Choose a quiet, private space and keep a list of your current medications nearby. Your clinician will guide the rest of the visit.",
+    body: "Your video link is in the same email and in your reminders. Choose a quiet, private space in New Jersey and keep your medication list nearby.",
   },
 ];
 ---
@@ -42,6 +42,11 @@ const next = [
         <p class="mt-1 text-ink/70" id="booked-when"></p>
         <p class="mt-1 text-ink/70" id="booked-with"></p>
         <p class="mt-3 text-xs text-ink/50">Times are shown in Eastern Time. A confirmation with your receipt has been sent to your email.</p>
+      </div>
+      <div class="mx-auto mt-6 max-w-md rounded-2xl border border-apricot-200 bg-apricot-50 p-5 text-left">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-apricot-700">Before your visit</p>
+        <p class="mt-2 text-sm leading-relaxed text-ink/80">Please sign your telehealth consent and complete your intake questionnaire. The links are in your confirmation email and in the patient portal, and together they take about ten minutes.</p>
+        <a href={OPTIMANTRA.portalLoginUrl} rel="noopener" class="btn-primary mt-4 w-full !py-3 !text-sm">Open the patient portal</a>
       </div>
     </div>
     <ol class="mx-auto mt-12 grid max-w-3xl gap-4">

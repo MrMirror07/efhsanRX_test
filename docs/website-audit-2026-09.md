@@ -64,3 +64,9 @@ Why: the previous look (cream ground, Fraunces serif, terracotta accent, Inter b
 - Every patient-facing string rewritten to the house voice in `docs/voice-and-terminology.md` (installed as the `shewellrx-voice` project skill): patient as subject, clinical terms explained once, gentle and premium, nothing framed around the doctor.
 - Reviews section rebuilt: summary card with Google attribution plus a two-column drifting review wall (swipe strip on phones, static under reduced motion). `functions/api/reviews.js` now returns Google's current reviews for the listing; the wall places them first once `GOOGLE_PLACES_API_KEY` is set in Cloudflare. Splide is no longer used on the home page.
 - CSP `img-src` allows Google profile photos (`*.googleusercontent.com`).
+
+## Round 6 (2026-09-02): form reminders and brand assets
+
+- `/booked` opens with a "Before your visit" callout (sign the telehealth consent, complete the intake questionnaire, links in the email and the portal) and a button into the patient portal; the first next-step card says the same. The `/book` final step tells patients the two forms arrive in the confirmation email.
+- Brand PNGs for OptiMantra and email live in `public/brand/` (served at `https://shewellrx.com/brand/...`): `logo-light.png` and `logo-dark.png` (transparent), `logo-on-pine.png`, `logo-on-cream.png`, `email-header.png` (600 wide), `logo-dark-480.png`, `mark-512.png`. They were rendered in the browser with the real Newsreader and Figtree fonts, then trimmed and padded with sharp.
+- Still to apply inside OptiMantra once signed in again: portal questionnaire requirements (SheWellRX forms instead of GENERAL_), practice logo on the scheduler and the portal (`imgurl`), scheduler colors to the new palette, scheduler notice and confirmation text mentioning the two forms, and branded HTML in the confirmation, reminder, and cancellation emails using `email-header.png`.
