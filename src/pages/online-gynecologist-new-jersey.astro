@@ -14,23 +14,23 @@ const description =
 const faqs = [
   {
     q: "Is an online gynecologist visit legal in New Jersey?",
-    a: "Yes. New Jersey law allows physicians licensed in the state to diagnose, treat, and prescribe through live video telehealth, held to the same standard of care as an in person visit. The patient must be physically located in New Jersey during the visit, and a relationship must be established through a real encounter, not a questionnaire alone.",
+    a: "Yes. New Jersey law allows physicians licensed in the state to diagnose, treat, and prescribe through live video telehealth, held to the same standard of care as an in-person visit. You must be physically located in New Jersey during the visit, and the relationship between you and your clinician must be established through a live video encounter rather than a questionnaire alone.",
   },
   {
     q: "What can a gynecologist do over video?",
-    a: "Take a full history, review symptoms and records, diagnose common conditions such as perimenopause, menopause, PCOS, and genitourinary symptoms, prescribe hormone therapy and contraception, order labs and imaging near your home, and manage treatment over time. What a camera cannot do is a pelvic exam, a Pap test, an ultrasound, a biopsy, or a procedure; those are referred to a local office and your records follow.",
+    a: "Over video, your clinician can take a full history, review your symptoms and records, diagnose common conditions such as perimenopause, menopause, polycystic ovary syndrome (PCOS), and genitourinary syndrome of menopause (vaginal dryness and related symptoms), prescribe hormone therapy and contraception, order labs and imaging near your home, and manage your treatment over time. A pelvic exam, a Pap test, an ultrasound, a biopsy, or a procedure requires an in-person evaluation; when one is needed, you are referred to a local office and your records follow you.",
   },
   {
     q: "Do I need insurance?",
-    a: "No. SheWellRX is self pay: $249 for a thirty minute initial visit and $149 for follow ups, paid once at booking. HSA and FSA cards are accepted, and you can request an itemized superbill for out of network benefits.",
+    a: "No. SheWellRX is a self-pay practice and does not bill insurance: $249 for a thirty minute initial visit and $149 for a follow-up visit, paid once when you schedule. HSA and FSA cards are accepted, and a superbill, an itemized receipt for out-of-network benefits, is available on request.",
   },
   {
     q: "How quickly can I be seen?",
-    a: "Online booking shows real openings, usually within the week, Monday through Friday during business hours Eastern time. You pick the time, pay, and receive your video link and intake by email.",
+    a: "Online scheduling shows current openings, usually within the week, Monday through Friday during business hours, Eastern time. You choose the time, pay, and receive your video link and intake form by email.",
   },
   {
     q: "Which parts of New Jersey do you serve?",
-    a: "All of them. Because visits are by video, patients from Bergen County to Cape May County book the same way. You simply need to be in New Jersey at the time of your visit.",
+    a: "All twenty one of them. Because visits are by video, patients from Bergen County to Cape May County schedule the same way. You need only be physically located in New Jersey at the time of your visit.",
   },
 ];
 
@@ -63,11 +63,11 @@ const schema = {
         <p class="eyebrow mt-8">Telehealth · New Jersey</p>
         <h1 class="display mt-4 text-4xl leading-[1.05] sm:text-5xl lg:text-[3.5rem]">An online gynecologist for every woman in New Jersey</h1>
         <p class="mt-6 max-w-2xl text-lg leading-relaxed text-ink/70">
-          A thirty minute video visit with {DOCTOR.name}, board certified in obstetrics and gynecology and in practice in northern New Jersey since 2002. Menopause, hormone therapy, birth control, PCOS and period problems, and sexual health, treated from your living room with a written plan and two weeks of follow up messaging. One flat fee, no insurance needed.
+          A thirty minute video visit with {DOCTOR.name}, board certified in obstetrics and gynecology and in practice in northern New Jersey since 2002. Perimenopause and menopause, hormone therapy, birth control, polycystic ovary syndrome (PCOS) and menstrual cycle concerns, and sexual health are evaluated and treated from your home, with a written care plan and two weeks of follow-up messaging. One flat fee; we do not bill insurance.
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-4">
           <a href={PORTAL_URL} class="btn-accent group !px-7 !py-4 !text-base">Start your visit · ${PRICING.initial.price}</a>
-          <a href="/doctor" class="btn-secondary !py-4 !text-base">Meet Dr. Copur</a>
+          <a href="/doctor" class="btn-secondary !py-4 !text-base">Meet your clinician</a>
         </div>
       </div>
       <figure class="overflow-hidden rounded-[2rem] lg:col-span-5" data-reveal>
@@ -80,7 +80,7 @@ const schema = {
     <div class="section">
       <div class="max-w-2xl" data-reveal>
         <p class="eyebrow">What we treat by video</p>
-        <h2 class="display mt-4 text-3xl sm:text-4xl">Care that fits on a screen, <em>honestly</em> described</h2>
+        <h2 class="display mt-4 text-3xl sm:text-4xl">What a video visit can treat, described <em>plainly</em></h2>
       </div>
       <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3" data-reveal-stagger>
         {
@@ -94,7 +94,7 @@ const schema = {
         }
         <a href="/services#labs" class="group card flex flex-col !p-7 transition-all hover:-translate-y-1" data-spotlight>
           <h3 class="font-display text-2xl font-medium text-pine-900">Labs and screenings</h3>
-          <p class="mt-3 flex-1 text-sm leading-relaxed text-ink/70">Hormone panels, thyroid testing, and preventive screening ordered when they change the plan, at a lab near your home.</p>
+          <p class="mt-3 flex-1 text-sm leading-relaxed text-ink/70">Hormone panels, thyroid testing, and preventive screening, ordered when they would change your care plan and drawn at a laboratory near your home.</p>
           <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-apricot-700">Read more <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" /></svg></span>
         </a>
       </div>
@@ -107,10 +107,10 @@ const schema = {
         <p class="eyebrow">How New Jersey telehealth works</p>
         <h2 class="display mt-4 text-3xl sm:text-4xl">The rules, in plain language</h2>
         <div class="mt-6 space-y-4 text-[15px] leading-relaxed text-ink/75">
-          <p><strong class="text-pine-900">Your location decides.</strong> Medical licensing follows the patient. Dr. Copur is licensed in New Jersey, so you must be in New Jersey during your visit, whether that is home, work, or a parked car with the door locked.</p>
-          <p><strong class="text-pine-900">Video, not a questionnaire.</strong> New Jersey requires a live encounter before any prescription. Your intake prepares the visit; the decision happens face to face on video.</p>
-          <p><strong class="text-pine-900">The same standard of care.</strong> Telehealth is held to the in person standard. When a concern needs an exam, an ultrasound, a biopsy, or a procedure, we say so and refer you locally, with your records.</p>
-          <p><strong class="text-pine-900">Identity and privacy.</strong> You verify who you are before the first visit, your health information lives only in our HIPAA compliant portal, and visits are never recorded.</p>
+          <p><strong class="text-pine-900">Your location decides.</strong> Medical licensing follows the patient. Dr. Copur is licensed in New Jersey, so you must be physically located in New Jersey during your visit, whether at home, at work, or in another private place in the state.</p>
+          <p><strong class="text-pine-900">A live video visit comes first.</strong> New Jersey requires a live encounter with a clinician before any prescription. Your intake form prepares the visit; treatment decisions are made with you, face to face on video.</p>
+          <p><strong class="text-pine-900">The same standard of care.</strong> Telehealth is held to the same standard as an in-person visit. When your concern calls for an in-person evaluation, an ultrasound, a biopsy, or a procedure, you are told plainly and referred to a local office, with your records.</p>
+          <p><strong class="text-pine-900">Identity and privacy.</strong> You verify your identity before your first visit, your health information is kept only in a HIPAA compliant patient portal, and visits are not recorded.</p>
         </div>
       </div>
       <div class="lg:col-span-5" data-reveal>
@@ -138,7 +138,7 @@ const schema = {
       <div class="max-w-2xl" data-reveal>
         <p class="eyebrow">Everywhere in the state</p>
         <h2 class="display mt-4 text-3xl sm:text-4xl">From Bergen County to Cape May, the same visit</h2>
-        <p class="mt-4 text-ink/70">There is no office to drive to. Women in every New Jersey county book the same thirty minute video visit, including:</p>
+        <p class="mt-4 text-ink/70">There is no office to travel to. Women in all twenty one New Jersey counties schedule the same thirty minute video visit:</p>
       </div>
       <ul class="mt-8 flex flex-wrap gap-2" data-reveal-stagger>
         {NJ_COUNTIES.map((c) => <li class="rounded-full border border-pine-900/10 bg-cream px-3.5 py-1.5 text-sm text-pine-900">{c} County</li>)}

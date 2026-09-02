@@ -42,40 +42,40 @@ const images = {
 
 const detail: Record<string, { intro: string; prescribed: string[]; visit: string[]; symptoms: string[] }> = {
   "birth-control": {
-    intro: "There is no single best contraceptive, only the one that fits your body, your history, and what you want the next few years to look like. Your visit is a real conversation about the options, not a form with checkboxes.",
+    intro: "There is no single best contraceptive, only the one that fits your health, your history, and your plans for the next few years. Your visit is a full discussion of the options, guided by the safety questions that matter.",
     prescribed: ["Combined estrogen and progestin pills", "Progestin only pills for those who should avoid estrogen", "The patch and the vaginal ring", "Emergency contraception guidance"],
-    visit: ["A method matched to your health history and preferences", "A prescription sent to your pharmacy the same day when appropriate", "A clear plan for what to expect in the first months"],
+    visit: ["A method matched to your health history and your preferences", "A prescription sent to your pharmacy the same day when appropriate", "A clear plan for what to expect in the first months"],
     symptoms: [],
   },
   menopause: {
-    intro: "Hot flashes, night sweats, sleep that falls apart at 3 a.m. Perimenopause and menopause are not something to white knuckle through. Treatment exists, it works, and a specialist can tell you which kind is safe for you.",
+    intro: "Hot flashes, night sweats, and sleep that is interrupted night after night are the most common reasons women seek care in perimenopause and menopause. Effective treatment exists, and a specialist can tell you which options are safe for you.",
     prescribed: ["Menopausal hormone therapy when your history allows it", "Non hormonal options for vasomotor symptoms", "Support for sleep and mood alongside the hormonal picture"],
-    visit: ["A full review of symptoms, history, and contraindications", "An honest conversation about benefits and risks, in plain language", "A written plan you can share with any other doctor you see"],
+    visit: ["A full review of symptoms, history, and contraindications", "A candid discussion of benefits and risks, in plain language", "A written care plan you can share with any other clinician you see"],
     symptoms: [],
   },
   "hormone-therapy": {
-    intro: "Hormone therapy has been argued about in headlines for twenty years. What you need is not a headline, it is a doctor who knows the evidence and your chart. Started at the right dose for the right patient, it can change daily life.",
+    intro: "Menopausal hormone therapy has been debated publicly for twenty years, and the evidence is clearer than the headlines suggest. Started at the right dose for the right patient, it can meaningfully improve daily life. Your history and preferences guide the decision.",
     prescribed: ["Estradiol patches, gels, and tablets", "Micronized progesterone for uterine protection", "Low dose regimens designed to start gently"],
     visit: ["Screening for the conditions that make hormones unsafe", "A dosing plan reviewed and adjusted at follow ups", "Lab work ordered only when it will change the decision"],
     symptoms: [],
   },
   "sexual-health": {
-    intro: "Dryness, pain with intimacy, desire that faded and never came back. These are medical issues with medical answers, and they deserve the same seriousness as any other diagnosis. No awkward waiting room required.",
-    prescribed: ["Vaginal estrogen creams and tablets", "Moisturizers and comfort care that actually help", "Evaluation of medications that may be lowering desire"],
-    visit: ["A private, judgment free conversation with your clinician", "Treatment started the same week when appropriate", "Follow up messaging to adjust what is not working"],
+    intro: "Vaginal dryness, pain with intimacy, and a loss of desire are medical conditions with established treatments. They are discussed privately, from your own home, with the same care and seriousness as any other diagnosis.",
+    prescribed: ["Vaginal estrogen creams and tablets", "Vaginal moisturizers and lubricants known to be effective", "Evaluation of medications that may be lowering desire"],
+    visit: ["A private, unhurried conversation with your clinician", "Treatment started the same week when appropriate", "Follow up messaging to adjust what is not working"],
     symptoms: [],
   },
   periods: {
-    intro: "A period that floods through protection, cramps that cancel plans, cycles that vanish for months. Your cycle is a vital sign, and when it changes, something is being said. We find out what.",
+    intro: "Heavy bleeding, pain that interrupts daily life, or cycles that become irregular or stop. Your menstrual cycle reflects your overall health, and changes in it deserve a careful, structured evaluation.",
     prescribed: ["Cycle regulation with hormonal options", "Treatment for heavy bleeding when appropriate", "Care plans for PCOS and irregular cycles"],
-    visit: ["A structured evaluation of your bleeding pattern", "Lab and imaging orders when the story calls for them", "A plain answer about what needs in person care"],
+    visit: ["A structured evaluation of your bleeding pattern", "Lab and imaging orders when the story calls for them", "Clear guidance on what requires in-person care"],
     symptoms: [],
   },
   labs: {
-    intro: "Lab work should answer a question, not pad a bill. When your plan needs data, we order exactly what will change the decision and send you to a lab near your home, then explain every line of the result.",
+    intro: "Laboratory testing should answer a clear question. When your care plan needs data, we order the tests that will guide the decision, send you to a laboratory near your home, and review every result with you in plain language.",
     prescribed: ["Hormone panels timed to your cycle", "Thyroid testing when symptoms overlap", "Preventive screenings appropriate to your age"],
-    visit: ["Orders sent to a national lab close to you", "Results reviewed together, in words you can use", "No test ordered without telling you why first"],
-    symptoms: ["A result I already have and want explained", "Fatigue that no one has checked", "A family history I want screened for", "Not sure which test I need"],
+    visit: ["Orders sent to a national lab close to you", "Results reviewed together, explained in plain language", "No test is ordered without explaining why"],
+    symptoms: ["A result I already have and want explained", "Fatigue that has not been evaluated", "A family history I want screened for", "Not sure which test I need"],
   },
 };
 for (const t of TREATMENTS) {
@@ -95,9 +95,9 @@ const description =
       <Breadcrumbs items={[{ name: "What we treat", href: "/services" }]} />
       <div class="mt-8 max-w-3xl">
         <p class="eyebrow">What we treat</p>
-        <h1 class="display mt-4 text-4xl sm:text-5xl lg:text-6xl">Real symptoms. Real medicine. <em>Real answers.</em></h1>
+        <h1 class="display mt-4 text-4xl sm:text-5xl lg:text-6xl">Care for every stage of a woman's health, <em>by video.</em></h1>
         <p class="mt-6 text-lg leading-relaxed text-ink/70">
-          Every visit is a thirty minute video conversation with {DOCTOR.name}, a board certified ObGyn licensed in New Jersey. Choose an area to see the symptoms we hear every day, what can be prescribed by video, and what your visit includes.
+          Every visit is a thirty minute video consultation with a board certified ObGyn licensed in New Jersey. Choose an area to see the symptoms we commonly evaluate, what can be prescribed by video, and what your visit includes.
         </p>
       </div>
     </div>
@@ -128,7 +128,7 @@ const description =
             ))
           }
         </ul>
-        <p class="mt-4 hidden text-xs text-ink/50 lg:block">Not sure? <a href={PORTAL_URL} class="font-medium text-apricot-700 underline underline-offset-4">Start with a visit</a> and Dr. Copur helps you find the right next step, even if it is not with us.</p>
+        <p class="mt-4 hidden text-xs text-ink/50 lg:block">Not sure? <a href={PORTAL_URL} class="font-medium text-apricot-700 underline underline-offset-4">Start with a visit</a> and your clinician will help you find the right next step, even if it is not with us.</p>
       </nav>
 
       <!-- Panels -->
@@ -148,7 +148,7 @@ const description =
                     <p class="mt-4 text-[15px] leading-relaxed text-ink/70">{d.intro}</p>
                     {d.symptoms.length > 0 && (
                       <div class="mt-5">
-                        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-pine-500">Sounds familiar?</p>
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-pine-500">Common symptoms</p>
                         <ul class="mt-2.5 flex flex-wrap gap-2">
                           {d.symptoms.map((s) => (
                             <li><button type="button" class="symptom-chip rounded-full border border-pine-900/15 bg-cream px-3.5 py-2 text-[13px] font-medium text-pine-900 transition-all duration-300 hover:border-pine-500 hover:bg-white aria-pressed:border-apricot-500 aria-pressed:bg-apricot-50 aria-pressed:text-apricot-800" aria-pressed="false">{s}</button></li>
@@ -206,7 +206,7 @@ const description =
 
   <section class="bg-sand/60">
     <div class="section text-center" data-reveal>
-      <h2 class="display mx-auto max-w-2xl text-3xl sm:text-4xl">Not sure where you fit?</h2>
+      <h2 class="display mx-auto max-w-2xl text-3xl sm:text-4xl">Not sure where to begin?</h2>
       <p class="mx-auto mt-4 max-w-xl text-ink/70">Start with a visit. Your clinician will help you find the right next step, even if that step is not with us.</p>
       <a href={PORTAL_URL} class="btn-accent mt-8 !px-8 !py-4 !text-base">Start with a visit</a>
       <p class="mt-4 text-xs text-ink/50">Questions first? <a href={`mailto:${SITE.email}`} class="underline underline-offset-4">{SITE.email}</a></p>

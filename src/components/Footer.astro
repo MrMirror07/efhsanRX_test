@@ -13,10 +13,10 @@ const year = new Date().getFullYear();
       <div class="md:col-span-5">
         <Logo tone="light" />
         <p class="mt-8 max-w-sm font-display text-3xl leading-tight text-cream">
-          Care that <em class="text-apricot-300">listens</em> until it finds the answer.
+          Women's health care that <em class="text-apricot-300">listens</em>, and follows through.
         </p>
         <p class="mt-5 max-w-sm text-sm leading-relaxed text-cream/60">
-          Virtual women's health from a board certified ObGyn. One flat fee, no insurance needed, for patients across New Jersey.
+          Video visits with a board certified ObGyn for women across New Jersey. A self-pay practice with one flat fee; we do not bill insurance.
         </p>
         <a href={PORTAL_URL} class="btn-accent mt-8">Start your visit</a>
       </div>
@@ -35,16 +35,16 @@ const year = new Date().getFullYear();
             <li><a href="/services" class="transition-colors hover:text-cream">What we treat</a></li>
             <li><a href="/how-it-works" class="transition-colors hover:text-cream">How it works</a></li>
             <li><a href="/pricing" class="transition-colors hover:text-cream">Pricing</a></li>
-            <li><a href={PORTAL_URL} class="transition-colors hover:text-cream">Book a visit</a></li>
+            <li><a href={PORTAL_URL} class="transition-colors hover:text-cream">Schedule a video visit</a></li>
             <li><a href={OPTIMANTRA.portalLoginUrl} rel="noopener" class="transition-colors hover:text-cream">Patient portal sign in</a></li>
           </ul>
         </div>
         <div>
           <h3 class="text-[11px] font-semibold uppercase tracking-[0.22em] text-cream/50">Practice</h3>
           <ul class="mt-5 space-y-3 text-sm">
-            <li><a href="/doctor" class="transition-colors hover:text-cream">Your doctor</a></li>
+            <li><a href="/doctor" class="transition-colors hover:text-cream">Your clinicians</a></li>
             <li><a href="/about" class="transition-colors hover:text-cream">About us</a></li>
-            <li><a href={PRACTICE.googleMapsUrl} rel="noopener" target="_blank" class="transition-colors hover:text-cream">Google reviews</a></li>
+            <li><a href={PRACTICE.googleMapsUrl} rel="noopener" target="_blank" class="transition-colors hover:text-cream">Patient reviews on Google</a></li>
             <li><a href={`mailto:${SITE.email}`} class="transition-colors hover:text-cream">{SITE.email}</a></li>
           </ul>
         </div>
@@ -64,10 +64,10 @@ const year = new Date().getFullYear();
 
     <div class="mt-16 grid gap-6 border-t border-cream/10 pt-8 text-xs leading-relaxed text-cream/50 md:grid-cols-2">
       <p>
-        SheWellRX does not provide emergency services. If you are experiencing a medical emergency, call 911 or go to the nearest emergency room. Treatment plans and prescriptions are issued only when a licensed clinician determines they are appropriate. Video visits are for patients physically located in New Jersey at the time of the visit.
+        SheWellRX does not provide emergency services. If you are experiencing a medical emergency, call 911 or go to the nearest emergency room. Care plans and prescriptions are provided only when a licensed clinician determines they are clinically appropriate. Video visits are for patients physically located in New Jersey at the time of the visit.
       </p>
       <p>
-        Care is provided by {DOCTOR.name}, a physician licensed in New Jersey and board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology. {SITE.name} is the telehealth practice of {DOCTOR.practice}. Self pay patients have the right to a Good Faith Estimate of charges. Booking a visit means you accept our Terms of Service, Telehealth Consent and Terms of Care, and Privacy Policy.
+        Care is provided by {DOCTOR.name}, a physician licensed in New Jersey and board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology. {SITE.name} is the telehealth practice of {DOCTOR.practice}. Self-pay patients have the right to a Good Faith Estimate of charges. Scheduling a visit means you accept our Terms of Service, Telehealth Consent and Terms of Care, and Privacy Policy.
         <span class="mt-3 block">&copy; {year} {SITE.name}. All rights reserved.</span>
       </p>
     </div>

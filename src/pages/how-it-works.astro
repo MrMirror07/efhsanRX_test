@@ -4,51 +4,51 @@ import Layout from "../layouts/Layout.astro";
 const steps = [
   {
     n: "01",
-    title: "Tell us what is going on",
-    body: "Two minutes on this site: your concern, what you want from the visit, and a short safety check. Nothing you answer is stored or sent anywhere. Then you see the full price, pick a time, and pay securely in our patient portal.",
+    title: "Tell us what you are experiencing",
+    body: "Two minutes on this site: your concern, what you would like from the visit, and a short safety check. Your answers are not stored or sent anywhere. You then see the full price, choose a time, and pay securely in the patient portal.",
   },
   {
     n: "02",
-    title: "Tell your story once",
-    body: "Right after booking, your secure intake questionnaire and consent forms arrive in the patient portal. Your clinician reads every answer before you meet, so the visit is spent on you, not on paperwork.",
+    title: "Complete your intake once",
+    body: "Right after booking, your secure intake questionnaire and consent forms are available in the patient portal. Your history is reviewed before the visit begins, so the thirty minutes are spent on you rather than on paperwork.",
   },
   {
     n: "03",
-    title: "Talk it through on video",
-    body: "A real conversation with a clinician who has already read your answers. Questions welcomed, nothing rushed, labs ordered only when they will change the plan.",
+    title: "Meet your clinician on video",
+    body: "A thirty minute video visit with a clinician who has already reviewed your history. Your questions are welcome, nothing is rushed, and laboratory tests are ordered only when the results would change your care plan.",
   },
   {
     n: "04",
-    title: "Leave with a plan",
-    body: "A written plan you can reread, prescriptions sent to your local pharmacy when appropriate, and two weeks of included follow up messaging after every visit.",
+    title: "Leave with a written care plan",
+    body: "A written care plan you can return to, prescriptions sent to your pharmacy when clinically appropriate, and two weeks of secure messaging included after every visit.",
   },
 ];
 
 const expectations = [
   {
     title: "Honest recommendations",
-    body: "If treatment is not right for you, your clinician will say so and point you to a better option, including in person care.",
+    body: "If a treatment is not appropriate for you, your clinician will say so and recommend a better option, including an in-person evaluation when one is needed.",
   },
   {
     title: "Pricing before you commit",
-    body: "You will always see the full cost before you book. No surprise bills after the fact.",
+    body: "You will always see the full cost before you book. The visit fee is the only charge from SheWellRX, and a written Good Faith Estimate is provided with your confirmation.",
   },
   {
-    title: "Your data stays yours",
-    body: "Your health information lives only in our HIPAA compliant patient portal and is shared only with the team treating you. This website stores nothing about you.",
+    title: "Your information stays private",
+    body: "Your health information is kept only in our HIPAA compliant patient portal and is shared only with the team caring for you. This website stores nothing about you.",
   },
 ];
 ---
 
 <Layout
   title="How It Works | SheWellRX"
-  description="How SheWellRX works: book a time, complete a short secure intake, meet your clinician on video, and leave with a written plan and two weeks of messaging."
+  description="How SheWellRX works: choose a time, complete a secure intake, meet your clinician on video, and leave with a written care plan and two weeks of messaging."
 >
   <section class="section">
     <div class="max-w-2xl">
       <p class="eyebrow">How it works</p>
       <h1 class="display mt-4 text-4xl sm:text-5xl">
-        Care in four steps. Support the whole way.
+        Your care in four steps, with support throughout.
       </h1>
     </div>
   </section>
@@ -73,7 +73,7 @@ const expectations = [
     <div class="section">
       <div class="max-w-2xl">
         <p class="eyebrow">What to expect</p>
-        <h2 class="display mt-4 text-3xl sm:text-4xl">Our promises to you.</h2>
+        <h2 class="display mt-4 text-3xl sm:text-4xl">What you can expect from us.</h2>
       </div>
       <div class="mt-12 grid gap-6 md:grid-cols-3">
         {
@@ -91,12 +91,12 @@ const expectations = [
   <section class="bg-pine-800 text-cream">
     <div class="section text-center">
       <h2 class="display mx-auto max-w-2xl text-3xl !text-cream sm:text-4xl">
-        Ready when you are.
+        Begin when you are ready.
       </h2>
       <p class="mx-auto mt-4 max-w-xl text-cream/70">
-        Book your first visit and be talking with a clinician this week.
+        Schedule your first video visit and meet with a clinician from home.
       </p>
-      <a href="/book" class="btn-accent mt-8">Book a visit</a>
+      <a href="/book" class="btn-accent mt-8">Schedule a video visit</a>
     </div>
   </section>
 </Layout>

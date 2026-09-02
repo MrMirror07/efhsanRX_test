@@ -7,31 +7,31 @@ import calmTea from "../assets/calm-tea.png";
 const included = [PRICING.initial, PRICING.followUp];
 
 const comparisons = [
-  { label: "Average in person new patient gynecology visit, self pay", price: "about $256" },
-  { label: "Cash price at leading virtual menopause clinics", price: "$250 to $350" },
-  { label: "SheWellRX initial visit with our doctors", price: `$${PRICING.initial.price}`, highlight: true },
+  { label: "Average in-person new patient gynecology visit, self-pay", price: "about $256" },
+  { label: "Self-pay price at leading virtual menopause clinics", price: "$250 to $350" },
+  { label: "SheWellRX initial visit with a board certified ObGyn", price: `$${PRICING.initial.price}`, highlight: true },
 ];
 
 const faqs = [
   {
     q: "When am I charged?",
-    a: "At the end of booking, after you have chosen your visit and time, you pay securely in our patient portal. That reserves your time with your clinician and nothing is billed afterward. Cancel or reschedule up to 24 hours before for a full refund; the full terms are in the Telehealth Consent and Terms of Care you sign before your first visit.",
+    a: "At the end of scheduling, after you have chosen your visit and time, you pay securely in the patient portal. That payment reserves your time with your clinician, and nothing is billed afterward. You may cancel or reschedule up to twenty four hours before your visit for a full refund; the full terms are in the Telehealth Consent and Terms of Care you sign before your first visit.",
   },
   {
     q: "Can I use my HSA or FSA?",
-    a: "Yes. Telehealth visits for medical care are a qualified medical expense, and we accept HSA and FSA cards directly.",
+    a: "Yes. A telehealth visit for medical care is a qualified medical expense, and HSA and FSA cards are accepted directly at checkout.",
   },
   {
     q: "What is not included?",
-    a: "Lab work is billed by the lab and medications by your pharmacy, at their usual cash or insurance prices. We order only what your plan truly needs, and we tell you before we order it.",
+    a: "Lab work is billed by the laboratory and medications by your pharmacy, at their usual self-pay or insurance prices. Tests are ordered only when they would change your care plan, and you are told before anything is ordered.",
   },
   {
     q: "Can I get money back from my insurance?",
-    a: "If your plan includes out of network benefits, we can provide a superbill, an itemized receipt you submit to your insurer for possible reimbursement. Many PPO plans reimburse a meaningful portion.",
+    a: "If your plan includes out-of-network benefits, a superbill is available on request. A superbill is an itemized receipt you submit to your insurer for possible reimbursement. Many PPO plans reimburse a portion of the visit fee; the amount depends on your plan.",
   },
   {
-    q: "Why not just take insurance?",
-    a: "Insurance based visits are often squeezed to a few minutes and priced after the fact. A flat fee lets us give you a long, unhurried visit and a price you know before you book. Nothing arrives in the mail later.",
+    q: "Why is SheWellRX a self-pay practice?",
+    a: "SheWellRX is a self-pay practice and does not bill insurance. Visits billed through insurance are often limited to a few minutes and priced after the fact. A flat fee allows a thirty minute, unhurried visit and a price you know before you schedule, with no bill arriving afterward. A superbill is available on request if your plan includes out-of-network benefits.",
   },
 ];
 
@@ -47,8 +47,8 @@ const faqSchema = {
 ---
 
 <Layout
-  title={`Flat Fee Telehealth Pricing | ${SITE.name}`}
-  description={`SheWellRX pricing is simple: $${PRICING.initial.price} initial visit, $${PRICING.followUp.price} follow up. One time payment, no membership, no insurance needed, HSA and FSA accepted.`}
+  title={`Transparent Telehealth Pricing | ${SITE.name}`}
+  description={`SheWellRX pricing is transparent: $${PRICING.initial.price} initial video visit, $${PRICING.followUp.price} follow-up visit, paid once at scheduling. Self-pay, no membership, HSA and FSA accepted.`}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
@@ -56,12 +56,13 @@ const faqSchema = {
     <div class="max-w-2xl">
       <p class="eyebrow">Pricing</p>
       <h1 class="display mt-4 text-4xl sm:text-5xl">
-        One visit. One price. Nothing hidden.
+        One visit, one price, known before you schedule.
       </h1>
       <p class="mt-6 text-lg leading-relaxed text-ink/70">
-        Healthcare pricing is usually a mystery you solve after the bill
-        arrives. We do the opposite. You see the full price here, before you
-        book, and it never changes. No insurance, no membership, no surprises.
+        SheWellRX is a self-pay practice with transparent pricing. You see the
+        full price of your visit here, before you schedule, and it does not
+        change. We do not bill insurance, there is no membership, and a
+        superbill is available on request for out-of-network benefits.
       </p>
     </div>
   </section>
@@ -75,7 +76,7 @@ const faqSchema = {
               <h2 class="font-display text-xl font-medium text-pine-900">{tier.label}</h2>
               <p class="mt-3">
                 <span class="font-display text-6xl text-pine-900">${tier.price}</span>
-                <span class="ml-2 inline-block text-sm text-ink/60">one time · {tier.duration}</span>
+                <span class="ml-2 inline-block text-sm text-ink/60">one payment · {tier.duration}</span>
               </p>
               <ul class="mt-6 flex-1 space-y-3">
                 {tier.includes.map((item) => (
@@ -93,7 +94,7 @@ const faqSchema = {
                   </li>
                 ))}
               </ul>
-              <a href={PORTAL_URL} class="btn-primary mt-8 w-full">Book this visit</a>
+              <a href={PORTAL_URL} class="btn-primary mt-8 w-full">Schedule this visit</a>
             </div>
           ))
         }
@@ -107,15 +108,15 @@ const faqSchema = {
           </p>
         </div>
         <div>
-          <h3 class="font-semibold text-pine-900">Paid when you book</h3>
+          <h3 class="font-semibold text-pine-900">Paid when you schedule</h3>
           <p class="mt-2 text-sm leading-relaxed text-ink/70">
-            One secure payment reserves your time. No bills arrive afterward.
+            One secure payment reserves your time with your clinician. Nothing is billed afterward.
           </p>
         </div>
         <div>
           <h3 class="font-semibold text-pine-900">Superbill on request</h3>
           <p class="mt-2 text-sm leading-relaxed text-ink/70">
-            Out of network benefits? We provide the receipt your insurer needs.
+            If your plan includes out-of-network benefits, an itemized receipt is available for you to submit to your insurer.
           </p>
         </div>
       </div>
@@ -123,8 +124,8 @@ const faqSchema = {
       <div class="mt-6 rounded-3xl border border-pine-900/10 bg-white p-6 text-sm leading-relaxed text-ink/70">
         <p class="font-semibold text-pine-900">Your right to a Good Faith Estimate</p>
         <p class="mt-2">
-          SheWellRX does not participate in any health plan network, so we are out of network for every insurer and we do not bill Medicare or Medicaid. Under the federal No Surprises Act, every self pay patient receives a written Good Faith Estimate of expected charges when she books, or on request at any time. The amount we will bill for any service is always available on request.
-          <a href="/good-faith-estimate" class="font-medium text-apricot-700 underline underline-offset-4">Read the estimate notice</a>.
+          SheWellRX does not participate in any health plan network, so we are out of network for every insurer, and we do not bill Medicare or Medicaid. Under the federal No Surprises Act, every self-pay patient receives a written Good Faith Estimate of expected charges when she schedules a visit, or on request at any time. The amount we will bill for any service is always available on request.
+          <a href="/good-faith-estimate" class="font-medium text-apricot-700 underline underline-offset-4">Read the Good Faith Estimate notice</a>.
         </p>
       </div>
     </div>
@@ -133,15 +134,16 @@ const faqSchema = {
   <section>
     <div class="section grid items-center gap-12 lg:grid-cols-2">
       <div>
-        <p class="eyebrow">How we compare</p>
+        <p class="eyebrow">Pricing in context</p>
         <h2 class="display mt-4 text-3xl sm:text-4xl">
-          Specialist care, priced fairly.
+          A specialist visit at a price you can plan for.
         </h2>
         <p class="mt-4 leading-relaxed text-ink/70">
-          A new patient gynecology visit without insurance averages about the
-          same as our flat fee, and virtual menopause clinics charge as much
-          or more for a shorter visit with a nurse practitioner. Ours is a full
-          visit with a physician led team, and there is never a membership.
+          A self-pay new patient gynecology visit in person averages about the
+          same as our flat fee, and virtual menopause clinics charge as much or
+          more, often for a shorter visit with a nurse practitioner. Your visit
+          at SheWellRX is a thirty minute video visit with a board certified
+          ObGyn, and there is no membership.
         </p>
         <ul class="mt-8 space-y-3">
           {
@@ -168,8 +170,8 @@ const faqSchema = {
           }
         </ul>
         <p class="mt-4 text-xs text-ink/50">
-          Market figures from published cash price data, August 2026. Sources in
-          our research notes.
+          Market figures from published self-pay price data, August 2026.
+          Sources are listed in our research notes.
         </p>
       </div>
       <figure class="overflow-hidden rounded-[2.5rem]">
@@ -187,7 +189,7 @@ const faqSchema = {
   <section class="bg-white">
     <div class="section max-w-3xl">
       <p class="eyebrow">Pricing questions</p>
-      <h2 class="display mt-4 text-3xl sm:text-4xl">Asked and answered.</h2>
+      <h2 class="display mt-4 text-3xl sm:text-4xl">Questions about pricing, answered.</h2>
       <div class="mt-10 divide-y divide-pine-900/10">
         {
           faqs.map((f) => (
@@ -206,7 +208,7 @@ const faqSchema = {
         }
       </div>
       <div class="mt-12 text-center">
-        <a href={PORTAL_URL} class="btn-primary !px-8 !py-4 !text-base">Book a visit</a>
+        <a href={PORTAL_URL} class="btn-primary !px-8 !py-4 !text-base">Schedule a video visit</a>
       </div>
     </div>
   </section>

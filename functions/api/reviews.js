@@ -1,10 +1,13 @@
 /**
  * Cloudflare Pages Function: GET /api/reviews
  *
- * Returns the practice's live Google rating and review count so the site can
- * show current numbers instead of a stale snapshot. The response is cached at
- * the edge for six hours, so Google is queried a handful of times per day no
- * matter how much traffic the site gets.
+ * Returns the practice's live Google rating, review count, and the reviews
+ * Google currently shows for the listing (the Places API returns up to five),
+ * so the site can show current numbers and current reviews instead of a
+ * stale snapshot. The response is cached at the edge for six hours, so Google
+ * is queried a handful of times per day no matter how much traffic the site
+ * gets. Google's terms require attribution on display and forbid storing the
+ * reviews beyond a short cache, which this respects.
  *
  * Setup (Cloudflare Pages dashboard -> Settings -> Environment variables):
  *   GOOGLE_PLACES_API_KEY  an API key with "Places API (New)" enabled,
@@ -37,7 +40,7 @@ export async function onRequestGet({ env, waitUntil }) {
     {
       headers: {
         "X-Goog-Api-Key": key,
-        "X-Goog-FieldMask": "rating,userRatingCount",
+        "X-Goog-FieldMask": "rating,userRatingCount,reviews,googleMapsUri",
       },
     },
   );
@@ -48,10 +51,26 @@ export async function onRequestGet({ env, waitUntil }) {
     return json({ error: "malformed_upstream" }, 502);
   }
 
+  const reviews = Array.isArray(data.reviews)
+    ? data.reviews
+        .filter((r) => r && typeof r.rating === "number" && r.text && r.text.text)
+        .map((r) => ({
+          author: (r.authorAttribution && r.authorAttribution.displayName) || "Google user",
+          authorUrl: (r.authorAttribution && r.authorAttribution.uri) || "",
+          photo: (r.authorAttribution && r.authorAttribution.photoUri) || "",
+          rating: r.rating,
+          text: String(r.text.text).slice(0, 700),
+          when: r.relativePublishTimeDescription || "",
+          time: r.publishTime || "",
+        }))
+    : [];
+
   const response = json(
     {
       rating: data.rating,
       count: data.userRatingCount,
+      mapsUrl: data.googleMapsUri || "",
+      reviews,
       fetchedAt: new Date().toISOString(),
     },
     200,

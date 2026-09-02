@@ -58,3 +58,9 @@ Why: the previous look (cream ground, Fraunces serif, terracotta accent, Inter b
 - Layout schema: MedicalClinic with areaServed (NJ + counties), priceRange, availableService, Physician credentials and sameAs profiles; geo meta; unique titles under 60 chars and descriptions under 160 chars on every page.
 - Motion: reveal catch-up on fast scroll or anchor jumps so no section stays hidden; film scroll uses svh on phones; sections get 4rem padding on phones and 8rem on wide screens; `overflow-x: clip` on html/body; `scroll-margin-top` for anchors under the sticky header.
 - Still to do: Nurefsan Copur portrait (waiting on a usable photo), Google Business Profile and Search Console setup, real backlinks (NJ directories, Healthgrades/Zocdoc profile links pointing at shewellrx.com).
+
+## Round 4 (2026-09-02): voice and reviews
+
+- Every patient-facing string rewritten to the house voice in `docs/voice-and-terminology.md` (installed as the `shewellrx-voice` project skill): patient as subject, clinical terms explained once, gentle and premium, nothing framed around the doctor.
+- Reviews section rebuilt: summary card with Google attribution plus a two-column drifting review wall (swipe strip on phones, static under reduced motion). `functions/api/reviews.js` now returns Google's current reviews for the listing; the wall places them first once `GOOGLE_PLACES_API_KEY` is set in Cloudflare. Splide is no longer used on the home page.
+- CSP `img-src` allows Google profile photos (`*.googleusercontent.com`).

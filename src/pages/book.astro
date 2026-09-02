@@ -33,36 +33,36 @@ type Concern = {
 const concerns: Concern[] = [
   {
     key: "menopause",
-    label: "Menopause or perimenopause symptoms",
+    label: "Perimenopause or menopause symptoms",
     slug: "menopause",
-    headline: "Menopause care is our deepest specialty.",
-    body: "Hot flashes, night sweats, broken sleep, and mood swings are treated together in one plan. Hormone therapy and non hormonal options are prescribed in your visit when they are right for you.",
+    headline: "Hot flashes, night sweats, and disrupted sleep respond to treatment.",
+    body: "Vasomotor symptoms (hot flashes and night sweats), sleep disruption, and mood changes are treated together in one care plan. Menopausal hormone therapy and non hormonal options are prescribed during your visit when they are appropriate for you.",
     questions: [
       {
         id: "stage",
-        prompt: "Where are you in the change?",
-        sub: "There is no wrong answer. It helps your clinician prepare.",
+        prompt: "Where are you in the menopause transition?",
+        sub: "There is no wrong answer. It helps your clinician prepare for your visit.",
         options: [
-          "Periods still regular, but symptoms have started",
-          "Periods irregular or skipping",
-          "No period for 12 months or more",
-          "I had a hysterectomy or my ovaries removed",
+          "Periods are still regular, but symptoms have begun",
+          "Periods are irregular or skipped",
+          "No period for twelve months or more",
+          "I have had a hysterectomy or my ovaries removed",
           "Not sure",
         ],
       },
       {
         id: "bothers",
-        prompt: "What bothers you most?",
-        sub: "Choose everything that applies.",
+        prompt: "Which symptoms concern you most?",
+        sub: "Select all that apply.",
         multi: true,
         options: [
           "Hot flashes or night sweats",
-          "Sleep",
-          "Mood or anxiety",
-          "Brain fog",
-          "Vaginal dryness or pain with sex",
+          "Sleep disruption",
+          "Mood changes or anxiety",
+          "Brain fog or difficulty concentrating",
+          "Vaginal dryness or pain with intimacy",
           "Weight changes",
-          "Low desire",
+          "Low sexual desire",
           "Something else",
         ],
       },
@@ -70,25 +70,25 @@ const concerns: Concern[] = [
   },
   {
     key: "hormone-therapy",
-    label: "Hormone therapy: start, adjust, or a second opinion",
+    label: "Hormone therapy: starting, adjusting, or a second opinion",
     slug: "hormone-therapy",
-    headline: "Hormone therapy, decided with a specialist.",
-    body: "Started at the right dose for the right patient, hormone therapy can change daily life. Your clinician screens for the conditions that make it unsafe and builds a plan reviewed at every follow up.",
+    headline: "Your hormone therapy decision, made with a specialist.",
+    body: "Menopausal hormone therapy (MHT), started at the appropriate dose for you, can improve daily life. Your clinician screens for the conditions that make it unsafe and builds a care plan that is reviewed at every follow-up visit.",
     questions: [
       {
         id: "goal",
-        prompt: "Which is closest?",
+        prompt: "Which of these is closest to your goal?",
         options: [
-          "I want to start hormone therapy",
-          "I am on it and want it adjusted",
-          "I was told I cannot take it and want a second opinion",
-          "I want to stop safely",
+          "I would like to start hormone therapy",
+          "I am taking it and would like it adjusted",
+          "I was told I cannot take it and would like a second opinion",
+          "I would like to stop it safely",
         ],
       },
       {
         id: "tried",
         prompt: "What have you tried so far?",
-        sub: "Choose everything that applies.",
+        sub: "Select all that apply.",
         multi: true,
         options: [
           "Nothing yet",
@@ -104,113 +104,113 @@ const concerns: Concern[] = [
     key: "birth-control",
     label: "Birth control",
     slug: "birth-control",
-    headline: "The right method, prescribed in one visit.",
-    body: "Pills, the patch, or the ring, matched to your body and your plans. Your prescription goes to your pharmacy the same day when it is appropriate.",
+    headline: "A method that fits your body and your plans, prescribed in one visit.",
+    body: "The pill, the patch, and the ring are reviewed with your health history and preferences in mind. When a method is appropriate for you, your prescription is sent to your pharmacy the same day.",
     questions: [
       {
         id: "goal",
-        prompt: "What are you looking for?",
+        prompt: "Which of these applies to you?",
         options: [
           "Start a method",
-          "Switch methods",
+          "Switch to a different method",
           "Renew a prescription",
-          "Emergency contraception guidance",
+          "Guidance on emergency contraception",
         ],
       },
       {
         id: "prefs",
-        prompt: "Any preferences?",
-        sub: "Choose everything that applies.",
+        prompt: "Do you have any preferences?",
+        sub: "Select all that apply.",
         multi: true,
         options: [
-          "Pill",
-          "Patch",
-          "Ring",
+          "The pill",
+          "The patch",
+          "The ring",
           "Fewer or no periods",
-          "Estrogen free",
-          "Not sure, help me choose",
+          "An estrogen free method",
+          "Not sure, I would like guidance",
         ],
       },
     ],
   },
   {
     key: "intimacy",
-    label: "Intimacy, dryness, or low desire",
+    label: "Vaginal dryness, pain with intimacy, or low desire",
     slug: "sexual-health",
-    headline: "Real treatment, zero awkward waiting rooms.",
-    body: "Dryness, discomfort, and low desire are medical concerns with medical answers. Vaginal estrogen and comfort care can be prescribed in your visit, discussed in complete privacy.",
+    headline: "Vaginal dryness, discomfort, and low desire are medical conditions with effective treatment.",
+    body: "Vaginal dryness, irritation, pain with intimacy, and low sexual desire are evaluated in a private video visit. Vaginal estrogen and other treatments are prescribed when they are appropriate for you.",
     questions: [
       {
         id: "symptoms",
-        prompt: "What is going on?",
-        sub: "Choose everything that applies.",
+        prompt: "What are you experiencing?",
+        sub: "Select all that apply.",
         multi: true,
         options: [
-          "Dryness",
-          "Pain with sex",
-          "Low desire",
+          "Vaginal dryness",
+          "Pain with intimacy",
+          "Low sexual desire",
           "Burning or urinary symptoms",
           "Something else",
         ],
       },
       {
         id: "duration",
-        prompt: "How long has it been going on?",
+        prompt: "How long have you noticed this?",
         options: ["Weeks", "Months", "Years"],
       },
     ],
   },
   {
     key: "periods",
-    label: "Period problems: heavy, painful, irregular, PCOS",
+    label: "Period concerns: heavy bleeding, painful or irregular cycles, polycystic ovary syndrome (PCOS)",
     slug: "periods",
-    headline: "Your cycle is telling us something. We listen.",
-    body: "Heavy, painful, or unpredictable periods get a structured evaluation and a clear plan, from cycle regulation to PCOS care, with labs ordered only when they change the answer.",
+    headline: "Heavy, painful, or irregular cycles are evaluated carefully and treated.",
+    body: "Heavy menstrual bleeding, painful periods, irregular cycles, and polycystic ovary syndrome (PCOS) receive a structured evaluation and a written care plan. Laboratory tests are ordered only when the results would change your plan.",
     questions: [
       {
         id: "pattern",
-        prompt: "What does your cycle do?",
-        sub: "Choose everything that applies.",
+        prompt: "What have you noticed about your cycle?",
+        sub: "Select all that apply.",
         multi: true,
         options: [
           "Heavy bleeding",
-          "Painful cramps",
-          "Irregular or missing periods",
+          "Painful periods",
+          "Irregular or absent periods",
           "Bleeding between periods",
           "Diagnosed or suspected PCOS",
         ],
       },
       {
         id: "duration",
-        prompt: "How long has this been going on?",
-        options: ["New, under 3 months", "3 to 12 months", "Years"],
+        prompt: "How long has this been happening?",
+        options: ["New, under three months", "Three to twelve months", "Years"],
       },
     ],
   },
   {
     key: "labs",
-    label: "Labs, screenings, or a hormone check",
+    label: "Lab work, screenings, or hormone testing",
     slug: "labs",
-    headline: "Lab work that answers a question.",
-    body: "When your plan needs data, we order exactly what will change the decision, send you to a lab near your home, and explain every line of the result.",
+    headline: "Lab work that answers your question, explained clearly.",
+    body: "When your care plan calls for testing, we order what will inform the decision, arrange for you to visit a laboratory near your home, and review every line of your results with you.",
     questions: [
       {
         id: "wants",
         prompt: "What would you like checked?",
-        sub: "Choose everything that applies.",
+        sub: "Select all that apply.",
         multi: true,
         options: [
           "Hormone levels",
-          "Thyroid",
-          "Preventive screening for my age",
-          "A result I already have and want explained",
+          "Thyroid function",
+          "Preventive screening appropriate for my age",
+          "A result I already have and would like explained",
           "Not sure",
         ],
       },
       {
         id: "results",
-        prompt: "Do you have recent results?",
-        options: ["Yes, from the last 12 months", "No"],
+        prompt: "Do you have recent lab results?",
+        options: ["Yes, from the last twelve months", "No"],
       },
     ],
   },
@@ -218,17 +218,17 @@ const concerns: Concern[] = [
     key: "else",
     label: "Something else in women's health",
     slug: null,
-    headline: "If it touches women's health, start here.",
-    body: "From hormone questions to screenings you have been putting off, a visit is the fastest way to a clear answer. If we are not the right fit, we will say so and point you to who is.",
+    headline: "Whatever your concern in women's health, a visit is the place to begin.",
+    body: "From hormone questions to a screening you have been meaning to schedule, a video visit is the most direct path to a clear answer. If your concern is better served elsewhere, your clinician will say so and refer you to the appropriate care.",
     questions: [
       {
         id: "kind",
-        prompt: "Which of these is closest?",
-        sub: "Choose everything that applies.",
+        prompt: "Which of these is closest to your concern?",
+        sub: "Select all that apply.",
         multi: true,
         options: [
-          "A symptom I want explained",
-          "A diagnosis I want a second opinion on",
+          "A symptom I would like explained",
+          "A diagnosis I would like a second opinion on",
           "A prescription renewal",
           "A general question",
           "Not sure",
@@ -236,7 +236,7 @@ const concerns: Concern[] = [
       },
       {
         id: "duration",
-        prompt: "How long has this been on your mind?",
+        prompt: "How long has this concerned you?",
         options: ["Days", "Weeks", "Months or longer"],
       },
     ],
@@ -245,12 +245,12 @@ const concerns: Concern[] = [
 
 const goals: Question = {
   id: "goals",
-  prompt: "What do you want from this visit?",
-  sub: "Choose everything that applies. Your clinician reads this before you connect.",
+  prompt: "What would you like from this visit?",
+  sub: "Select all that apply. At the end, you can copy your answers into your intake so your clinician can review them before the visit.",
   multi: true,
   options: [
-    "A prescription, if it is right for me",
-    "To understand what is going on",
+    "A prescription, if it is appropriate for me",
+    "To understand what I am experiencing",
     "A second opinion",
     "Ongoing care with one clinician",
     "Lab work",
@@ -259,10 +259,10 @@ const goals: Question = {
 };
 
 const redFlags = [
-  "Bleeding that soaks a pad or tampon every hour for two hours or more",
-  "Severe pelvic or belly pain, fainting, or a fever with pelvic pain",
+  "Bleeding that soaks through a pad or tampon every hour for two hours or more",
+  "Severe pelvic or abdominal pain, fainting, or fever with pelvic pain",
   "A positive pregnancy test with pain or bleeding",
-  "Chest pain, trouble breathing, or a severe headache with vision changes",
+  "Chest pain, difficulty breathing, or a severe headache with vision changes",
   "Thoughts of harming yourself",
 ];
 
@@ -274,7 +274,7 @@ const optionClass =
 
 <Layout
   title="Start Your Visit | SheWellRX"
-  description="Answer a two minute check, see the full price, then pick a time and pay securely. Video visits with a board certified ObGyn for patients in New Jersey."
+  description="A two minute check, the full price in advance, then choose a time and pay securely. Video visits with a board certified ObGyn for women in New Jersey."
 >
   <section class="section !py-10 sm:!py-16">
     <div class="mx-auto max-w-2xl">
@@ -291,14 +291,14 @@ const optionClass =
             <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m6 6-6-6 6-6" /></svg>
             Back
           </button>
-          <p class="ml-auto text-xs text-ink/40">Nothing you answer here is stored or sent anywhere.</p>
+          <p class="ml-auto text-xs text-ink/40">Your answers on this page are not stored or sent anywhere.</p>
         </div>
 
         <!-- 1. Concern -->
         <div data-step="concern" class="flow-step mt-6">
           <p class="eyebrow">Your concern</p>
-          <h1 class="display mt-3 text-3xl sm:text-4xl">What brings you here today?</h1>
-          <p class="mt-3 text-sm text-ink/60">Pick the closest fit. You can tell the whole story after you book.</p>
+          <h1 class="display mt-3 text-3xl sm:text-4xl">What would you like help with today?</h1>
+          <p class="mt-3 text-sm text-ink/60">Choose the closest match. You can describe your concern in full in your intake after you book.</p>
           <div class="mt-6 grid gap-2">
             {concerns.map((c) => (
               <button type="button" class={optionClass} data-answer="concern" data-value={c.key}>
@@ -359,13 +359,13 @@ const optionClass =
             <p class="mt-3 text-sm leading-relaxed text-ink/70">{c.body}</p>
             <ul class="mt-6 grid gap-2 text-sm text-ink/80 sm:grid-cols-2">
               <li class="rounded-xl bg-cream px-4 py-3">Board certified ObGyn since {DOCTOR.boardCertifiedSince}</li>
-              <li class="rounded-xl bg-cream px-4 py-3">{REVIEWS.google.rating} stars, {REVIEWS.google.count} Google reviews</li>
+              <li class="rounded-xl bg-cream px-4 py-3">{REVIEWS.google.rating} stars across {REVIEWS.google.count} Google reviews</li>
               <li class="rounded-xl bg-cream px-4 py-3">Thirty minute video visits</li>
-              <li class="rounded-xl bg-cream px-4 py-3">One flat price, no insurance needed</li>
+              <li class="rounded-xl bg-cream px-4 py-3">One transparent self-pay price</li>
             </ul>
-            <button type="button" class="btn-primary mt-6 w-full" data-go="safety">Check that I can be seen</button>
+            <button type="button" class="btn-primary mt-6 w-full" data-go="safety">Continue to the safety check</button>
             {c.slug && (
-              <a href={`/services#${c.slug}`} class="mt-3 block text-center text-xs font-medium text-pine-600 underline underline-offset-4 hover:text-pine-800">See exactly how we treat it</a>
+              <a href={`/services#${c.slug}`} class="mt-3 block text-center text-xs font-medium text-pine-600 underline underline-offset-4 hover:text-pine-800">Read how this concern is treated</a>
             )}
           </div>
         ))}
@@ -373,8 +373,8 @@ const optionClass =
         <!-- 5. Safety -->
         <div data-step="safety" class="flow-step mt-6 hidden">
           <p class="eyebrow">Quick check</p>
-          <h2 class="display mt-3 text-2xl sm:text-3xl">First, a safety check.</h2>
-          <p class="mt-3 text-sm text-ink/60">A video visit is the wrong place for a few things. If any of these is happening right now, please do not wait for us.</p>
+          <h2 class="display mt-3 text-2xl sm:text-3xl">First, a brief safety check.</h2>
+          <p class="mt-3 text-sm text-ink/60">A few situations call for emergency care rather than a video visit. If any of these is happening now, please seek care immediately.</p>
           <div class="mt-6 grid gap-2">
             <button type="button" class={optionClass} data-answer="safety" data-value="none">
               <span class="flex-1">None of these</span>
@@ -388,35 +388,35 @@ const optionClass =
         </div>
 
         <div data-step="stop-safety" class="flow-step mt-6 hidden">
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-apricot-700">Please get care now</p>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-apricot-700">Please seek care now</p>
           <h2 class="display mt-3 text-2xl sm:text-3xl">Call 911 or go to the nearest emergency room.</h2>
           <p class="mt-3 text-sm leading-relaxed text-ink/70">
-            SheWellRX is not an emergency service and cannot help fast enough for this. If you are having thoughts of harming yourself, call or text 988 to reach the Suicide and Crisis Lifeline. When you are safe and settled, we are here for the follow up.
+            SheWellRX is not an emergency service and cannot respond quickly enough in these situations. If you are having thoughts of harming yourself, call or text 988 to reach the Suicide and Crisis Lifeline. Once you are safe, we are here for your follow-up care.
           </p>
           <div class="mt-6 grid gap-3 sm:grid-cols-2">
             <a href="tel:911" class="btn-accent w-full">Call 911</a>
             <a href="sms:988" class="btn-secondary w-full">Text 988</a>
           </div>
-          <button type="button" class="mt-4 block w-full text-center text-xs font-medium text-pine-600 underline underline-offset-4" data-go="safety">I chose this by mistake, go back</button>
+          <button type="button" class="mt-4 block w-full text-center text-xs font-medium text-pine-600 underline underline-offset-4" data-go="safety">I selected this by mistake, take me back</button>
         </div>
 
         <!-- 6. Pregnancy -->
         <div data-step="pregnancy" class="flow-step mt-6 hidden">
           <p class="eyebrow">Quick check</p>
           <h2 class="display mt-3 text-2xl sm:text-3xl">Are you currently pregnant?</h2>
-          <p class="mt-3 text-sm text-ink/60">Pregnancy changes which treatments are safe, so we ask early. Prenatal care needs exams and ultrasounds we cannot do by video.</p>
+          <p class="mt-3 text-sm text-ink/60">Pregnancy changes which treatments are safe, so we ask early. Prenatal care requires examinations and ultrasounds that cannot be performed by video.</p>
           <div class="mt-6 grid gap-2">
             <button type="button" class={optionClass} data-answer="pregnancy" data-value="no"><span class="flex-1">No</span></button>
-            <button type="button" class={optionClass} data-answer="pregnancy" data-value="planning"><span class="flex-1">Not now, but planning in the next year</span></button>
-            <button type="button" class={optionClass} data-answer="pregnancy" data-value="yes"><span class="flex-1">Yes, or I might be</span></button>
+            <button type="button" class={optionClass} data-answer="pregnancy" data-value="planning"><span class="flex-1">Not currently, but planning a pregnancy within the next year</span></button>
+            <button type="button" class={optionClass} data-answer="pregnancy" data-value="yes"><span class="flex-1">Yes, or I may be</span></button>
           </div>
         </div>
 
         <div data-step="stop-pregnancy" class="flow-step mt-6 hidden">
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-pine-500">An honest answer</p>
-          <h2 class="display mt-3 text-2xl sm:text-3xl">Pregnancy deserves hands on care.</h2>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-pine-500">Our recommendation</p>
+          <h2 class="display mt-3 text-2xl sm:text-3xl">Pregnancy care is best provided in person.</h2>
           <p class="mt-3 text-sm leading-relaxed text-ink/70">
-            SheWellRX is a fully virtual practice, and prenatal care needs exams, ultrasounds, and a doctor in the room. We will not pretend a camera can do that well. Write to us and we will point you toward trusted in person obstetric care near you.
+            SheWellRX is a fully virtual practice, and prenatal care requires in-person examinations and ultrasounds. A video visit does not replace an examination when one is needed. Write to us and we will help you find in-person obstetric care near you.
           </p>
           <a href={`mailto:${SITE.email}?subject=Prenatal%20care%20guidance`} class="btn-primary mt-6 w-full">Email us for guidance</a>
         </div>
@@ -425,7 +425,7 @@ const optionClass =
         <div data-step="location" class="flow-step mt-6 hidden">
           <p class="eyebrow">Quick check</p>
           <h2 class="display mt-3 text-2xl sm:text-3xl">Will you be in New Jersey at the time of your visit?</h2>
-          <p class="mt-3 text-sm text-ink/60">Medical licensing means your clinician can treat you only while you are physically in the state. You confirm this again when you book.</p>
+          <p class="mt-3 text-sm text-ink/60">Your clinician is licensed in New Jersey and can treat you only while you are physically in the state. You will confirm this again when you book.</p>
           <div class="mt-6 grid gap-2">
             <button type="button" class={optionClass} data-answer="location" data-value="yes"><span class="flex-1">Yes</span></button>
             <button type="button" class={optionClass} data-answer="location" data-value="no"><span class="flex-1">No</span></button>
@@ -433,20 +433,20 @@ const optionClass =
         </div>
 
         <div data-step="stop-location" class="flow-step mt-6 hidden">
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-pine-500">An honest answer</p>
-          <h2 class="display mt-3 text-2xl sm:text-3xl">Not yet, and we will not pretend otherwise.</h2>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-pine-500">Before you book</p>
+          <h2 class="display mt-3 text-2xl sm:text-3xl">Visits are available only while you are in New Jersey.</h2>
           <p class="mt-3 text-sm leading-relaxed text-ink/70">
-            Our clinicians are licensed in New Jersey, so we can treat you only while you are in the state. Visiting soon? Book for a day you will be here. Otherwise, tell us where you are and you will be the first to know when we arrive.
+            Your clinician is licensed in New Jersey, so care can be provided only while you are in the state. If you will be visiting soon, you may schedule for a day you will be here. Otherwise, let us know where you live and we will tell you if care becomes available in your state.
           </p>
-          <a href={`mailto:${SITE.email}?subject=Bring%20SheWellRX%20to%20my%20state`} class="btn-primary mt-6 w-full">Tell us where you are</a>
-          <button type="button" class="mt-3 block w-full text-center text-xs font-medium text-pine-600 underline underline-offset-4" data-go="age">I will be in New Jersey, let me continue</button>
+          <a href={`mailto:${SITE.email}?subject=Bring%20SheWellRX%20to%20my%20state`} class="btn-primary mt-6 w-full">Tell us your state</a>
+          <button type="button" class="mt-3 block w-full text-center text-xs font-medium text-pine-600 underline underline-offset-4" data-go="age">I will be in New Jersey, continue</button>
         </div>
 
         <!-- 8. Age -->
         <div data-step="age" class="flow-step mt-6 hidden">
           <p class="eyebrow">Quick check</p>
           <h2 class="display mt-3 text-2xl sm:text-3xl">Are you 18 or older?</h2>
-          <p class="mt-3 text-sm text-ink/60">You must be an adult to book care for yourself. Your date of birth is collected in the secure portal, not here.</p>
+          <p class="mt-3 text-sm text-ink/60">You must be an adult to schedule care for yourself. Your date of birth is collected in the secure patient portal, not on this page.</p>
           <div class="mt-6 grid gap-2">
             <button type="button" class={optionClass} data-answer="age" data-value="yes"><span class="flex-1">Yes</span></button>
             <button type="button" class={optionClass} data-answer="age" data-value="no"><span class="flex-1">No</span></button>
@@ -454,19 +454,19 @@ const optionClass =
         </div>
 
         <div data-step="stop-age" class="flow-step mt-6 hidden">
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-pine-500">An honest answer</p>
-          <h2 class="display mt-3 text-2xl sm:text-3xl">We can only see adults by video.</h2>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-pine-500">Before you book</p>
+          <h2 class="display mt-3 text-2xl sm:text-3xl">Video visits are available to adults only.</h2>
           <p class="mt-3 text-sm leading-relaxed text-ink/70">
-            If you are under 18, a parent or guardian can call a pediatric or adolescent gynecology office near you. Your pediatrician or school nurse can also help you find one.
+            If you are under 18, a parent or guardian can contact a pediatric or adolescent gynecology practice near you. Your pediatrician or school nurse can also help you find one.
           </p>
-          <a href="/" class="btn-secondary mt-6 w-full">Back to home</a>
+          <a href="/" class="btn-secondary mt-6 w-full">Return to the home page</a>
         </div>
 
         <!-- 8b. Medicare and Medicaid (shown only while SCREEN_MEDICARE is true) -->
         <div data-step="coverage" class="flow-step mt-6 hidden">
           <p class="eyebrow">Quick check</p>
           <h2 class="display mt-3 text-2xl sm:text-3xl">Are you enrolled in Medicare or Medicaid?</h2>
-          <p class="mt-3 text-sm text-ink/60">SheWellRX is self pay and does not bill any plan. Federal rules limit how Medicare and Medicaid patients may pay privately, so we ask before you book.</p>
+          <p class="mt-3 text-sm text-ink/60">SheWellRX is a self-pay practice and does not bill insurance. Federal rules limit how Medicare and Medicaid enrollees may pay privately for care, so we ask before you book.</p>
           <div class="mt-6 grid gap-2">
             <button type="button" class={optionClass} data-answer="coverage" data-value="no"><span class="flex-1">No</span></button>
             <button type="button" class={optionClass} data-answer="coverage" data-value="medicare"><span class="flex-1">Yes, Medicare (including Medicare Advantage)</span></button>
@@ -475,10 +475,10 @@ const optionClass =
         </div>
 
         <div data-step="stop-coverage" class="flow-step mt-6 hidden">
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-pine-500">An honest answer</p>
-          <h2 class="display mt-3 text-2xl sm:text-3xl">Let us check your options first.</h2>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-pine-500">Before you book</p>
+          <h2 class="display mt-3 text-2xl sm:text-3xl">Let us review your options first.</h2>
           <p class="mt-3 text-sm leading-relaxed text-ink/70">
-            Medicare and Medicaid have their own rules about paying a doctor directly, and we will not book you into something that could leave you with a problem later. Email us, tell us which program you are in, and we will explain what is possible and how to be seen.
+            Medicare and Medicaid have their own rules about paying a physician directly, and we want to be certain your visit is arranged correctly. Email us with the program you are enrolled in, and we will explain what is possible and how you can be seen.
           </p>
           <a href={`mailto:${SITE.email}?subject=Medicare%20or%20Medicaid%20patient`} class="btn-primary mt-6 w-full">Email us about my coverage</a>
         </div>
@@ -486,7 +486,7 @@ const optionClass =
         <!-- 9. Visit type, price, and handoff -->
         <div data-step="visit" class="flow-step mt-6 hidden">
           <p class="eyebrow">Book and pay</p>
-          <h2 class="display mt-3 text-2xl sm:text-3xl">You can be seen this week.</h2>
+          <h2 class="display mt-3 text-2xl sm:text-3xl">You can schedule your video visit.</h2>
           <div class="mt-4 rounded-2xl border border-pine-900/10 bg-cream p-4 text-sm">
             <p class="text-xs font-semibold uppercase tracking-[0.15em] text-pine-500">Your visit summary</p>
             <p id="flow-summary" class="mt-2 leading-relaxed text-ink/80"></p>
@@ -500,29 +500,29 @@ const optionClass =
                 <span class="font-display text-lg font-medium text-pine-900">{PRICING.initial.label}</span>
                 <span class="font-display text-2xl text-pine-900">${PRICING.initial.price}</span>
               </span>
-              <span class="mt-1 block text-xs text-ink/60">{PRICING.initial.duration} video visit, one time payment. For anyone new to SheWellRX.</span>
+              <span class="mt-1 block text-xs text-ink/60">{PRICING.initial.duration} video visit, paid once. For patients new to SheWellRX.</span>
             </button>
             <button type="button" class="flow-visit rounded-2xl border border-pine-900/15 bg-white p-5 text-left transition-all hover:border-pine-500 aria-pressed:border-pine-700 aria-pressed:bg-pine-50" data-visit="followup" aria-pressed="false">
               <span class="flex items-baseline justify-between gap-4">
                 <span class="font-display text-lg font-medium text-pine-900">{PRICING.followUp.label}</span>
                 <span class="font-display text-2xl text-pine-900">${PRICING.followUp.price}</span>
               </span>
-              <span class="mt-1 block text-xs text-ink/60">{PRICING.followUp.duration} video visit for patients we have already seen.</span>
+              <span class="mt-1 block text-xs text-ink/60">{PRICING.followUp.duration} video visit for patients already in our care.</span>
             </button>
           </div>
 
           <div class="mt-6 rounded-2xl border border-pine-900/10 bg-white p-5 text-sm leading-relaxed text-ink/70">
-            <p class="font-semibold text-pine-900">Your good faith estimate</p>
+            <p class="font-semibold text-pine-900">Your Good Faith Estimate</p>
             <p class="mt-2">
-              As a self pay patient you are entitled to know the full cost in advance. The visit fee is the only charge from SheWellRX:
-              <strong class="text-pine-900" id="flow-price">${PRICING.initial.price}</strong> for the visit you chose, paid once when you book. Medications and lab tests, if any, are billed separately by your pharmacy or lab at their prices. Cancel or reschedule up to 24 hours before for a full refund.
+              As a self-pay patient, you are entitled to know the full cost in advance. The visit fee is the only charge from SheWellRX:
+              <strong class="text-pine-900" id="flow-price">${PRICING.initial.price}</strong> for the visit you chose, paid once when you book. Medications and laboratory tests, if any, are billed separately by your pharmacy or laboratory at their own prices. You may cancel or reschedule up to 24 hours before your visit for a full refund.
               <a href="/good-faith-estimate" class="font-medium text-apricot-700 underline underline-offset-4">Read the full estimate</a>.
             </p>
           </div>
 
           <p class="mt-6 text-xs leading-relaxed text-ink/60">
-            Next you will pick a time, create your secure patient portal account, confirm you are in New Jersey and 18 or older, sign the
-            <a href="/telehealth-consent" class="underline underline-offset-4">Telehealth Consent and Terms of Care</a>, and pay. Your health information is entered only inside the portal, never on this website.
+            Next, you will choose a time, create your secure patient portal account, confirm that you are in New Jersey and 18 or older, sign the
+            <a href="/telehealth-consent" class="underline underline-offset-4">Telehealth Consent and Terms of Care</a>, and pay. Your health information is entered only inside the portal, not on this website.
           </p>
 
           {PORTAL_LIVE ? (
@@ -532,11 +532,11 @@ const optionClass =
             </a>
           ) : (
             <div class="mt-6 rounded-2xl bg-pine-50 p-5 text-sm leading-relaxed text-pine-900">
-              <p class="font-semibold">Online scheduling opens shortly.</p>
+              <p class="font-semibold">Online scheduling will open shortly.</p>
               <p class="mt-2">
-                Email <a href={`mailto:${SITE.email}?subject=Book%20my%20visit`} class="font-medium text-apricot-700 underline underline-offset-4">{SITE.email}</a> with the visit you chose and a few times that work. We reply within one business day with your secure booking link, and you pay only when your time is confirmed.
+                Email <a href={`mailto:${SITE.email}?subject=Book%20my%20visit`} class="font-medium text-apricot-700 underline underline-offset-4">{SITE.email}</a> with the visit you chose and a few times that suit you. We reply within one business day with your secure booking link, and payment is made only once your time is confirmed.
               </p>
-              <a id="flow-cta" href={`mailto:${SITE.email}?subject=Book%20my%20visit`} class="btn-accent mt-4 w-full">Email us to book</a>
+              <a id="flow-cta" href={`mailto:${SITE.email}?subject=Book%20my%20visit`} class="btn-accent mt-4 w-full">Email us to schedule</a>
             </div>
           )}
           <p class="mt-4 text-center text-xs text-ink/50">
@@ -548,7 +548,7 @@ const optionClass =
       </div>
 
       <p class="mx-auto mt-8 max-w-xl text-center text-xs leading-relaxed text-ink/50">
-        For emergencies, call 911. This page is not monitored for urgent needs. Questions before booking? Email
+        For emergencies, call 911. This page is not monitored for urgent needs. If you have questions before booking, email
         <a href={`mailto:${SITE.email}`} class="underline underline-offset-4">{SITE.email}</a>.
       </p>
     </div>

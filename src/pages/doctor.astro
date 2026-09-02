@@ -40,7 +40,7 @@ const teamSchema = {
 
 <Layout
   title={`Our Clinicians | ${SITE.name}`}
-  description={`Meet ${DOCTOR.name}, board certified ObGyn (ABOG) rated ${REVIEWS.google.rating} stars on Google, and ${DOCTOR2.shortName}, the certified nurse midwife joining SheWellRX.`}
+  description={`Your care at SheWellRX: ${DOCTOR.name}, board certified ObGyn (ABOG) rated ${REVIEWS.google.rating} on Google, and ${DOCTOR2.shortName}, certified nurse midwife, joining soon.`}
 >
   <script type="application/ld+json" set:html={JSON.stringify(teamSchema)} />
 
@@ -57,16 +57,17 @@ const teamSchema = {
           One promise: you will be heard.
         </h1>
         <p class="mt-6 text-lg leading-relaxed text-ink/70">
-          SheWellRX is not a marketplace of rotating strangers. It is a small
-          practice that answers to its patients, not to an insurance schedule.
-          Every visit is a thirty minute video conversation with {DOCTOR.name},
-          and when you come back, the person on your screen already knows your
-          story. You may always request the physician for any visit.
+          SheWellRX is a small practice, and your care stays with the same
+          clinicians from one visit to the next. Every visit is a thirty
+          minute video visit with {DOCTOR.name}, a board certified ObGyn, and
+          at each follow-up visit your history is already known to the
+          clinician on your screen. You may request the physician for any
+          visit.
         </p>
         <div class="mt-8 flex flex-wrap gap-4">
-          <a href={PORTAL_URL} class="btn-primary">Book a visit</a>
+          <a href={PORTAL_URL} class="btn-primary">Schedule a video visit</a>
           <a href={PRACTICE.googleMapsUrl} rel="noopener" target="_blank" class="btn-secondary">
-            Read the Google reviews
+            Read patient reviews on Google
           </a>
         </div>
       </div>
@@ -99,15 +100,16 @@ const teamSchema = {
             </div>
           </div>
           <p class="mt-6 leading-relaxed text-ink/70">
-            Some doctors rush. Dr. Copur is known for the opposite. Across more
-            than 35 years of caring for women, his reviews repeat the same words:
-            patient, kind, thorough, and honest. He reads your full story before
-            your visit and remembers it when you come back.
+            Patients receive an unhurried visit with a clinician who listens.
+            His experience includes more than thirty five years of caring for
+            women, and patient reviews describe the same qualities: patient,
+            kind, thorough, and honest. Your full history is reviewed before
+            your visit and remembered at every follow-up visit.
           </p>
           <ul class="mt-6 grid gap-2 text-sm text-ink/80">
             <li class="rounded-xl bg-cream px-4 py-3">Board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology (an ABMS member board) since {DOCTOR.boardCertifiedSince}, FACOG</li>
             <li class="rounded-xl bg-cream px-4 py-3">Licensed physician in New Jersey; all visits by live video</li>
-            <li class="rounded-xl bg-cream px-4 py-3">Former residency program director who trained a generation of women's health physicians</li>
+            <li class="rounded-xl bg-cream px-4 py-3">Former residency program director who taught physicians training in women's health</li>
             <li class="rounded-xl bg-cream px-4 py-3">{REVIEWS.google.rating} stars across {REVIEWS.google.count} Google reviews</li>
           </ul>
         </article>
@@ -124,8 +126,8 @@ const teamSchema = {
           <p class="mt-6 leading-relaxed text-ink/70">{DOCTOR2.bio}</p>
           <ul class="mt-6 grid gap-2 text-sm text-ink/80">
             <li class="rounded-xl bg-cream px-4 py-3">Doctor of Nursing Practice (a nursing doctorate, not a medical degree)</li>
-            <li class="rounded-xl bg-cream px-4 py-3">Certified nurse midwife licensed in New Jersey; not yet booking visits at SheWellRX</li>
-            <li class="rounded-xl bg-cream px-4 py-3">English, with intermediate Spanish</li>
+            <li class="rounded-xl bg-cream px-4 py-3">Certified nurse midwife licensed in New Jersey; visits with her are not yet available to schedule at SheWellRX</li>
+            <li class="rounded-xl bg-cream px-4 py-3">Visits in English, with intermediate Spanish</li>
           </ul>
         </article>
       </div>
@@ -135,13 +137,13 @@ const teamSchema = {
   <section>
     <div class="section">
       <div class="max-w-2xl">
-        <p class="eyebrow">Independently rated</p>
+        <p class="eyebrow">Patient reviews</p>
         <h2 class="display mt-4 text-3xl sm:text-4xl">
-          The reviews agree, everywhere you look.
+          What patients say, on every platform.
         </h2>
         <p class="mt-4 leading-relaxed text-ink/70">
-          These ratings live on independent review platforms. Every one links
-          straight to the source so you can verify them yourself.
+          These ratings are published on independent review platforms. Each
+          one links to its source, so you can read the reviews for yourself.
         </p>
       </div>
       <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -193,12 +195,13 @@ const teamSchema = {
   <section class="bg-pine-800 text-cream">
     <div class="section text-center">
       <h2 class="display mx-auto max-w-2xl text-3xl !text-cream sm:text-4xl">
-        Put this team in your corner.
+        Your first visit can be scheduled today.
       </h2>
       <p class="mx-auto mt-4 max-w-xl text-cream/70">
-        Start your visit and talk it through with Dr. Copur this week.
+        Choose a time, and talk through what you are experiencing with a
+        board certified ObGyn, usually within the week.
       </p>
-      <a href={PORTAL_URL} class="btn-accent mt-8 !px-8 !py-4 !text-base">Book a visit</a>
+      <a href={PORTAL_URL} class="btn-accent mt-8 !px-8 !py-4 !text-base">Schedule a video visit</a>
     </div>
   </section>
 </Layout>

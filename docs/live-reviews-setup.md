@@ -4,8 +4,8 @@ The site ships with a verified snapshot of the practice's Google rating baked in
 
 ## How it works
 
-1. `functions/api/reviews.js` is a Cloudflare Pages Function served at `/api/reviews`. It calls the Google Places API (New) for the practice listing and returns `{ rating, count }`.
-2. A small script in `src/layouts/Layout.astro` fetches `/api/reviews` on every page load and rewrites any element marked `data-google-rating` or `data-google-count`.
+1. `functions/api/reviews.js` is a Cloudflare Pages Function served at `/api/reviews`. It calls the Google Places API (New) for the practice listing and returns `{ rating, count, mapsUrl, reviews }`, where `reviews` holds the up to five reviews Google currently shows for the listing (author, profile photo, stars, text, relative date).
+2. A small script in `src/layouts/Layout.astro` fetches `/api/reviews` on every page load and rewrites any element marked `data-google-rating` or `data-google-count`. The home page's reviews wall (`src/pages/index.astro`) fetches the same endpoint and, when reviews come back, places them first with a "Latest" chip, keeps the verified quotes after them, and changes the status line to "updated automatically". Google's display terms are respected: the Google mark attributes the content, author names and photos are shown as Google provides them, and nothing is stored beyond the six hour edge cache.
 3. Responses are cached at the edge for six hours, so Google is called at most a few times per day. Cost stays around one dollar per month even with heavy traffic.
 
 ## One time setup (about 10 minutes)

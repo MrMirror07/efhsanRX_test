@@ -39,49 +39,49 @@ const tileImages = {
 /** Concern picker. Each option deep links into the guided start on /book. Nothing is stored. */
 const concerns = [
   { key: "menopause", label: "Menopause or perimenopause symptoms", img: "menopause" },
-  { key: "hormone-therapy", label: "Hormone therapy: start, adjust, or a second opinion", img: "hormone-therapy" },
+  { key: "hormone-therapy", label: "Hormone therapy: begin, adjust, or a second opinion", img: "hormone-therapy" },
   { key: "birth-control", label: "Birth control", img: "birth-control" },
-  { key: "intimacy", label: "Intimacy, dryness, or low desire", img: "sexual-health" },
-  { key: "periods", label: "Period problems: heavy, painful, irregular, PCOS", img: "periods" },
+  { key: "intimacy", label: "Vaginal dryness, pain with intimacy, or low desire", img: "sexual-health" },
+  { key: "periods", label: "Periods: heavy, painful, or irregular, and PCOS", img: "periods" },
   { key: "labs", label: "Labs, screenings, or a hormone check", img: "labs" },
   { key: "else", label: "Something else in women's health", img: "labs" },
 ] as const;
 
 const marquee = [
   "Perimenopause", "Menopause", "Hormone therapy", "Birth control", "PCOS", "Heavy periods",
-  "Hot flashes", "Sleep", "Vaginal dryness", "Low desire", "Hormone panels", "Thyroid checks",
+  "Hot flashes", "Sleep", "Vaginal dryness", "Intimate health", "Hormone panels", "Thyroid checks",
 ];
 
 const steps = [
   {
     n: "01",
-    title: "Tell us what feels off",
+    title: "Tell us what you are experiencing",
     body: "Two minutes on this site: your concern, what you want from the visit, and a short safety check. Nothing you answer is stored. Then you see the full price, pick a time, and pay securely.",
   },
   {
     n: "02",
-    title: "Talk it through on video",
-    body: "A real conversation with a doctor who has already read your story. No waiting room, no rushed seven minutes, no explaining yourself twice.",
+    title: "Meet your clinician on video",
+    body: "An unhurried conversation with a clinician who has already reviewed your history. No waiting room, and no need to explain yourself twice.",
   },
   {
     n: "03",
-    title: "Leave with a plan",
-    body: "A written plan you can reread, prescriptions sent to your pharmacy when appropriate, and two weeks of follow up messaging included with every visit.",
+    title: "Leave with a care plan",
+    body: "A written care plan you can return to, prescriptions sent to your pharmacy when appropriate, and two weeks of secure messaging included with every visit.",
   },
 ];
 
 const faqs = [
   {
     q: "How much does a visit cost?",
-    a: `Exactly $${PRICING.initial.price} for your initial visit and $${PRICING.followUp.price} for follow ups. One payment per visit, nothing recurring, no membership, no surprise bills. HSA and FSA cards are accepted.`,
+    a: `$${PRICING.initial.price} for your initial visit and $${PRICING.followUp.price} for follow-up visits. One payment per visit, nothing recurring, no membership, and no unexpected bills. HSA and FSA cards are accepted.`,
   },
   {
     q: "Do you take insurance?",
-    a: "No, and that is by design. Skipping insurance lets us offer longer visits at one honest price, with zero paperwork for you. If you have out of network benefits, we can provide a superbill you can submit to your plan.",
+    a: "SheWellRX is a self-pay practice and does not bill insurance. This allows longer visits at one transparent price, with no paperwork for you. If you have out of network benefits, we can provide a superbill to submit to your plan.",
   },
   {
-    q: "Who will I actually see?",
-    a: `${DOCTOR.name}, board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology since ${DOCTOR.boardCertifiedSince}, with more than 35 years of caring for women and ${REVIEWS.google.rating} stars across ${REVIEWS.google.count} verified Google reviews. A certified nurse midwife joins the practice soon; you may always request the physician. Never a rotating call center.`,
+    q: "Who will I see?",
+    a: `${DOCTOR.name}, board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology since ${DOCTOR.boardCertifiedSince}, with more than thirty five years of experience in women's health and ${REVIEWS.google.rating} stars across ${REVIEWS.google.count} Google reviews. A certified nurse midwife joins the practice soon, and you may always request the physician.`,
   },
   {
     q: "Is my information private?",
@@ -89,9 +89,13 @@ const faqs = [
   },
   {
     q: "What if I need in person care?",
-    a: "SheWellRX is a fully virtual practice, and we never pretend a camera can replace an exam. When your concern truly needs hands on care, imaging, or a procedure, we tell you plainly, refer you to the right in person specialist near you, and make sure your records follow you.",
+    a: "SheWellRX is a fully virtual practice, and a video visit does not replace an examination when one is needed. When your concern requires an in-person evaluation, imaging, or a procedure, we tell you clearly, refer you to the appropriate specialist near you, and make sure your records follow you.",
   },
 ];
+
+/** Google's "G" mark, used only to attribute reviews to Google as its display terms require. */
+const googleG =
+  '<svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.7-2.4 3.6v3h3.9c2.3-2.1 3.5-5.2 3.5-8.8z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.2v3.1C3.2 21.3 7.3 24 12 24z"/><path fill="#FBBC05" d="M5.3 14.3c-.2-.7-.4-1.5-.4-2.3s.1-1.6.4-2.3V6.6H1.2C.4 8.2 0 10 0 12s.4 3.8 1.2 5.4l4.1-3.1z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4C18 1.2 15.2 0 12 0 7.3 0 3.2 2.7 1.2 6.6l4.1 3.1c.9-2.9 3.6-4.9 6.7-4.9z"/></svg>';
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -114,14 +118,14 @@ const faqSchema = {
       <div class="lg:col-span-6">
         <p class="eyebrow" data-hero-line>Women's telehealth · New Jersey</p>
         <h1 class="display mt-5 text-[2.75rem] leading-[1.02] sm:text-6xl lg:text-[4.25rem]">
-          <span class="block" data-hero-line>You know something</span>
-          <span class="block" data-hero-line>is off. We <em>listen</em></span>
-          <span class="block" data-hero-line>until we find it.</span>
+          <span class="block" data-hero-line>Women's health care,</span>
+          <span class="block" data-hero-line>by video, that</span>
+          <span class="block" data-hero-line><em>listens</em> to you.</span>
         </h1>
         <p class="mt-7 max-w-xl text-lg leading-relaxed text-ink/70" data-hero-fade>
-          Hormones, cycles, sleep, desire. When they shift, everything shifts. A real
-          thirty minute video visit with a board certified ObGyn, then a plan you can
-          actually follow. One flat fee of ${PRICING.initial.price}. No insurance needed.
+          Perimenopause and menopause, contraception, cycle concerns, and intimate health,
+          cared for in a thirty minute video visit with a board certified ObGyn. You leave
+          with a written care plan. One transparent fee of ${PRICING.initial.price}, with no insurance required.
         </p>
         <div class="mt-9 flex flex-wrap items-center gap-4" data-hero-fade>
           <a href={PORTAL_URL} class="btn-accent group !px-7 !py-4 !text-base">
@@ -155,11 +159,11 @@ const faqSchema = {
           <Image src={drCopur} alt="" width={96} height={96} class="h-12 w-12 rounded-xl object-cover object-top" />
           <div class="text-sm leading-tight">
             <p class="font-semibold text-pine-900">{DOCTOR.name}</p>
-            <p class="mt-0.5 text-xs text-ink/60">Your doctor at every visit</p>
+            <p class="mt-0.5 text-xs text-ink/60">Board certified ObGyn, at every visit</p>
           </div>
         </div>
         <div class="absolute right-4 top-5 sm:right-6" data-hero-float>
-          <span class="chip"><span class="chip-dot"></span> Video visits open this week</span>
+          <span class="chip"><span class="chip-dot"></span> Now scheduling video visits</span>
         </div>
       </div>
     </div>
@@ -193,12 +197,12 @@ const faqSchema = {
       <div class="flex flex-wrap items-end justify-between gap-6" data-reveal>
         <div class="max-w-2xl">
           <p class="eyebrow">What we treat</p>
-          <h2 class="display mt-4 text-4xl sm:text-5xl">Name the symptom. <em>We know</em> the medicine.</h2>
+          <h2 class="display mt-4 text-4xl sm:text-5xl">Care for what you are <em>experiencing.</em></h2>
           <p class="mt-5 text-lg leading-relaxed text-ink/70">
-            From birth control to hormone therapy, treatment is prescribed in your visit and sent straight to your pharmacy when it is right for you.
+            From contraception to menopausal hormone therapy, treatment is prescribed during your visit and sent to your pharmacy when clinically appropriate.
           </p>
         </div>
-        <a href="/services" class="btn-secondary">Everything we treat</a>
+        <a href="/services" class="btn-secondary">All conditions we treat</a>
       </div>
       <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-reveal-stagger>
         {
@@ -245,11 +249,11 @@ const faqSchema = {
       </div>
       <div>
         <p class="font-display text-6xl leading-none text-cream"><span data-count="30">30</span><span class="text-3xl text-cream/60"> min</span></p>
-        <p class="mt-3 text-sm text-cream/60">Every video visit, never a rushed seven minutes</p>
+        <p class="mt-3 text-sm text-cream/60">Every video visit, unhurried</p>
       </div>
       <div>
         <p class="font-display text-6xl leading-none text-cream">$<span data-count={PRICING.initial.price}>{PRICING.initial.price}</span></p>
-        <p class="mt-3 text-sm text-cream/60">One flat fee, paid once, nothing billed later</p>
+        <p class="mt-3 text-sm text-cream/60">One transparent fee, paid once, nothing billed later</p>
       </div>
     </div>
   </section>
@@ -259,7 +263,7 @@ const faqSchema = {
     <div class="section grid items-center gap-14 lg:grid-cols-12">
       <div class="lg:col-span-5" data-reveal>
         <p class="eyebrow">How it works</p>
-        <h2 class="display mt-4 text-4xl sm:text-5xl">Booked in minutes. <em>Seen</em> this week.</h2>
+        <h2 class="display mt-4 text-4xl sm:text-5xl">Scheduled in minutes. <em>Seen</em> within days.</h2>
         <div class="relative mt-10 overflow-hidden rounded-[2rem]">
           <Image
             src={visitWindow}
@@ -294,12 +298,12 @@ const faqSchema = {
     <div class="section grid items-center gap-12 lg:grid-cols-2">
       <div data-reveal>
         <p class="eyebrow">Your care, matched</p>
-        <h2 class="display mt-4 text-4xl sm:text-5xl">Tell us what's going on. We'll show you <em>the plan.</em></h2>
+        <h2 class="display mt-4 text-4xl sm:text-5xl">Tell us what you are experiencing. We will show you <em>the plan.</em></h2>
         <p class="mt-6 max-w-lg text-lg leading-relaxed text-ink/70">
-          Pick your concern, answer a few quick questions, and see exactly how SheWellRX would treat what you are feeling, with the full price, before you spend a cent.
+          Choose your concern, answer a few brief questions, and see how SheWellRX would approach your care, with the full price, before you pay anything.
         </p>
         <p class="mt-4 max-w-lg text-sm leading-relaxed text-ink/50">
-          Nothing you tap is stored or sent anywhere. Every visit happens on video, for patients in New Jersey.
+          Nothing you select is stored or sent anywhere. Every visit happens on video, for patients in New Jersey.
         </p>
       </div>
 
@@ -339,24 +343,24 @@ const faqSchema = {
           />
         </div>
         <figcaption class="absolute -bottom-5 left-6 right-6 rounded-2xl bg-pine-900 px-5 py-4 text-cream shadow-xl">
-          <p class="font-display text-lg leading-snug">"It's not in your head. It's your hormones."</p>
-          <p class="mt-1 text-xs text-cream/60">The conversation every visit starts from</p>
+          <p class="font-display text-lg leading-snug">"Your symptoms are real, and they are treatable."</p>
+          <p class="mt-1 text-xs text-cream/60">The principle every visit begins from</p>
         </figcaption>
       </figure>
       <div class="lg:col-span-7" data-reveal>
-        <p class="eyebrow">The person behind the plan</p>
-        <h2 class="display mt-4 text-4xl sm:text-5xl">A doctor who <em>stays</em> with you.</h2>
+        <p class="eyebrow">Your clinician</p>
+        <h2 class="display mt-4 text-4xl sm:text-5xl">A clinician who <em>knows</em> your history.</h2>
         <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink/70">
-          SheWellRX is not a marketplace of strangers. Your care comes from {DOCTOR.name}, board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology, with more than 35 years of listening behind him. When you come back, he already knows your story. A certified nurse midwife joins the practice soon.
+          Your care comes from {DOCTOR.name}, board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology, with more than thirty five years of experience in women's health. At each follow-up visit, your history is already known. A certified nurse midwife joins the practice soon.
         </p>
         <ul class="mt-8 grid gap-3 text-sm text-ink/80 sm:grid-cols-2" data-reveal-stagger>
           <li class="rounded-2xl bg-cream px-4 py-3">ABOG board certified since {DOCTOR.boardCertifiedSince}, FACOG</li>
           <li class="rounded-2xl bg-cream px-4 py-3">{REVIEWS.google.rating} stars, {REVIEWS.google.count} Google reviews</li>
-          <li class="rounded-2xl bg-cream px-4 py-3">Thirty minute video visits, never a waiting room</li>
-          <li class="rounded-2xl bg-cream px-4 py-3">The same doctor at every visit</li>
+          <li class="rounded-2xl bg-cream px-4 py-3">Thirty minute video visits, without a waiting room</li>
+          <li class="rounded-2xl bg-cream px-4 py-3">The same clinician at every visit</li>
         </ul>
         <a href="/doctor" class="btn-primary group mt-9">
-          Meet your doctor
+          Meet your clinician
           <svg class="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" /></svg>
         </a>
       </div>
@@ -372,7 +376,7 @@ const faqSchema = {
           <h2 class="display mt-4 text-4xl sm:text-5xl">Your story, <em>heard</em> in your own words.</h2>
         </div>
         <p class="text-lg leading-relaxed text-ink/70 lg:col-span-5" data-reveal>
-          Twenty somethings choosing birth control, women in their fifties finally treating hot flashes, and everyone in between. Private, unhurried, and respectful of your culture, your faith, and your choices. Interpreters arranged on request.
+          Women in their twenties choosing contraception, women in their fifties seeking relief from hot flashes, and every stage between. Private, unhurried, and respectful of your culture, your faith, and your choices. Interpreters are arranged on request.
         </p>
       </div>
       <div class="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4" data-reveal-stagger>
@@ -400,7 +404,7 @@ const faqSchema = {
         <p class="eyebrow">Simple pricing</p>
         <h2 class="display mt-4 text-4xl sm:text-5xl">One visit. One price. <em>Nothing hidden.</em></h2>
         <p class="mt-5 text-lg leading-relaxed text-ink/70">
-          You will always know the full cost before you book. No insurance, no membership, no bills that show up later.
+          You will always know the full cost before you schedule. We do not bill insurance, there is no membership, and nothing is billed later.
         </p>
       </div>
       <div class="mt-14 grid gap-6 md:grid-cols-2" data-reveal-stagger>
@@ -421,7 +425,7 @@ const faqSchema = {
                   </li>
                 ))}
               </ul>
-              <a href={i === 0 ? PORTAL_URL : `${PORTAL_URL}?type=followup`} class={`${i === 0 ? "btn-accent" : "btn-primary"} mt-9 w-full`}>Book this visit</a>
+              <a href={i === 0 ? PORTAL_URL : `${PORTAL_URL}?type=followup`} class={`${i === 0 ? "btn-accent" : "btn-primary"} mt-9 w-full`}>Schedule this visit</a>
             </div>
           ))
         }
@@ -432,41 +436,63 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- Reviews -->
-  <section class="bg-white">
+  <!-- Reviews: rendered from the verified snapshot at build time, then refreshed from Google through /api/reviews once the Places API key is configured -->
+  <section class="bg-white" id="reviews">
     <div class="section">
-      <div class="flex flex-wrap items-end justify-between gap-6" data-reveal>
-        <div class="max-w-2xl">
-          <p class="eyebrow">Patient voices</p>
-          <h2 class="display mt-4 text-4xl sm:text-5xl">Rated <span data-google-rating>{REVIEWS.google.rating}</span> by the women <em>he treats.</em></h2>
+      <div class="grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-12 lg:gap-14">
+        <div class="min-w-0 lg:col-span-4" data-reveal>
+          <div class="lg:sticky lg:top-28">
+            <p class="eyebrow">Patient reviews</p>
+            <h2 class="display mt-4 text-4xl sm:text-5xl">Rated <span data-google-rating>{REVIEWS.google.rating}</span> on Google by the women <em>in our care.</em></h2>
+            <div class="mt-8 rounded-[1.75rem] border border-pine-900/[0.08] bg-cream p-6">
+              <div class="flex items-center gap-5">
+                <span class="font-display text-6xl leading-none text-pine-900" data-google-rating>{REVIEWS.google.rating}</span>
+                <div>
+                  <Stars rating={REVIEWS.google.rating} class="h-5 w-5" />
+                  <p class="mt-1.5 text-sm text-ink/70"><span data-google-count>{REVIEWS.google.count}</span> reviews</p>
+                </div>
+              </div>
+              <div class="mt-5 flex flex-wrap items-center gap-2 text-xs text-ink/60">
+                <Fragment set:html={googleG} />
+                <span>Reviews from Google</span>
+                <span id="reviews-status">· verified {REVIEWS.google.asOf}</span>
+              </div>
+              <a href={PRACTICE.googleMapsUrl} rel="noopener" target="_blank" class="btn-secondary mt-5 w-full">Read all reviews on Google</a>
+            </div>
+            <p class="mt-4 text-xs leading-relaxed text-ink/50" id="reviews-note">
+              Reviews appear as written on the public Google listing of the practice. They describe individual experiences; results vary, and no outcome is guaranteed.
+            </p>
+          </div>
         </div>
-        <a href={PRACTICE.googleMapsUrl} rel="noopener" target="_blank" class="btn-secondary">
-          <span>Read all <span data-google-count>{REVIEWS.google.count}</span> Google reviews</span>
-        </a>
-      </div>
-      <div class="splide mt-12" id="reviews" aria-label="Patient reviews" data-reveal>
-        <div class="splide__track">
-          <ul class="splide__list">
+        <div class="min-w-0 lg:col-span-8" data-reveal>
+          <div class="review-wall" id="review-wall" aria-label="Patient reviews" data-reviews={JSON.stringify(REVIEWS.quotes)}>
             {
-              REVIEWS.quotes.map((r) => (
-                <li class="splide__slide !flex">
-                  <figure class="flex h-full flex-col rounded-[1.75rem] border border-pine-900/[0.08] bg-cream p-8">
-                    <Stars rating={5} />
-                    <blockquote class="mt-4 flex-1 font-display text-xl leading-relaxed text-pine-900">"{r.text}"</blockquote>
-                    <figcaption class="mt-5 flex items-center justify-between text-sm">
-                      <span class="font-semibold text-pine-900">{r.name}</span>
-                      <span class="text-ink/50">Google review · {r.when}</span>
-                    </figcaption>
-                  </figure>
-                </li>
+              [0, 1].map((col) => (
+                <div class="review-col" data-col={col}>
+                  {[false, true].map((dup) =>
+                    REVIEWS.quotes
+                      .filter((_, i) => i % 2 === col)
+                      .map((r) => (
+                        <figure class="review-card" data-dup={dup ? "" : undefined} aria-hidden={dup ? "true" : undefined}>
+                          <div class="flex items-center gap-3">
+                            <span class="review-avatar" aria-hidden="true">{r.name.charAt(0).toUpperCase()}</span>
+                            <div class="min-w-0 flex-1">
+                              <p class="truncate text-sm font-semibold text-pine-900">{r.name}</p>
+                              <p class="text-xs text-ink/50">{r.when}</p>
+                            </div>
+                            <Fragment set:html={googleG} />
+                          </div>
+                          <div class="mt-4"><Stars rating={5} /></div>
+                          <blockquote class="mt-3 text-[15px] leading-relaxed text-ink/80">"{r.text}"</blockquote>
+                        </figure>
+                      )),
+                  )}
+                </div>
               ))
             }
-          </ul>
+          </div>
         </div>
       </div>
-      <p class="mt-6 text-xs text-ink/50">
-        Reviews are quoted, unedited, from the public Google listing of Dr. Copur's in person practice as of {REVIEWS.google.asOf}. They describe individual experiences; results vary, and no treatment outcome is guaranteed.
-      </p>
     </div>
   </section>
 
@@ -501,7 +527,7 @@ const faqSchema = {
         <div class="pointer-events-none absolute -bottom-32 -right-16 h-[28rem] w-[28rem] rounded-full bg-apricot-500/25 blur-3xl" aria-hidden="true"></div>
         <p class="eyebrow relative !text-apricot-300">Start today</p>
         <h2 class="display relative mx-auto mt-4 max-w-2xl text-4xl !text-cream sm:text-6xl">Feel like <em class="!text-apricot-300">yourself</em> again.</h2>
-        <p class="relative mx-auto mt-5 max-w-xl text-cream/70">Start your visit now and get answers this week. Two minutes to begin, one flat price, no insurance needed.</p>
+        <p class="relative mx-auto mt-5 max-w-xl text-cream/70">Begin today and choose a time that suits you. Two minutes to start, one transparent price, no insurance required.</p>
         <a href={PORTAL_URL} class="btn-accent relative mt-8 !px-8 !py-4 !text-base">Start your visit</a>
         <p class="relative mt-5 text-xs text-cream/50">Questions first? <a href={`mailto:${SITE.email}`} class="underline underline-offset-4">{SITE.email}</a></p>
       </div>
@@ -530,24 +556,238 @@ const faqSchema = {
       opacity: 1;
     }
   }
+
+  /* Reviews wall: two slow columns on desktop, a swipe strip on phones, a static grid without JS or with reduced motion */
+  .review-card {
+    border-radius: 1.5rem;
+    border: 1px solid rgba(15, 39, 51, 0.08);
+    background: var(--color-cream);
+    padding: 1.5rem;
+  }
+  .review-card[data-dup] {
+    display: none;
+  }
+  .review-avatar {
+    display: inline-flex;
+    height: 2.5rem;
+    width: 2.5rem;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 9999px;
+    background: var(--color-pine-100);
+    color: var(--color-pine-900);
+    font-weight: 600;
+  }
+  .review-avatar img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  .review-live {
+    border-radius: 9999px;
+    background: var(--color-apricot-50);
+    color: var(--color-apricot-700);
+    padding: 0.2rem 0.6rem;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  @media (max-width: 1023.98px) {
+    .review-wall {
+      display: flex;
+      gap: 1rem;
+      margin: 0 -1.5rem;
+      overflow-x: auto;
+      padding: 0.25rem 1.5rem 1rem;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .review-wall::-webkit-scrollbar {
+      display: none;
+    }
+    .review-col {
+      display: contents;
+    }
+    .review-card {
+      flex: 0 0 min(84vw, 22rem);
+      scroll-snap-align: start;
+    }
+  }
+  @media (min-width: 1024px) {
+    .review-wall {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+    .review-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+  }
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    .js .review-wall {
+      height: 40rem;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+      mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+    }
+    .js .review-col {
+      gap: 0;
+      animation: review-up 56s linear infinite;
+      will-change: transform;
+    }
+    .js .review-col > .review-card {
+      margin-bottom: 1.25rem;
+    }
+    .js .review-col[data-col="1"] {
+      animation-name: review-down;
+      animation-duration: 64s;
+    }
+    .js .review-card[data-dup] {
+      display: block;
+    }
+    .js .review-wall:hover .review-col,
+    .js .review-wall:focus-within .review-col {
+      animation-play-state: paused;
+    }
+  }
+  @keyframes review-up {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+  }
+  @keyframes review-down {
+    from { transform: translateY(-50%); }
+    to { transform: translateY(0); }
+  }
 </style>
 
 <script>
-  import Splide from "@splidejs/splide";
-  import "@splidejs/splide/css/core";
-  const el = document.getElementById("reviews");
-  if (el) {
-    new Splide(el, {
-      type: "loop",
-      perPage: 2,
-      gap: "1.5rem",
-      autoplay: true,
-      interval: 6000,
-      pauseOnHover: true,
-      arrows: true,
-      pagination: true,
-      breakpoints: { 768: { perPage: 1 } },
-      reducedMotion: { autoplay: false, speed: 0, rewindSpeed: 0 },
-    }).mount();
+  // Reviews wall. The page ships with the verified snapshot already rendered.
+  // When /api/reviews is configured (a Places API key in Cloudflare), the
+  // reviews Google currently shows for the listing are placed first, the
+  // rating and count update, and the status line says so. If the endpoint is
+  // missing or fails, nothing changes. Review text is inserted as text, never
+  // as HTML.
+  type Review = { name: string; when: string; text: string; photo?: string; rating?: number; live?: boolean };
+  const wall = document.getElementById("review-wall");
+  const G =
+    '<svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.7-2.4 3.6v3h3.9c2.3-2.1 3.5-5.2 3.5-8.8z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.2v3.1C3.2 21.3 7.3 24 12 24z"/><path fill="#FBBC05" d="M5.3 14.3c-.2-.7-.4-1.5-.4-2.3s.1-1.6.4-2.3V6.6H1.2C.4 8.2 0 10 0 12s.4 3.8 1.2 5.4l4.1-3.1z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4C18 1.2 15.2 0 12 0 7.3 0 3.2 2.7 1.2 6.6l4.1 3.1c.9-2.9 3.6-4.9 6.7-4.9z"/></svg>';
+  const STAR = "M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z";
+  const SVG = "http://www.w3.org/2000/svg";
+
+  const stars = (n: number) => {
+    const wrap = document.createElement("span");
+    wrap.className = "inline-flex items-center gap-0.5";
+    wrap.setAttribute("aria-label", `${n} out of 5 stars`);
+    for (let i = 1; i <= 5; i++) {
+      const svg = document.createElementNS(SVG, "svg");
+      svg.setAttribute("viewBox", "0 0 20 20");
+      svg.setAttribute("class", `h-4 w-4 ${i <= Math.round(n) ? "fill-gold" : "fill-pine-900/15"}`);
+      svg.setAttribute("aria-hidden", "true");
+      const path = document.createElementNS(SVG, "path");
+      path.setAttribute("d", STAR);
+      svg.append(path);
+      wrap.append(svg);
+    }
+    return wrap;
+  };
+
+  const card = (r: Review, dup: boolean) => {
+    const fig = document.createElement("figure");
+    fig.className = "review-card";
+    if (dup) {
+      fig.setAttribute("data-dup", "");
+      fig.setAttribute("aria-hidden", "true");
+    }
+    const head = document.createElement("div");
+    head.className = "flex items-center gap-3";
+    const avatar = document.createElement("span");
+    avatar.className = "review-avatar";
+    avatar.setAttribute("aria-hidden", "true");
+    if (r.photo) {
+      const img = document.createElement("img");
+      img.src = r.photo;
+      img.alt = "";
+      img.loading = "lazy";
+      img.referrerPolicy = "no-referrer";
+      avatar.append(img);
+    } else {
+      avatar.textContent = (r.name || "G").charAt(0).toUpperCase();
+    }
+    const who = document.createElement("div");
+    who.className = "min-w-0 flex-1";
+    const name = document.createElement("p");
+    name.className = "truncate text-sm font-semibold text-pine-900";
+    name.textContent = r.name;
+    const when = document.createElement("p");
+    when.className = "text-xs text-ink/50";
+    when.textContent = r.when;
+    who.append(name, when);
+    head.append(avatar, who);
+    if (r.live) {
+      const chip = document.createElement("span");
+      chip.className = "review-live";
+      chip.textContent = "Latest";
+      head.append(chip);
+    }
+    head.insertAdjacentHTML("beforeend", G);
+    const starWrap = document.createElement("div");
+    starWrap.className = "mt-4";
+    starWrap.append(stars(r.rating ?? 5));
+    const quote = document.createElement("blockquote");
+    quote.className = "mt-3 text-[15px] leading-relaxed text-ink/80";
+    quote.textContent = `"${r.text}"`;
+    fig.append(head, starWrap, quote);
+    return fig;
+  };
+
+  const render = (list: Review[]) => {
+    if (!wall) return;
+    wall.replaceChildren();
+    [0, 1].forEach((ci) => {
+      const col = document.createElement("div");
+      col.className = "review-col";
+      col.dataset.col = String(ci);
+      const items = list.filter((_, i) => i % 2 === ci);
+      items.forEach((r) => col.append(card(r, false)));
+      items.forEach((r) => col.append(card(r, true)));
+      wall.append(col);
+    });
+  };
+
+  if (wall) {
+    const curated: Review[] = JSON.parse(wall.dataset.reviews || "[]");
+    fetch("/api/reviews")
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+      .then((d) => {
+        const raw: unknown[] = Array.isArray(d?.reviews) ? d.reviews : [];
+        const live: Review[] = raw
+          .filter((x): x is Record<string, unknown> => !!x && typeof x === "object" && typeof (x as any).text === "string" && typeof (x as any).rating === "number")
+          .map((x) => ({
+            name: String(x.author || "Google user"),
+            when: String(x.when || ""),
+            text: String(x.text),
+            photo: typeof x.photo === "string" && x.photo.startsWith("https://") ? x.photo : undefined,
+            rating: Number(x.rating),
+            live: true,
+          }));
+        if (!live.length) return;
+        const key = (t: string) => t.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 60);
+        const seen = new Set(live.map((x) => key(x.text)));
+        render([...live, ...curated.filter((c) => !seen.has(key(c.text)))]);
+        const status = document.getElementById("reviews-status");
+        if (status) status.textContent = "· updated automatically";
+        const note = document.getElementById("reviews-note");
+        if (note)
+          note.textContent =
+            "The latest reviews are shown as written on Google and refresh automatically; earlier reviews are quoted from the same public listing. They describe individual experiences; results vary, and no outcome is guaranteed.";
+      })
+      .catch(() => {});
   }
 </script>

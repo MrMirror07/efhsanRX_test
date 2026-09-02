@@ -128,7 +128,7 @@ export const DOCTOR2 = {
   affiliation: "St. Joseph's University Medical Center, Paterson, NJ",
   research:
     "Published doctoral research on supporting healthy gestational weight through app based pregnancy tracking (Rutgers University, 2024)",
-  bio: "Nurefsan Copur is a doctorally prepared certified nurse midwife. Her side of the practice is the everyday fabric of women's health: contraception counseling, cycle concerns, and the questions that feel too small for an appointment but too big to ignore. She sees patients in English and speaks intermediate Spanish.",
+  bio: "Nurefsan Copur is a doctorally prepared certified nurse midwife. Her practice centers on the everyday questions of women's health: contraception counseling, cycle concerns, and the questions that feel too small for an appointment yet deserve a careful answer. She sees patients in English and speaks intermediate Spanish.",
 } as const;
 
 /** Treatment areas shown as visual tiles. Slugs anchor to /services. */
@@ -136,37 +136,37 @@ export const TREATMENTS = [
   {
     slug: "birth-control",
     title: "Birth control",
-    blurb: "Find the method that fits your body and your plans, prescribed in one visit.",
+    blurb: "A method matched to your health history and your plans, prescribed in a single visit when appropriate.",
     examples: ["Combined pills", "Progestin only pills", "Patch and ring options"],
   },
   {
     slug: "menopause",
-    title: "Menopause relief",
-    blurb: "Hot flashes, night sweats, and sleep that fell apart. There are real treatments.",
+    title: "Menopause care",
+    blurb: "Hot flashes, night sweats, and disrupted sleep respond to treatment. A specialist helps you choose it.",
     examples: ["Hormone therapy", "Non hormonal options", "Sleep and mood support"],
   },
   {
     slug: "hormone-therapy",
     title: "Hormone therapy",
-    blurb: "Estrogen and progesterone care matched to your history, started safely.",
+    blurb: "Estradiol and progesterone therapy matched to your history, begun at a gentle dose and reviewed with you.",
     examples: ["Estradiol patches", "Micronized progesterone", "Low dose regimens"],
   },
   {
     slug: "sexual-health",
     title: "Sexual health",
-    blurb: "Dryness, discomfort, and low desire are medical concerns, not embarrassments.",
-    examples: ["Vaginal estrogen", "Moisturizers and comfort care", "Libido evaluation"],
+    blurb: "Vaginal dryness, discomfort, and low desire are medical conditions with effective, private treatment.",
+    examples: ["Vaginal estrogen", "Moisturizers and comfort care", "Evaluation of low desire"],
   },
   {
     slug: "periods",
-    title: "Period problems",
-    blurb: "Heavy, painful, or unpredictable cycles deserve answers, not a shrug.",
+    title: "Periods and PCOS",
+    blurb: "Heavy, painful, or irregular cycles are evaluated carefully, with a clear plan to follow.",
     examples: ["Cycle regulation", "Bleeding evaluation", "PCOS care"],
   },
   {
     slug: "labs",
     title: "Labs and screenings",
-    blurb: "Targeted lab work ordered when your plan truly calls for it, near your home.",
+    blurb: "Targeted laboratory testing, ordered when it will guide your care and drawn near your home.",
     examples: ["Hormone panels", "Thyroid testing", "Preventive screenings"],
   },
 ] as const;
@@ -229,23 +229,23 @@ export const PRICING = {
     label: "Initial visit",
     duration: "30 minutes",
     includes: [
-      "A full video visit with our doctors, never a chatbot",
+      "A thirty minute video visit with a board certified ObGyn",
       "Review of your complete health history",
-      "A written treatment plan you keep",
+      "A written care plan you keep",
       "Prescriptions sent to your pharmacy when appropriate",
-      "Lab orders when your plan calls for them",
-      "Message follow up for 14 days after your visit",
+      "Laboratory orders when they will guide your care",
+      "Secure messaging for fourteen days after your visit",
     ],
   },
   followUp: {
     price: 149,
-    label: "Follow up visit",
+    label: "Follow-up visit",
     duration: "30 minutes",
     includes: [
       "A video visit with the clinician who already knows you",
-      "Progress review and plan adjustments",
+      "A review of your progress and adjustments to your care plan",
       "Prescription renewals when appropriate",
-      "Message follow up for 14 days after your visit",
+      "Secure messaging for fourteen days after your visit",
     ],
   },
 } as const;

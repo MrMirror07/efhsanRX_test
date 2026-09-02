@@ -13,7 +13,7 @@ interface Props {
 
 const {
   title = "Online Gynecologist in New Jersey | SheWellRX Telehealth",
-  description = "See a board certified ObGyn by video anywhere in New Jersey. Menopause, hormone therapy, birth control, PCOS, and more. $249 flat, no insurance.",
+  description = "Video visits with a board certified ObGyn anywhere in New Jersey. Menopause, hormone therapy, birth control, PCOS, and more. $249 flat fee, self-pay.",
   noindex = false,
 } = Astro.props;
 
@@ -31,7 +31,7 @@ const clinicSchema = {
   url: SITE.url,
   email: SITE.email,
   medicalSpecialty: "Gynecologic",
-  description: "Women's telehealth practice: video visits with a board certified ObGyn for patients located in New Jersey. Self pay, one flat fee.",
+  description: "Women's telehealth practice: video visits with a board certified ObGyn for patients located in New Jersey. A self-pay practice with one transparent fee per visit; insurance is not billed.",
   areaServed: [
     { "@type": "State", name: "New Jersey", sameAs: "https://en.wikipedia.org/wiki/New_Jersey" },
     ...NJ_COUNTIES.map((c) => ({ "@type": "AdministrativeArea", name: `${c} County, New Jersey` })),
@@ -114,7 +114,7 @@ const clinicSchema = {
             class="fixed inset-x-0 bottom-0 z-40 border-t border-pine-900/10 bg-cream/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur lg:hidden"
           >
             <a href={PORTAL_URL} class="btn-primary w-full !py-3.5">
-              Book a visit · ${PRICING.initial.price} flat
+              Schedule a video visit · ${PRICING.initial.price}
             </a>
           </div>
           <div class="h-20 lg:hidden" aria-hidden="true" />
