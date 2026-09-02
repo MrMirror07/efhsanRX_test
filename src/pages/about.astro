@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { DOCTOR2 } from "../config";
 
 const values = [
   {
@@ -23,7 +24,7 @@ const values = [
 
 <Layout
   title="About Us | SheWellRX"
-  description="SheWellRX is a self-pay women's telehealth practice in New Jersey: video visits with a board certified ObGyn, a written care plan, and care that continues."
+  description="SheWellRX is a self-pay women's telehealth practice in New Jersey: two clinicians, video visits from home, a written care plan, and care that continues."
 >
   <section class="section">
     <div class="max-w-2xl">
@@ -38,11 +39,18 @@ const values = [
         care that could begin this week.
       </p>
       <p class="mt-4 text-lg leading-relaxed text-ink/70">
-        We are a small practice built around a board certified ObGyn with more
-        than thirty five years of experience, with a certified nurse midwife
-        joining soon. Your visit takes place by video from home: a full review
-        of your history, an unhurried conversation, a written care plan you can
-        follow, and a clinician who is still there at your next visit.
+        We are a small team of two clinicians: a board certified ObGyn with
+        more than thirty five years of experience, and {DOCTOR2.name}, a
+        certified nurse midwife who joins the practice soon. Your visit takes
+        place by video from home: a full review of your history, an unhurried
+        conversation, a written care plan you can follow, and a clinician who
+        is still there at your next visit.
+      </p>
+      <p class="mt-4 text-lg leading-relaxed text-ink/70">
+        Today every visit is with the physician. When visits with the nurse
+        midwife open, you will be told who your visit is with at the time you
+        schedule, and you may always request the physician.
+        <a href="/doctor" class="font-semibold text-pine-900 underline underline-offset-4">Meet your clinicians</a>
       </p>
     </div>
   </section>

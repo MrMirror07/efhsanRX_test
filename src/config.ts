@@ -128,6 +128,8 @@ export const DOCTOR2 = {
   affiliation: "St. Joseph's University Medical Center, Paterson, NJ",
   research:
     "Published doctoral research on supporting healthy gestational weight through app based pregnancy tracking (Rutgers University, 2024)",
+  /** What she will help with once visits with her open. Shown on the team cards. */
+  focus: ["Contraception counseling", "Cycle and period concerns", "Everyday women's health questions"],
   bio: "Nurefsan Copur is a doctorally prepared certified nurse midwife. Her practice centers on the everyday questions of women's health: contraception counseling, cycle concerns, and the questions that feel too small for an appointment yet deserve a careful answer. She sees patients in English and speaks intermediate Spanish.",
 } as const;
 

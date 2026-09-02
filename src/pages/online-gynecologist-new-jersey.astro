@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { CONDITIONS, NJ_COUNTIES, NJ_CITIES } from "../data/conditions";
-import { SITE, DOCTOR, PRICING, REVIEWS, PORTAL_URL } from "../config";
+import { SITE, DOCTOR, DOCTOR2, PRICING, REVIEWS, PORTAL_URL } from "../config";
 import drCopur from "../assets/dr-copur.jpg";
 import visitWindow from "../assets/visit-window.jpg";
 
@@ -63,11 +63,11 @@ const schema = {
         <p class="eyebrow mt-8">Telehealth · New Jersey</p>
         <h1 class="display mt-4 text-4xl leading-[1.05] sm:text-5xl lg:text-[3.5rem]">An online gynecologist for every woman in New Jersey</h1>
         <p class="mt-6 max-w-2xl text-lg leading-relaxed text-ink/70">
-          A thirty minute video visit with {DOCTOR.name}, board certified in obstetrics and gynecology and in practice in northern New Jersey since 2002. Perimenopause and menopause, hormone therapy, birth control, polycystic ovary syndrome (PCOS) and menstrual cycle concerns, and sexual health are evaluated and treated from your home, with a written care plan and two weeks of follow-up messaging. One flat fee; we do not bill insurance.
+          A thirty minute video visit with {DOCTOR.name}, board certified in obstetrics and gynecology and in practice in northern New Jersey since 2002. {DOCTOR2.name}, a certified nurse midwife, joins the practice soon. Perimenopause and menopause, hormone therapy, birth control, polycystic ovary syndrome (PCOS) and menstrual cycle concerns, and sexual health are evaluated and treated from your home, with a written care plan and two weeks of follow-up messaging. One flat fee; we do not bill insurance.
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-4">
           <a href={PORTAL_URL} class="btn-accent group !px-7 !py-4 !text-base">Start your visit · ${PRICING.initial.price}</a>
-          <a href="/doctor" class="btn-secondary !py-4 !text-base">Meet your clinician</a>
+          <a href="/doctor" class="btn-secondary !py-4 !text-base">Meet your clinicians</a>
         </div>
       </div>
       <figure class="overflow-hidden rounded-[2rem] lg:col-span-5" data-reveal>
@@ -115,18 +115,31 @@ const schema = {
       </div>
       <div class="lg:col-span-5" data-reveal>
         <div class="card !p-8">
-          <div class="flex items-center gap-4">
+          <p class="eyebrow">Your care team</p>
+          <div class="mt-5 flex items-center gap-4">
             <Image src={drCopur} alt={DOCTOR.name} width={128} height={128} class="h-16 w-16 rounded-2xl object-cover object-top" />
             <div>
               <p class="font-semibold text-pine-900">{DOCTOR.name}, FACOG</p>
-              <p class="text-xs text-ink/60">Board certified ObGyn (ABOG) since {DOCTOR.boardCertifiedSince}</p>
+              <p class="text-xs text-ink/60">Physician · Board certified ObGyn (ABOG) since {DOCTOR.boardCertifiedSince}</p>
             </div>
           </div>
-          <ul class="mt-6 space-y-2 text-sm text-ink/75">
+          <ul class="mt-4 space-y-2 text-sm text-ink/75">
             <li>Licensed physician in New Jersey</li>
             <li>In private practice in northern New Jersey since {DOCTOR.practicingSince}</li>
             <li>{REVIEWS.google.rating} stars across {REVIEWS.google.count} Google reviews</li>
             <li>Member, American College of Obstetricians and Gynecologists</li>
+          </ul>
+          <div class="mt-6 flex items-center gap-4 border-t border-pine-900/10 pt-6">
+            <span class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-apricot-100 font-display text-lg font-medium text-apricot-700" data-portrait="nurefsan" aria-hidden="true">NC</span>
+            <div>
+              <p class="font-semibold text-pine-900">{DOCTOR2.name}</p>
+              <p class="text-xs text-ink/60">Certified Nurse Midwife (not a physician) · Joining soon</p>
+            </div>
+          </div>
+          <ul class="mt-4 space-y-2 text-sm text-ink/75">
+            <li>Licensed in New Jersey as a certified nurse midwife</li>
+            <li>{DOCTOR2.focus.join(", ").replace(/, ([^,]*)$/, ", and $1")}</li>
+            <li>Visits with her are not yet available to schedule; today every visit is with Dr. Copur</li>
           </ul>
         </div>
       </div>

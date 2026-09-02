@@ -24,7 +24,7 @@ Message:
 
 Hi FIRST_NAME_OR_NICK_NAME,
 
-You are booked. Here are the details.
+Your video visit is confirmed. Here are the details.
 
 Visit: APPOINTMENT_SERVICE_NAME with PRACTITIONER_NAME
 When: APPOINTMENT_START_DATE_TIME (Eastern time)
@@ -36,16 +36,16 @@ Payment: your $249 visit fee was charged today to the card you entered. The char
 
 Three things to do before we meet (about ten minutes):
 1. Sign your telehealth consent: [insert Consent Form link: SheWellRX Telehealth Consent and Terms of Care]
-2. Complete your intake so Dr. Copur can read your story first: [insert Custom Questionnaire link: SheWellRX Initial Intake]
+2. Complete your intake so your clinician can review your history before the visit: [insert Custom Questionnaire link: SheWellRX Initial Intake]
 3. Set up your patient portal, where your messages, results, and receipts live: go to https://www.optimantra.com/optimus/om/patient/login?accessPoint=L1YvN0JQYzk1ZnRsdlFXNEhOOXJWUT09, choose New Sign Up, and use this same email address, your first name, and your date of birth.
 
 Need to change your time? Sign in to the portal and choose your appointment, or reply to this email. Cancel or reschedule up to 24 hours before your visit for a full refund; later cancellations and missed visits are not refunded.
 
-Please have your medication list, pharmacy name, and any recent lab results nearby. If you feel unwell in a way that cannot wait, do not wait for us: call 911 or go to the nearest emergency room.
+Please have your medication list, pharmacy name, and any recent laboratory results nearby. If you feel unwell in a way that cannot wait, please call 911 or go to the nearest emergency room.
 
 Warmly,
-SheWellRX
-The telehealth practice of Huseyin Copur, MD, board certified in obstetrics and gynecology (ABOG), licensed in New Jersey
+The SheWellRX care team
+Women's health by video for New Jersey. The telehealth practice of Huseyin Copur, MD, board certified in obstetrics and gynecology (ABOG) and licensed in New Jersey.
 njobgyn@gmail.com
 
 Footer: SheWellRX does not provide emergency care. Visits are for patients physically located in New Jersey. This email may contain appointment information; if you received it in error, delete it and let us know.
@@ -66,7 +66,7 @@ Your video visit with PRACTITIONER_NAME is APPOINTMENT_START_DATE_TIME (Eastern)
 Join here at your appointment time: VIDEO_CHAT_LINK
 Use Chrome, Safari, or Edge on a phone, tablet, or computer; no app needed. Allow camera and microphone when asked, and find a quiet, private spot in New Jersey.
 
-Still to do, if you have not yet: your consent [Consent Form link] and your intake [Custom Questionnaire link]. Dr. Copur reads every answer before you connect.
+Still to do, if you have not yet: your consent [Consent Form link] and your intake [Custom Questionnaire link]. Your clinician reviews every answer before you connect.
 
 To change your time, sign in to the portal (https://www.optimantra.com/optimus/om/patient/login?accessPoint=L1YvN0JQYzk1ZnRsdlFXNEhOOXJWUT09) or reply to this email at least 24 hours ahead.
 
@@ -92,8 +92,14 @@ Hi FIRST_NAME_OR_NICK_NAME, your visit on APPOINTMENT_START_DATE_TIME has been c
 
 ## Scheduler notice (Settings > Scheduling > Online Booking > Location Settings > Notice To Display On Top Of Online Bookings)
 
-Visits are with Huseyin Copur, MD, a physician licensed in New Jersey and board certified in obstetrics and gynecology (ABOG). When a certified nurse midwife joins SheWellRX, you will be told if your visit is scheduled with the nurse midwife and you may request the physician instead. Video visits are for patients physically located in New Jersey at the time of the visit, age 18 and older. You pay the full visit fee at the end of booking; cancel or reschedule up to 24 hours before for a full refund. Not for emergencies: call 911. Questions: njobgyn@gmail.com.
+Visits are with Huseyin Copur, MD, a physician licensed in New Jersey and board certified in obstetrics and gynecology (ABOG). When a certified nurse midwife joins SheWellRX, you will be told if your visit is scheduled with the nurse midwife and you may request the physician instead. Video visits are for patients physically located in New Jersey at the time of the visit, age 18 and older. The full visit fee is paid at the end of booking; cancel or reschedule up to 24 hours before for a full refund. Not for emergencies: call 911. Questions: njobgyn@gmail.com.
 
 ## Provider description (Settings > Business > Provider Settings > Description (Online Bookings))
 
-Huseyin Copur, MD, FACOG. Board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology since 1989 and in private practice in northern New Jersey since 2002. Every SheWellRX visit is a 30 minute video conversation with Dr. Copur himself, followed by a written plan and two weeks of follow up messaging.
+Huseyin Copur, MD, FACOG. Board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology since 1989 and licensed in New Jersey. Every SheWellRX visit is a thirty minute video visit, followed by a written care plan and two weeks of secure messaging.
+
+## Nurefsan Copur, DNP, CNM: online booking description (paste when she is added as a practitioner)
+
+Nurefsan Copur, DNP, CNM. Certified nurse midwife (not a physician), doctorally prepared and licensed in New Jersey. Visits with Nurefsan cover contraception counseling, cycle and period concerns, and everyday women's health questions, by video, with Huseyin Copur, MD as the collaborating physician. You may request the physician for any visit.
+
+When she is added, also change "with Dr. Copur" in the reminder text and confirmation text to "with PRACTITIONER_NAME" if the text editor accepts that keyword, and update the scheduler notice so it names both clinicians.

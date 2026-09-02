@@ -1,6 +1,6 @@
 ---
 import Logo from "./Logo.astro";
-import { PORTAL_URL, OPTIMANTRA } from "../config";
+import { PORTAL_URL, OPTIMANTRA, SITE } from "../config";
 
 const links = [
   { href: "/services", label: "What we treat" },
@@ -8,6 +8,15 @@ const links = [
   { href: "/pricing", label: "Pricing" },
   { href: "/doctor", label: "Your clinicians" },
   { href: "/about", label: "About" },
+];
+
+/** Short labels for the menu's concern chips; each opens its New Jersey condition guide. */
+const concerns = [
+  { href: "/conditions/menopause-treatment-new-jersey/", label: "Menopause" },
+  { href: "/conditions/hormone-therapy-new-jersey/", label: "Hormone therapy" },
+  { href: "/conditions/birth-control-online-new-jersey/", label: "Birth control" },
+  { href: "/conditions/pcos-irregular-periods-new-jersey/", label: "Periods and PCOS" },
+  { href: "/conditions/vaginal-dryness-painful-sex-new-jersey/", label: "Intimate health" },
 ];
 const current = Astro.url.pathname;
 ---
@@ -44,7 +53,7 @@ const current = Astro.url.pathname;
 
     <button
       id="menu-toggle"
-      class="rounded-full p-2.5 transition-colors hover:bg-pine-900/5 lg:hidden"
+      class="-mr-2 rounded-full p-2.5 transition-colors hover:bg-pine-900/5 lg:hidden"
       aria-label="Open menu"
       aria-expanded="false"
       aria-controls="mobile-menu"
@@ -54,51 +63,194 @@ const current = Astro.url.pathname;
       </svg>
     </button>
   </div>
+</header>
 
-  <!-- Full screen menu on small screens -->
-  <div id="mobile-menu" class="fixed inset-0 z-50 hidden flex-col bg-pine-900 text-cream lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
-    <div class="flex h-[4.25rem] items-center justify-between px-6">
+<!--
+  The menu lives outside the header on purpose: the header's backdrop blur
+  turns it into the containing block for fixed children, which would clip a
+  full screen overlay to the header's height.
+-->
+<div id="mobile-menu" class="mobile-menu lg:hidden" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
+  <div class="mobile-menu-inner">
+    <div class="flex h-[4.25rem] shrink-0 items-center justify-between px-6">
       <Logo tone="light" />
-      <button id="menu-close" class="rounded-full p-2.5 transition-colors hover:bg-white/10" aria-label="Close menu">
+      <button id="menu-close" class="-mr-2 rounded-full p-2.5 text-cream transition-colors hover:bg-white/10" aria-label="Close menu">
         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M6 6l12 12M18 6 6 18" /></svg>
       </button>
     </div>
-    <nav class="flex flex-1 flex-col justify-center gap-1 px-8" aria-label="Mobile">
-      {
-        links.map((link, i) => (
-          <a
-            href={link.href}
-            class="menu-link font-display text-4xl font-medium leading-tight tracking-tight text-cream/90 transition-colors hover:text-apricot-300"
-            style={`transition-delay:${i * 40}ms`}
-          >
-            {link.label}
-          </a>
-        ))
-      }
-      <a href={OPTIMANTRA.portalLoginUrl} rel="noopener" class="menu-link mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-cream/60">Patient portal</a>
+
+    <nav class="px-6 pt-2" aria-label="Mobile">
+      <ol class="menu-list">
+        {
+          links.map((link, i) => (
+            <li class="menu-item" style={`--i:${i}`}>
+              <a href={link.href} class="menu-link" aria-current={current.startsWith(link.href) ? "page" : undefined}>
+                <span class="menu-index">0{i + 1}</span>
+                <span class="menu-label">{link.label}</span>
+                <svg class="menu-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" /></svg>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="menu-item mt-8" style={`--i:${links.length}`}>
+        <p class="menu-eyebrow">Common concerns</p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          {concerns.map((c) => <a href={c.href} class="menu-chip">{c.label}</a>)}
+        </div>
+      </div>
     </nav>
-    <div class="px-8 pb-10">
+
+    <div class="menu-item mt-auto px-6 pb-8 pt-8" style={`--i:${links.length + 1}`}>
       <a href={PORTAL_URL} class="btn-accent w-full !py-4 !text-base">Schedule a video visit</a>
-      <p class="mt-4 text-center text-xs text-cream/50">If you are experiencing a medical emergency, call 911.</p>
+      <div class="mt-5 flex flex-wrap items-center justify-between gap-3 text-sm">
+        <a href={OPTIMANTRA.portalLoginUrl} rel="noopener" class="font-medium text-cream/85 underline underline-offset-4">Patient portal sign in</a>
+        <a href={`mailto:${SITE.email}`} class="text-cream/60">{SITE.email}</a>
+      </div>
+      <p class="mt-4 text-xs leading-relaxed text-cream/45">Video visits for patients in New Jersey. In an emergency, call 911.</p>
     </div>
   </div>
-</header>
+</div>
+
+<style is:global>
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    overflow-y: auto;
+    background: var(--color-pine-900);
+    color: var(--color-cream);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.35s ease,
+      visibility 0s linear 0.35s;
+  }
+  .mobile-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.35s ease;
+  }
+  .mobile-menu-inner {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    background:
+      radial-gradient(60% 40% at 100% 0%, rgba(223, 111, 150, 0.22), transparent 70%),
+      radial-gradient(50% 35% at 0% 100%, rgba(60, 111, 127, 0.35), transparent 70%);
+  }
+  .menu-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .menu-item {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.5s ease,
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(80ms + var(--i, 0) * 45ms);
+  }
+  .mobile-menu.is-open .menu-item {
+    opacity: 1;
+    transform: none;
+  }
+  .menu-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.05rem 0;
+    border-bottom: 1px solid rgba(250, 250, 248, 0.1);
+    color: var(--color-cream);
+    font-family: var(--font-display);
+    font-size: 1.85rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .menu-link[aria-current="page"] .menu-label {
+    color: var(--color-apricot-300);
+  }
+  .menu-index {
+    width: 1.75rem;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--color-apricot-300);
+  }
+  .menu-label {
+    flex: 1;
+  }
+  .menu-arrow {
+    height: 1.25rem;
+    width: 1.25rem;
+    color: rgba(250, 250, 248, 0.4);
+  }
+  .menu-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(250, 250, 248, 0.5);
+  }
+  .menu-chip {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid rgba(250, 250, 248, 0.18);
+    border-radius: 9999px;
+    padding: 0.5rem 0.95rem;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(250, 250, 248, 0.88);
+    transition:
+      border-color 0.3s ease,
+      background-color 0.3s ease;
+  }
+  .menu-chip:hover {
+    border-color: rgba(250, 250, 248, 0.5);
+    background: rgba(250, 250, 248, 0.06);
+  }
+  html.menu-open {
+    overflow: hidden;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-menu,
+    .menu-item {
+      transition: none;
+      transform: none;
+    }
+  }
+</style>
 
 <script>
   const toggle = document.getElementById("menu-toggle");
   const closeBtn = document.getElementById("menu-close");
   const menu = document.getElementById("mobile-menu");
+  let lastFocus: HTMLElement | null = null;
+
   const setOpen = (open: boolean) => {
     if (!menu || !toggle) return;
-    menu.classList.toggle("hidden", !open);
-    menu.classList.toggle("flex", open);
+    menu.classList.toggle("is-open", open);
+    menu.setAttribute("aria-hidden", String(!open));
     toggle.setAttribute("aria-expanded", String(open));
-    document.documentElement.style.overflow = open ? "hidden" : "";
-    if (open) closeBtn?.focus();
+    document.documentElement.classList.toggle("menu-open", open);
+    if (open) {
+      lastFocus = document.activeElement as HTMLElement | null;
+      window.setTimeout(() => closeBtn?.focus(), 60);
+    } else {
+      lastFocus?.focus();
+    }
   };
+
   toggle?.addEventListener("click", () => setOpen(true));
   closeBtn?.addEventListener("click", () => setOpen(false));
+  menu?.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") setOpen(false);
+    if (e.key === "Escape" && menu?.classList.contains("is-open")) setOpen(false);
+  });
+  window.matchMedia("(min-width: 1024px)").addEventListener("change", (e) => {
+    if (e.matches) setOpen(false);
   });
 </script>
