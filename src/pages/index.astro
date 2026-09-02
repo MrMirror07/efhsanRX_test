@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Stars from "../components/Stars.astro";
 import FilmScroll from "../components/FilmScroll.astro";
-import { SITE, DOCTOR, DOCTOR2, PRACTICE, PRICING, PORTAL_URL, REVIEWS, TREATMENTS } from "../config";
+import { SITE, DOCTOR, DOCTOR2, PRACTICE, PRICING, PORTAL_URL, BOOKING_BY_CONCERN, REVIEWS, TREATMENTS } from "../config";
 import heroPortrait from "../assets/hero-portrait.png";
 import telehealthVisit from "../assets/telehealth-visit.png";
 import vitalityOutdoors from "../assets/vitality-outdoors.png";
@@ -394,7 +394,7 @@ const faqSchema = {
                   <p class="mt-0.5 text-xs leading-relaxed text-ink/60">{c.cardSub}</p>
                 </div>
               </div>
-              <a href={PORTAL_URL} class="btn-primary mt-5 w-full">Book your visit · ${PRICING.initial.price}</a>
+              <a href={BOOKING_BY_CONCERN[c.key] ?? PORTAL_URL} class="btn-primary mt-5 w-full">Book your visit · ${PRICING.initial.price}</a>
               {c.slug && (
                 <a href={`/services#${c.slug}`} class="mt-3 block text-center text-xs font-medium text-pine-600 underline underline-offset-4 hover:text-pine-800">
                   See exactly how we treat it

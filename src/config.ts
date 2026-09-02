@@ -5,15 +5,31 @@
  */
 
 /**
- * The external patient portal where visitors sign up and complete intake.
- * TODO: replace with the real portal URL once the account is created
- * (recommended: IntakeQ or Healthie, both sign BAAs on every plan).
- * All "Book a visit" buttons on the site point here.
+ * The external patient portal where visitors book, complete intake, sign
+ * consents, and join their video visit: OptiMantra (BAA included in the
+ * license, online booking, questionnaires per service, telehealth).
+ * TODO: replace with the practice's public OptiMantra booking link once the
+ * account exists, then set PORTAL_LIVE to true. Every "Book a visit" button
+ * and the care matcher results point here.
  */
 export const PORTAL_URL = "/book";
 
-/** Set to true once PORTAL_URL points at the real signup portal. */
+/** Set to true once PORTAL_URL points at the real OptiMantra booking page. */
 export const PORTAL_LIVE = false;
+
+/**
+ * Per concern booking links for the care matcher. OptiMantra's scheduler may
+ * accept a service or practitioner preselection in the URL; until that is
+ * confirmed, every key falls back to the plain portal link so the handoff
+ * always works. Never pass quiz answers or health details in these URLs.
+ */
+export const BOOKING_BY_CONCERN: Record<string, string> = {
+  menopause: PORTAL_URL,
+  "birth-control": PORTAL_URL,
+  intimacy: PORTAL_URL,
+  periods: PORTAL_URL,
+  else: PORTAL_URL,
+};
 
 export const SITE = {
   name: "SheWellRX",

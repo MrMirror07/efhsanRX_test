@@ -1,0 +1,4 @@
+# One canonical host. The www alias and the Cloudflare preview hostname both
+# send visitors and search engines to https://shewellrx.com.
+https://www.shewellrx.com/* https://shewellrx.com/:splat 301
+https://efhsanrx.pages.dev/* https://shewellrx.com/:splat 301
