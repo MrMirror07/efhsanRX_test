@@ -1,6 +1,6 @@
 # Patient emails and texts to load into OptiMantra
 
-Loaded 2026-09-02: all templates below now exist in the account. Form link codes in this account: consent "SheWellRX Telehealth Consent and Terms of Care" = CFID_164622; questionnaire "GENERAL_Intake & History" = CUSTOMQX_115506; "GENERAL_*Follow-Up" = CUSTOMQX_115505. When the SheWellRX questionnaires are built, insert their new codes with the "Custom Questionnaire Links" button and replace the GENERAL_ codes in both confirmation templates and the reminder email.
+Loaded 2026-09-02: all templates below exist in the account and were rewritten in the house voice the same evening. Form link codes in this account: consent "SheWellRX Telehealth Consent and Terms of Care" = CFID_164622; "SheWellRX Initial Intake" = CUSTOMQX_144120; "SheWellRX Follow Up" = CUSTOMQX_144121 (the old GENERAL_ codes 115506 and 115505 are no longer used in any template).
 
 Written 2026-09-02. These are the exact texts for the automated messages a patient receives from booking to visit. Keywords in CAPITALS are OptiMantra placeholders (Settings > Communications > Reminder Email > Message Tips). Form links are inserted with the "Consent Forms Links" and "Custom Questionnaire Links" buttons in the editor, which drop a code that becomes a patient specific link when sent. Set every template's Reply-to to njobgyn@gmail.com; OptiMantra will not send at all if Reply-to is blank.
 

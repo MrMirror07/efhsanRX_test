@@ -1,5 +1,7 @@
 # SheWellRX intake questionnaires and consent inputs for OptiMantra
 
+Built in the live account on 2026-09-02: "SheWellRX Initial Intake" is questionnaire id 144120 and "SheWellRX Follow Up" is id 144121, both tied to their telehealth services in Patient Portal and Kiosk. Wording was adjusted to the house voice (`docs/voice-and-terminology.md`) while building; the sections and question order below are what is live. The consent inputs at the end are still to be added by hand.
+
 Written 2026-09-01. Built for OptiMantra's Custom Questionnaire builder (Settings > Forms > Custom Questionnaire), which supports these answer types only: Word(s), Numeric, Paragraph, Radio (single answer), Checkbox (multiple answers), Matrix, Dropdown. There is no conditional logic, so each section opens with a one line instruction telling the patient when to skip it. Every questionnaire ties to a service in Settings > Communications > Patient Portal and Kiosk > "Questionnaire Specific To Appointment Services".
 
 Design rules: the public website asks nothing clinical that is stored; everything below is collected inside the portal after booking and before the visit. Questions are written for a New Jersey, self pay, video only OB GYN practice run by Dr. Copur, and they screen for the things that change what he can safely prescribe by video (estrogen and progestin contraindications, red flags that need in person care, pregnancy). Answer choices that carry numeric weights (0 to 3) use OptiMantra's "Calculate Subtotals" so symptom scores trend across visits.
