@@ -178,7 +178,7 @@ export const PRICING = {
     label: "Follow up visit",
     duration: "15 to 30 minutes",
     includes: [
-      "A video visit with the doctor who already knows you",
+      "A video visit with the clinician who already knows you",
       "Progress review and plan adjustments",
       "Prescription renewals when appropriate",
       "Message follow up for 14 days after your visit",

@@ -1,4 +1,4 @@
-# SheWellRX — Virtual Care Clinic Website
+# SheWellRX Virtual Care Clinic Website
 
 Marketing site for SheWellRX, a telehealth business. Built with [Astro](https://astro.build) and [Tailwind CSS v4](https://tailwindcss.com), deployed on Cloudflare Pages.
 
@@ -6,11 +6,13 @@ Marketing site for SheWellRX, a telehealth business. Built with [Astro](https://
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Home — hero, services overview, how it works, FAQ |
+| `/` | Home: hero, services overview, how it works, FAQ |
 | `/services` | Detailed care programs |
 | `/how-it-works` | Visit flow and patient promises |
 | `/about` | Mission and values |
 | `/book` | Visit request form (booking backend not yet connected) |
+| `/pricing` | Flat fee pricing, comparison, and pricing FAQ |
+| `/doctor` | Clinician bios, credentials, and independent ratings |
 
 ## Development
 
@@ -23,7 +25,7 @@ npm run preview  # preview the production build
 
 ## Deployment (Cloudflare Pages)
 
-Connected to this GitHub repo — every push to `main` auto-deploys.
+Connected to this GitHub repo. Every push to `main` deploys automatically.
 
 - Framework preset: **Astro**
 - Build command: `npm run build`

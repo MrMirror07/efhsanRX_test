@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { SITE } from "../config";
 ---
 
 <Layout
@@ -110,6 +111,7 @@ import Layout from "../layouts/Layout.astro";
 
         <p
           id="form-status"
+          data-email={SITE.email}
           class="hidden rounded-xl bg-pine-50 px-4 py-3 text-sm text-pine-800"
           role="status"
         >
@@ -132,7 +134,7 @@ import Layout from "../layouts/Layout.astro";
     }
     if (status) {
       status.textContent =
-        "Online booking is opening soon. In the meantime, email hello@shewellrx.com and we'll schedule you directly.";
+        `Online booking is opening soon. In the meantime, email ${status.dataset.email} and we'll schedule you directly.`;
       status.classList.remove("hidden");
       status.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
