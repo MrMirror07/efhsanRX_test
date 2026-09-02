@@ -5,6 +5,7 @@ import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { CONDITIONS, NJ_COUNTIES, NJ_CITIES } from "../data/conditions";
 import { SITE, DOCTOR, DOCTOR2, PRICING, REVIEWS, PORTAL_URL } from "../config";
 import drCopur from "../assets/dr-copur.jpg";
+import nurefsan from "../assets/nurefsan-copur.jpg";
 import visitWindow from "../assets/visit-window.jpg";
 
 const title = "How Online Gynecology Works in New Jersey | SheWellRX";
@@ -130,7 +131,7 @@ const schema = {
             <li>Member, American College of Obstetricians and Gynecologists</li>
           </ul>
           <div class="mt-6 flex items-center gap-4 border-t border-pine-900/10 pt-6">
-            <span class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-apricot-100 font-display text-lg font-medium text-apricot-700" data-portrait="nurefsan" aria-hidden="true">NC</span>
+            <Image src={nurefsan} alt={`${DOCTOR2.name}, certified nurse midwife`} width={128} height={128} class="h-16 w-16 shrink-0 rounded-2xl object-cover object-top" data-portrait="nurefsan" />
             <div>
               <p class="font-semibold text-pine-900">{DOCTOR2.name}</p>
               <p class="text-xs text-ink/60">Certified Nurse Midwife (not a physician) · Joining soon</p>

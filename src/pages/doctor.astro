@@ -5,6 +5,7 @@ import Stars from "../components/Stars.astro";
 import { SITE, DOCTOR, DOCTOR2, PRACTICE, PORTAL_URL, REVIEWS } from "../config";
 import portraitUpward from "../assets/portrait-upward.png";
 import drCopur from "../assets/dr-copur.jpg";
+import nurefsan from "../assets/nurefsan-copur.jpg";
 
 const ratings = [
   { platform: "Google", rating: REVIEWS.google.rating, count: REVIEWS.google.count, url: PRACTICE.googleMapsUrl },
@@ -142,7 +143,7 @@ const teamSchema = {
 
         <article class="card flex flex-col !p-10">
           <div class="flex items-center gap-5">
-            <span class="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-apricot-100 font-display text-2xl font-medium text-apricot-700 shadow-md ring-1 ring-apricot-200" data-portrait="nurefsan" aria-hidden="true">NC</span>
+            <Image src={nurefsan} alt={`${DOCTOR2.name}, certified nurse midwife`} width={160} height={160} class="h-20 w-20 shrink-0 rounded-3xl object-cover object-top shadow-md" data-portrait="nurefsan" />
             <div>
               <h3 class="font-display text-2xl font-medium text-pine-900">{DOCTOR2.name}</h3>
               <p class="mt-1 text-sm font-medium text-apricot-700">Certified Nurse Midwife (not a physician)</p>
