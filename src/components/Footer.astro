@@ -5,76 +5,63 @@ import { SITE, DOCTOR, PRACTICE, PORTAL_URL, OPTIMANTRA } from "../config";
 const year = new Date().getFullYear();
 ---
 
-<footer class="bg-pine-900 text-cream/80">
-  <div class="mx-auto max-w-6xl px-6 py-16">
-    <div class="grid gap-12 md:grid-cols-4">
-      <div class="md:col-span-2">
-        <div class="[&_span]:!text-cream [&_.text-apricot-600]:!text-apricot-300">
-          <Logo />
-        </div>
-        <p class="mt-4 max-w-sm text-sm leading-relaxed">
-          Virtual women's health care from a board certified ObGyn who knows
-          your story. One flat fee, no insurance needed.
+<footer class="relative overflow-hidden bg-pine-900 text-cream/80">
+  <div class="pointer-events-none absolute -right-40 -top-40 h-[32rem] w-[32rem] rounded-full bg-pine-700/40 blur-3xl" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-6xl px-6 py-20">
+    <div class="grid gap-12 md:grid-cols-12">
+      <div class="md:col-span-5">
+        <Logo tone="light" />
+        <p class="mt-8 max-w-sm font-display text-3xl leading-tight text-cream">
+          Care that <em class="text-apricot-300">listens</em> until it finds the answer.
         </p>
-        <address class="mt-6 space-y-1 text-sm not-italic text-cream/60">
-          <p>A fully virtual practice serving patients across New Jersey</p>
-          <p>
-            <a href={`mailto:${SITE.email}`} class="hover:text-cream">{SITE.email}</a>
-          </p>
-        </address>
+        <p class="mt-5 max-w-sm text-sm leading-relaxed text-cream/60">
+          Virtual women's health from a board certified ObGyn. One flat fee, no insurance needed, for patients across New Jersey.
+        </p>
+        <a href={PORTAL_URL} class="btn-accent mt-8">Start your visit</a>
       </div>
 
-      <div>
-        <h3 class="text-sm font-semibold uppercase tracking-wider text-cream">Care</h3>
-        <ul class="mt-4 space-y-3 text-sm">
-          <li><a href="/services" class="hover:text-cream">What we treat</a></li>
-          <li><a href="/how-it-works" class="hover:text-cream">How it works</a></li>
-          <li><a href="/pricing" class="hover:text-cream">Pricing</a></li>
-          <li><a href={PORTAL_URL} class="hover:text-cream">Book a visit</a></li>
-          <li><a href={OPTIMANTRA.portalLoginUrl} rel="noopener" class="hover:text-cream">Patient portal sign in</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 class="text-sm font-semibold uppercase tracking-wider text-cream">Practice</h3>
-        <ul class="mt-4 space-y-3 text-sm">
-          <li><a href="/doctor" class="hover:text-cream">Meet our clinicians</a></li>
-          <li><a href="/good-faith-estimate" class="hover:text-cream">Good Faith Estimate</a></li>
-          <li><a href="/notice-of-privacy-practices" class="hover:text-cream">Notice of Privacy Practices</a></li>
-          <li><a href="/accessibility" class="hover:text-cream">Accessibility</a></li>
-          <li><a href="/about" class="hover:text-cream">About us</a></li>
-          <li>
-            <a
-              href={PRACTICE.googleMapsUrl}
-              rel="noopener"
-              target="_blank"
-              class="hover:text-cream">Google reviews</a
-            >
-          </li>
-        </ul>
+      <div class="grid gap-10 sm:grid-cols-3 md:col-span-7">
+        <div>
+          <h3 class="text-[11px] font-semibold uppercase tracking-[0.22em] text-cream/50">Care</h3>
+          <ul class="mt-5 space-y-3 text-sm">
+            <li><a href="/services" class="transition-colors hover:text-cream">What we treat</a></li>
+            <li><a href="/how-it-works" class="transition-colors hover:text-cream">How it works</a></li>
+            <li><a href="/pricing" class="transition-colors hover:text-cream">Pricing</a></li>
+            <li><a href={PORTAL_URL} class="transition-colors hover:text-cream">Book a visit</a></li>
+            <li><a href={OPTIMANTRA.portalLoginUrl} rel="noopener" class="transition-colors hover:text-cream">Patient portal sign in</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-[11px] font-semibold uppercase tracking-[0.22em] text-cream/50">Practice</h3>
+          <ul class="mt-5 space-y-3 text-sm">
+            <li><a href="/doctor" class="transition-colors hover:text-cream">Your doctor</a></li>
+            <li><a href="/about" class="transition-colors hover:text-cream">About us</a></li>
+            <li><a href={PRACTICE.googleMapsUrl} rel="noopener" target="_blank" class="transition-colors hover:text-cream">Google reviews</a></li>
+            <li><a href={`mailto:${SITE.email}`} class="transition-colors hover:text-cream">{SITE.email}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-[11px] font-semibold uppercase tracking-[0.22em] text-cream/50">Your rights</h3>
+          <ul class="mt-5 space-y-3 text-sm">
+            <li><a href="/good-faith-estimate" class="transition-colors hover:text-cream">Good Faith Estimate</a></li>
+            <li><a href="/notice-of-privacy-practices" class="transition-colors hover:text-cream">Notice of Privacy Practices</a></li>
+            <li><a href="/telehealth-consent" class="transition-colors hover:text-cream">Telehealth consent</a></li>
+            <li><a href="/privacy" class="transition-colors hover:text-cream">Privacy policy</a></li>
+            <li><a href="/terms" class="transition-colors hover:text-cream">Terms of service</a></li>
+            <li><a href="/accessibility" class="transition-colors hover:text-cream">Accessibility</a></li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <div class="mt-12 border-t border-cream/15 pt-8 text-xs leading-relaxed text-cream/60">
+    <div class="mt-16 grid gap-6 border-t border-cream/10 pt-8 text-xs leading-relaxed text-cream/50 md:grid-cols-2">
       <p>
-        SheWellRX does not provide emergency services. If you are experiencing a
-        medical emergency, call 911 or go to the nearest emergency room.
-        Treatment plans and prescriptions are issued only when a licensed
-        clinician determines they are appropriate. Telehealth visits are
-        available to patients located in states where our clinicians hold an
-        active license.
+        SheWellRX does not provide emergency services. If you are experiencing a medical emergency, call 911 or go to the nearest emergency room. Treatment plans and prescriptions are issued only when a licensed clinician determines they are appropriate. Video visits are for patients physically located in New Jersey at the time of the visit.
       </p>
-      <p class="mt-4">
-        SheWellRX is a telehealth practice serving patients located in New
-        Jersey. Booking a visit means you accept our
-        <a href="/terms" class="underline underline-offset-4 hover:text-cream">Terms of Service</a>,
-        <a href="/telehealth-consent" class="underline underline-offset-4 hover:text-cream">Telehealth Consent and Terms of Care</a>, and
-        <a href="/privacy" class="underline underline-offset-4 hover:text-cream">Privacy Policy</a>.
-        Self pay patients have the right to a
-        <a href="/good-faith-estimate" class="underline underline-offset-4 hover:text-cream">Good Faith Estimate</a> of charges.
-        Care is provided by {DOCTOR.name}, a physician licensed in New Jersey and board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology. {SITE.name} is the telehealth practice of {DOCTOR.practice}.
+      <p>
+        Care is provided by {DOCTOR.name}, a physician licensed in New Jersey and board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology. {SITE.name} is the telehealth practice of {DOCTOR.practice}. Self pay patients have the right to a Good Faith Estimate of charges. Booking a visit means you accept our Terms of Service, Telehealth Consent and Terms of Care, and Privacy Policy.
+        <span class="mt-3 block">&copy; {year} {SITE.name}. All rights reserved.</span>
       </p>
-      <p class="mt-4">&copy; {year} {SITE.name}. All rights reserved.</p>
     </div>
   </div>
 </footer>

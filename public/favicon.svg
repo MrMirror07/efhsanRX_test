@@ -1,9 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-  <rect x="0" y="0" width="48" height="48" rx="14.5" fill="#14453d"/>
-  <rect x="3.5" y="3.5" width="41" height="41" rx="11.5" fill="none" stroke="#faf7f2" stroke-opacity="0.2" stroke-width="1"/>
-  <g fill="none" stroke="#faf7f2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M18 35V13h8a6 6 0 0 1 0 12h-8"/>
-    <path d="M24.5 25 32 35"/>
-    <path d="M33 26.5 24 35.5" stroke="#eeb593"/>
-  </g>
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1f4553"/><stop offset="1" stop-color="#0f2733"/></linearGradient></defs>
+  <circle cx="24" cy="24" r="24" fill="url(#g)"/>
+  <circle cx="24" cy="24" r="21.5" fill="none" stroke="#ffffff" stroke-opacity="0.12"/>
+  <path d="M31.8 16.2c-1.5-2.4-4.3-3.7-7.4-3.7-4.7 0-8.2 2.8-8.2 6.6 0 4 3.3 5.6 7.8 6.8 4.2 1.1 6.8 2.4 6.8 5.6 0 3.5-3.1 5.8-7.5 5.8-3.6 0-6.7-1.7-8.3-4.5" fill="none" stroke="#fafaf8" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="34.6" cy="12.6" r="2.7" fill="#df6f96"/>
 </svg>

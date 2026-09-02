@@ -1,37 +1,43 @@
 ---
+/**
+ * SheWellRX mark and wordmark. The mark is a single serif "S" ribbon inside
+ * a deep sea disc with one orchid point, the brand's only accent. Pass
+ * `tone="light"` on dark surfaces.
+ */
 interface Props {
   class?: string;
+  tone?: "dark" | "light";
+  markOnly?: boolean;
 }
-const { class: className = "h-9 w-auto" } = Astro.props;
+const { class: className = "h-9 w-auto", tone = "dark", markOnly = false } = Astro.props;
+const wordColor = tone === "light" ? "text-cream" : "text-pine-900";
 ---
 
 <span class={`inline-flex items-center gap-2.5 ${className}`}>
-  <!-- Rx seal: prescription monogram with a hairline ring, drawn on a 48 grid -->
   <svg viewBox="0 0 48 48" class="h-full w-auto" aria-hidden="true">
-    <rect x="0" y="0" width="48" height="48" rx="14.5" class="fill-pine-800" />
-    <rect
-      x="3.5"
-      y="3.5"
-      width="41"
-      height="41"
-      rx="11.5"
+    <defs>
+      <linearGradient id="swx-disc" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#1f4553" />
+        <stop offset="1" stop-color="#0f2733" />
+      </linearGradient>
+    </defs>
+    <circle cx="24" cy="24" r="24" fill="url(#swx-disc)" />
+    <circle cx="24" cy="24" r="21.5" fill="none" stroke="#ffffff" stroke-opacity="0.12" />
+    <path
+      d="M31.8 16.2c-1.5-2.4-4.3-3.7-7.4-3.7-4.7 0-8.2 2.8-8.2 6.6 0 4 3.3 5.6 7.8 6.8 4.2 1.1 6.8 2.4 6.8 5.6 0 3.5-3.1 5.8-7.5 5.8-3.6 0-6.7-1.7-8.3-4.5"
       fill="none"
-      class="stroke-cream/20"
-      stroke-width="1"
-    />
-    <g
-      class="stroke-cream"
-      fill="none"
-      stroke-width="3"
+      stroke="#fafaf8"
+      stroke-width="3.2"
       stroke-linecap="round"
       stroke-linejoin="round"
-    >
-      <path d="M18 35V13h8a6 6 0 0 1 0 12h-8" />
-      <path d="M24.5 25 32 35" />
-      <path d="M33 26.5 24 35.5" class="stroke-apricot-300" />
-    </g>
+    />
+    <circle cx="34.6" cy="12.6" r="2.7" fill="#df6f96" />
   </svg>
-  <span class="font-display text-[1.35rem] leading-none font-semibold tracking-tight text-pine-900">
-    SheWell<span class="text-apricot-600">RX</span>
-  </span>
+  {
+    !markOnly && (
+      <span class={`font-display text-[1.45rem] leading-none font-medium tracking-[-0.01em] ${wordColor}`}>
+        SheWell<span class="font-sans text-[0.72em] font-bold tracking-[0.04em] text-apricot-500 align-[0.12em]">RX</span>
+      </span>
+    )
+  }
 </span>

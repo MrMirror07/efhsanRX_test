@@ -35,3 +35,16 @@ Scope: the live site on Cloudflare Pages (project `efhsanrx`, custom domains she
 3. Replace the four film frame captions and hero portrait with brand photography.
 4. Once availability exists in OptiMantra, set `PORTAL_LIVE = true` in `src/config.ts`; test the iframe option (`&hideHeaderInFrame=1&hideFooterInFrame=1`) if an embedded scheduler is wanted; today the site links out, which OptiMantra recommends.
 5. Add a short "Insurance and Medicare" FAQ once the Medicare opt out decision is made.
+
+
+## Design refresh, 2026-09-02
+
+Why: the previous look (cream ground, Fraunces serif, terracotta accent, Inter body) is the stock generated-site palette and read as templated. The refresh keeps every page's class names and swaps the tokens underneath, so all fifteen pages changed at once.
+
+- Tokens (`src/styles/global.css`): porcelain ground #fafaf8 with a cool bias, ink #14202a, deep sea teal-navy scale under the `pine-*` names, one orchid accent scale under `apricot-*` (primary action and italic emphasis only), gold reserved for stars.
+- Type: Newsreader (display, weights 400 to 600, italic used for the accent word in each headline) and Figtree (text and UI). Loaded from Google Fonts with display swap.
+- Motion (`src/scripts/motion.ts`, GSAP 3.15): hero entrance timeline, gentle hero parallax, intersection based reveals with stagger, number counters, magnetic primary buttons, cursor spotlight on cards. Everything is off under prefers-reduced-motion and the page reads fully without JavaScript.
+- Home page (`src/pages/index.astro`): new hero with a floating doctor card and a live-availability chip, a slow conditions marquee, hover-reveal treatment tiles, a numbers band, a three step "how it works" beside a lifestyle photo, the concern picker, the doctor section with the real portrait, pricing with a "most patients start here" tag, a Splide 4 reviews carousel, FAQ with animated plus, and a closing call to action.
+- Logo (`src/components/Logo.astro`): serif S ribbon in a deep sea disc with one orchid point; wordmark SheWell + RX. Favicon, Apple touch icon, and the social image are rendered from the same mark by `scripts/build-brand.mjs` (run `node scripts/build-brand.mjs` after editing the mark).
+- Imagery: two editorial photos generated on Higgsfield (Soul 2.0) for the hero and the how-it-works section; Dr. Copur's portrait from his OptiMantra profile, cropped 4:5 so the hospital logo on the coat stays out of frame.
+- Header: condensed glass bar with a dot under the current page; full screen mobile menu with large serif links. Footer: dark editorial with a serif line and a "Your rights" column.

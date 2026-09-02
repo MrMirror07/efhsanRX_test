@@ -1,37 +1,44 @@
 @import "tailwindcss";
 
+/*
+ * SheWellRX design tokens, 2026-09-02 refresh.
+ * Ground: porcelain with a cool bias. Ink: deep navy. Primary surfaces: a
+ * deep sea teal-navy (kept under the historical "pine" token names so every
+ * page picks it up). One accent: orchid, used for the primary action and
+ * small emphasis only. Two faces: Newsreader (display) and Figtree (text).
+ */
 @theme {
-  /* Heritage Pine palette. See docs/color-design-research.md */
-  --color-cream: #faf7f2;
-  --color-sand: #f1eae0;
-  --color-ink: #1f2421;
+  --color-cream: #fafaf8;
+  --color-sand: #eef3f2;
+  --color-ink: #14202a;
 
-  --color-pine-50: #eef4f1;
-  --color-pine-100: #dce7e1;
-  --color-pine-200: #b3cfc4;
-  --color-pine-300: #86b1a2;
-  --color-pine-400: #5b9182;
-  --color-pine-500: #3d7566;
-  --color-pine-600: #2e6e5e;
-  --color-pine-700: #1e5548;
-  --color-pine-800: #14453d;
-  --color-pine-900: #0e332d;
+  --color-pine-50: #eef4f6;
+  --color-pine-100: #dce7ea;
+  --color-pine-200: #b6cdd3;
+  --color-pine-300: #86acb6;
+  --color-pine-400: #5a8a98;
+  --color-pine-500: #3c6f7f;
+  --color-pine-600: #2c5a69;
+  --color-pine-700: #1f4553;
+  --color-pine-800: #163544;
+  --color-pine-900: #0f2733;
 
-  /* Apricot is decorative below 700; 700+ is the only text safe range */
-  --color-apricot-50: #f8e3d3;
-  --color-apricot-100: #fbeadf;
-  --color-apricot-200: #f5d3bc;
-  --color-apricot-300: #eeb593;
-  --color-apricot-400: #e59a6d;
-  --color-apricot-500: #dd7f48;
-  --color-apricot-600: #c9662f;
-  --color-apricot-700: #a8552a;
-  --color-apricot-800: #8f4520;
+  --color-apricot-50: #fcf0f5;
+  --color-apricot-100: #fae1ea;
+  --color-apricot-200: #f4c3d4;
+  --color-apricot-300: #eb9db8;
+  --color-apricot-400: #df6f96;
+  --color-apricot-500: #cf4b7b;
+  --color-apricot-600: #b93967;
+  --color-apricot-700: #9e2c57;
+  --color-apricot-800: #7e2247;
 
-  --color-gold: #e9b84e;
+  --color-gold: #e8b04b;
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @layer base {
@@ -40,6 +47,14 @@
   }
   body {
     @apply bg-cream text-ink font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection {
+    background: var(--color-apricot-200);
+    color: var(--color-pine-900);
+  }
+  .font-display {
+    font-optical-sizing: auto;
   }
 }
 
@@ -47,74 +62,175 @@
   .btn-primary,
   .btn-secondary,
   .btn-accent {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors duration-200;
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300;
+    transition-timing-function: var(--ease-out-expo);
   }
   .btn-primary {
-    @apply bg-pine-800 text-cream hover:bg-pine-700;
+    @apply bg-pine-900 text-cream hover:bg-pine-800 hover:-translate-y-0.5 hover:shadow-[0_12px_30px_-12px_rgba(15,39,51,0.6)];
   }
   .btn-secondary {
-    @apply border border-pine-800/30 text-pine-800 hover:bg-pine-800/5;
+    @apply border border-pine-900/20 text-pine-900 hover:border-pine-900/40 hover:bg-white;
   }
   .btn-accent {
-    @apply bg-apricot-700 text-white hover:bg-apricot-800;
+    @apply bg-apricot-600 text-white hover:bg-apricot-700 hover:-translate-y-0.5 hover:shadow-[0_14px_34px_-12px_rgba(185,57,103,0.65)];
   }
   .section {
-    @apply mx-auto w-full max-w-6xl px-6 py-16 sm:py-24;
+    @apply mx-auto w-full max-w-6xl px-6 py-20 sm:py-28;
   }
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.2em] text-pine-500;
+    @apply text-[11px] font-semibold uppercase tracking-[0.22em] text-pine-500;
   }
   .display {
-    @apply font-display font-medium tracking-tight text-pine-900;
+    @apply font-display font-medium tracking-[-0.02em] text-pine-900;
+    text-wrap: balance;
+  }
+  .display em,
+  .accent-word {
+    @apply not-italic text-apricot-600;
+    font-style: italic;
   }
   .card {
-    @apply rounded-3xl bg-white p-8 shadow-[0_1px_2px_rgba(20,43,38,0.06),0_12px_32px_-16px_rgba(20,43,38,0.18)];
+    @apply rounded-[1.75rem] border border-pine-900/[0.06] bg-white p-8 shadow-[0_1px_2px_rgba(15,39,51,0.04),0_18px_40px_-24px_rgba(15,39,51,0.22)];
   }
-  /* Visual tile: an image-led card that acts as one big button, Hers style */
-  /* Pair with the `group` class in markup so hover states can cascade */
+  /* Visual tile: an image-led card that acts as one big button */
   .tile {
-    @apply block overflow-hidden rounded-3xl border border-pine-900/10 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_2px_4px_rgba(20,43,38,0.06),0_20px_44px_-18px_rgba(20,43,38,0.28)];
+    @apply relative block overflow-hidden rounded-[1.75rem] border border-pine-900/[0.06] bg-white transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_2px_4px_rgba(15,39,51,0.05),0_30px_60px_-24px_rgba(15,39,51,0.35)];
+    transition-timing-function: var(--ease-out-expo);
   }
   .tile-img {
-    @apply aspect-[4/3] overflow-hidden bg-sand;
+    @apply relative aspect-[4/3] overflow-hidden bg-sand;
   }
   .tile-img img {
-    @apply h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04];
+    @apply h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.06];
+    transition-timing-function: var(--ease-out-expo);
   }
-  /* Circular arrow chip used inside visual buttons */
+  .tile-img::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 bg-gradient-to-t from-pine-900/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100;
+  }
   .arrow-chip {
-    @apply inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-pine-800 text-cream transition-all duration-300 group-hover:bg-apricot-700;
+    @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-pine-900 text-cream transition-all duration-500 group-hover:bg-apricot-600 group-hover:rotate-[-45deg];
+    transition-timing-function: var(--ease-out-expo);
+  }
+  /* Soft pill used for live status and trust chips */
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-pine-900/[0.08] bg-white/90 px-3.5 py-1.5 text-xs font-semibold text-pine-900 shadow-[0_8px_24px_-16px_rgba(15,39,51,0.4)] backdrop-blur;
+  }
+  .chip-dot {
+    @apply relative inline-flex h-2 w-2 rounded-full bg-emerald-500;
+  }
+  .chip-dot::after {
+    content: "";
+    @apply absolute inset-0 rounded-full bg-emerald-400 opacity-75;
+    animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+  /* Hairline rule with a serif ornament, used between editorial sections */
+  .rule {
+    @apply mx-auto h-px w-full max-w-6xl bg-gradient-to-r from-transparent via-pine-900/15 to-transparent;
   }
 }
 
-/* Care matcher steps drift in as they appear. */
-@media (prefers-reduced-motion: no-preference) {
-  .fit-in {
-    animation: fit-in 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  @keyframes fit-in {
-    from {
-      opacity: 0;
-      transform: translateY(12px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
+@keyframes ping {
+  75%, 100% { transform: scale(2.4); opacity: 0; }
 }
 
-/* Gentle scroll reveal. Sections fade and rise as they enter the viewport. */
+/* Conditions marquee: continuous, pauses on hover, static when motion is reduced. */
+.marquee {
+  --gap: 2.5rem;
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  min-width: 100%;
+  justify-content: space-around;
+  gap: var(--gap);
+  animation: marquee 48s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - var(--gap))); }
+}
+
+/* Scroll reveal: elements marked data-reveal start hidden and are animated by
+   src/scripts/motion.ts. Without JavaScript, or with reduced motion, the
+   class is never applied and everything simply shows. */
 @media (prefers-reduced-motion: no-preference) {
-  .reveal {
+  .js [data-reveal] {
     opacity: 0;
-    transform: translateY(26px);
-    transition:
-      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(28px);
   }
-  .reveal.is-in {
+  .js [data-reveal].is-in {
     opacity: 1;
     transform: none;
+    transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
   }
+  .js [data-reveal-stagger] > * {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  .js [data-reveal-stagger].is-in > * {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+  }
+  .js [data-reveal-stagger].is-in > :nth-child(2) { transition-delay: 90ms; }
+  .js [data-reveal-stagger].is-in > :nth-child(3) { transition-delay: 180ms; }
+  .js [data-reveal-stagger].is-in > :nth-child(4) { transition-delay: 270ms; }
+  .js [data-reveal-stagger].is-in > :nth-child(5) { transition-delay: 360ms; }
+  .js [data-reveal-stagger].is-in > :nth-child(6) { transition-delay: 450ms; }
+  .js [data-reveal-stagger].is-in > :nth-child(7) { transition-delay: 540ms; }
+  .fit-in {
+    animation: fit-in 0.4s var(--ease-out-expo);
+  }
+  @keyframes fit-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+  }
+  .marquee-track { animation-play-state: running; }
 }
+@media (prefers-reduced-motion: reduce) {
+  .marquee { mask-image: none; }
+  .marquee-track { animation: none; flex-wrap: wrap; min-width: 0; }
+  .chip-dot::after { animation: none; }
+}
+
+/* Header condenses after the first scroll. */
+.site-header {
+  transition: box-shadow 0.4s ease, background-color 0.4s ease, height 0.4s var(--ease-out-expo);
+}
+.site-header.is-scrolled {
+  box-shadow: 0 10px 30px -22px rgba(15, 39, 51, 0.45);
+}
+
+/* FAQ chevron and smooth open */
+details summary::-webkit-details-marker { display: none; }
+details[open] .faq-plus { transform: rotate(45deg); }
+.faq-plus { transition: transform 0.35s var(--ease-out-expo); }
+
+/* Splide (reviews carousel) controls, styled to the system. */
+.splide__arrows { display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1.25rem; }
+.splide__arrow {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 2.75rem; width: 2.75rem; border-radius: 9999px;
+  border: 1px solid rgba(15, 39, 51, 0.15); background: #fff; color: var(--color-pine-900);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+.splide__arrow:hover { background: var(--color-pine-900); color: var(--color-cream); transform: translateY(-1px); }
+.splide__arrow svg { height: 1rem; width: 1rem; fill: currentColor; }
+.splide__arrow--prev svg { transform: scaleX(-1); }
+.splide__arrow:disabled { opacity: 0.35; }
+.splide__pagination { display: flex; justify-content: center; gap: 0.4rem; margin-top: 1rem; padding: 0; list-style: none; }
+.splide__pagination__page {
+  height: 0.5rem; width: 0.5rem; border-radius: 9999px; border: 0; padding: 0;
+  background: rgba(15, 39, 51, 0.18); transition: width 0.3s var(--ease-out-expo), background-color 0.3s ease;
+}
+.splide__pagination__page.is-active { width: 1.5rem; background: var(--color-apricot-500); }
+.splide__slide { height: auto; }

@@ -4,9 +4,9 @@ import Layout from "../layouts/Layout.astro";
 import Stars from "../components/Stars.astro";
 import FilmScroll from "../components/FilmScroll.astro";
 import { SITE, DOCTOR, PRACTICE, PRICING, PORTAL_URL, BOOKING_BY_CONCERN, REVIEWS, TREATMENTS } from "../config";
-import heroPortrait from "../assets/hero-portrait.png";
-import telehealthVisit from "../assets/telehealth-visit.png";
-import vitalityOutdoors from "../assets/vitality-outdoors.png";
+import heroEditorial from "../assets/hero-editorial.jpg";
+import visitWindow from "../assets/visit-window.jpg";
+import drCopur from "../assets/dr-copur.jpg";
 import calmTea from "../assets/calm-tea.png";
 import tileBirthControl from "../assets/tile-birth-control.png";
 import tileMenopause from "../assets/tile-menopause.png";
@@ -23,10 +23,7 @@ const tileImages = {
   labs: tileLabs,
 } as const;
 
-/**
- * Concern picker. Each option deep links into the guided start on /book with
- * the concern preselected. Nothing is stored or transmitted from this page.
- */
+/** Concern picker. Each option deep links into the guided start on /book. Nothing is stored. */
 const concerns = [
   { key: "menopause", label: "Menopause or perimenopause symptoms", img: "menopause" },
   { key: "hormone-therapy", label: "Hormone therapy: start, adjust, or a second opinion", img: "hormone-therapy" },
@@ -37,6 +34,11 @@ const concerns = [
   { key: "else", label: "Something else in women's health", img: "labs" },
 ] as const;
 
+const marquee = [
+  "Perimenopause", "Menopause", "Hormone therapy", "Birth control", "PCOS", "Heavy periods",
+  "Hot flashes", "Sleep", "Vaginal dryness", "Low desire", "Hormone panels", "Thyroid checks",
+];
+
 const steps = [
   {
     n: "01",
@@ -46,7 +48,7 @@ const steps = [
   {
     n: "02",
     title: "Talk it through on video",
-    body: "A real conversation with a clinician who has already read your story. No waiting room, no rushed seven minutes, no explaining yourself twice.",
+    body: "A real conversation with a doctor who has already read your story. No waiting room, no rushed seven minutes, no explaining yourself twice.",
   },
   {
     n: "03",
@@ -93,69 +95,79 @@ const faqSchema = {
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <!-- Hero -->
-  <section class="relative overflow-hidden">
-    <div
-      class="pointer-events-none absolute -top-32 right-[-10%] h-[28rem] w-[28rem] rounded-full bg-pine-100 blur-3xl"
-      aria-hidden="true"
-    >
-    </div>
-    <div class="section relative grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-      <div>
-        <p class="eyebrow">Women's telehealth, the unhurried kind</p>
-        <h1 class="display mt-4 text-4xl leading-[1.08] sm:text-5xl lg:text-6xl">
-          You know something is off. We listen until we find it.
+  <section class="relative overflow-hidden" data-hero>
+    <div class="pointer-events-none absolute inset-x-0 top-0 h-[42rem] bg-[radial-gradient(60%_50%_at_80%_10%,rgba(60,111,127,0.16),transparent_70%),radial-gradient(40%_40%_at_10%_90%,rgba(223,111,150,0.12),transparent_70%)]" aria-hidden="true"></div>
+    <div class="section relative grid items-center gap-14 !py-14 lg:grid-cols-12 lg:gap-10 sm:!py-20">
+      <div class="lg:col-span-6">
+        <p class="eyebrow" data-hero-line>Women's telehealth · New Jersey</p>
+        <h1 class="display mt-5 text-[2.75rem] leading-[1.02] sm:text-6xl lg:text-[4.25rem]">
+          <span class="block" data-hero-line>You know something</span>
+          <span class="block" data-hero-line>is off. We <em>listen</em></span>
+          <span class="block" data-hero-line>until we find it.</span>
         </h1>
-        <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink/70">
-          Hormones, cycles, sleep, desire. When they shift, everything shifts.
-          SheWellRX gives you a real video visit with a board certified ObGyn
-          who takes the time to understand, then a plan you can actually
-          follow. One flat fee of ${PRICING.initial.price}. No insurance needed.
+        <p class="mt-7 max-w-xl text-lg leading-relaxed text-ink/70" data-hero-fade>
+          Hormones, cycles, sleep, desire. When they shift, everything shifts. A real
+          thirty minute video visit with a board certified ObGyn, then a plan you can
+          actually follow. One flat fee of ${PRICING.initial.price}. No insurance needed.
         </p>
-        <div class="mt-8 flex flex-wrap items-center gap-4">
-          <a href={PORTAL_URL} class="btn-primary group !px-8 !py-4 !text-base">
-            Book a visit
-            <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
-            </svg>
+        <div class="mt-9 flex flex-wrap items-center gap-4" data-hero-fade>
+          <a href={PORTAL_URL} class="btn-accent group !px-7 !py-4 !text-base">
+            Start your visit
+            <svg class="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" /></svg>
           </a>
-          <a href="/pricing" class="btn-secondary">See pricing</a>
+          <a href="/how-it-works" class="btn-secondary !py-4 !text-base">See how it works</a>
         </div>
-        <a
-          href={PRACTICE.googleMapsUrl}
-          rel="noopener"
-          target="_blank"
-          class="mt-8 inline-flex items-center gap-3 rounded-2xl border border-pine-900/10 bg-white/70 px-5 py-3 transition-colors hover:bg-white"
-        >
-          <Stars rating={REVIEWS.google.rating} />
-          <span class="text-sm">
-            <strong class="font-semibold text-pine-900" data-google-rating>{REVIEWS.google.rating}</strong>{" "}
-            <span class="text-ink/60">
-              from <span data-google-count>{REVIEWS.google.count}</span> verified Google reviews
-            </span>
-          </span>
-        </a>
+        <div class="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-ink/70" data-hero-fade>
+          <a href={PRACTICE.googleMapsUrl} rel="noopener" target="_blank" class="inline-flex items-center gap-2 transition-colors hover:text-pine-900">
+            <Stars rating={REVIEWS.google.rating} />
+            <span><strong class="font-semibold text-pine-900" data-google-rating>{REVIEWS.google.rating}</strong> from <span data-google-count>{REVIEWS.google.count}</span> Google reviews</span>
+          </a>
+          <span class="hidden h-4 w-px bg-pine-900/15 sm:block" aria-hidden="true"></span>
+          <span>Board certified ObGyn (ABOG) since {DOCTOR.boardCertifiedSince}</span>
+        </div>
       </div>
 
-      <div class="relative">
-        <div class="overflow-hidden rounded-[2.5rem]">
+      <div class="relative lg:col-span-6" data-hero-media>
+        <div class="overflow-hidden rounded-[2.5rem] shadow-[0_40px_80px_-40px_rgba(15,39,51,0.45)]">
           <Image
-            src={heroPortrait}
-            alt="A woman in her forties holding a warm mug, smiling softly beside sage green curtains in golden light"
-            class="h-full w-full object-cover"
-            widths={[480, 768, 1080]}
-            sizes="(min-width: 1024px) 45vw, 90vw"
+            src={heroEditorial}
+            alt="A woman at home by a sunlit window, smiling during a video visit on her tablet"
+            class="aspect-[4/5] w-full object-cover sm:aspect-[5/4] lg:aspect-[4/5]"
+            widths={[640, 960, 1280]}
+            sizes="(min-width: 1024px) 46vw, 92vw"
             loading="eager"
           />
         </div>
-        <div
-          class="absolute -bottom-5 left-6 right-6 rounded-2xl bg-pine-800 px-6 py-4 text-cream shadow-xl sm:left-10 sm:right-auto"
-        >
-          <p class="font-display text-lg leading-snug">
-            "It's not in your head. It's your hormones."
-          </p>
-          <p class="mt-1 text-xs text-cream/60">The conversation every visit starts from</p>
+        <div class="absolute -left-4 bottom-8 flex items-center gap-3 rounded-2xl bg-white/95 p-3 pr-5 shadow-[0_24px_50px_-24px_rgba(15,39,51,0.5)] backdrop-blur sm:left-6" data-hero-float>
+          <Image src={drCopur} alt="" width={96} height={96} class="h-12 w-12 rounded-xl object-cover object-top" />
+          <div class="text-sm leading-tight">
+            <p class="font-semibold text-pine-900">{DOCTOR.name}</p>
+            <p class="mt-0.5 text-xs text-ink/60">Your doctor at every visit</p>
+          </div>
+        </div>
+        <div class="absolute right-4 top-5 sm:right-6" data-hero-float>
+          <span class="chip"><span class="chip-dot"></span> Video visits open this week</span>
         </div>
       </div>
+    </div>
+
+    <!-- Conditions marquee -->
+    <div class="relative border-y border-pine-900/[0.06] bg-white/60 py-4" data-hero-fade>
+      <div class="marquee" aria-hidden="true">
+        {
+          [0, 1].map(() => (
+            <div class="marquee-track">
+              {marquee.map((m) => (
+                <span class="flex items-center gap-10 whitespace-nowrap font-display text-lg text-pine-900/80">
+                  {m}
+                  <span class="h-1.5 w-1.5 rounded-full bg-apricot-400" />
+                </span>
+              ))}
+            </div>
+          ))
+        }
+      </div>
+      <p class="sr-only">We treat {marquee.join(", ")}.</p>
     </div>
   </section>
 
@@ -163,23 +175,19 @@ const faqSchema = {
   <FilmScroll />
 
   <!-- Treatment tiles -->
-  <section class="mt-6 bg-white">
+  <section class="bg-white">
     <div class="section">
-      <div class="flex flex-wrap items-end justify-between gap-6">
+      <div class="flex flex-wrap items-end justify-between gap-6" data-reveal>
         <div class="max-w-2xl">
           <p class="eyebrow">What we treat</p>
-          <h2 class="display mt-4 text-3xl sm:text-4xl">
-            Name the symptom. We know the medicine.
-          </h2>
-          <p class="mt-4 leading-relaxed text-ink/70">
-            From birth control to hormone therapy, treatment is prescribed in
-            your visit and sent straight to your pharmacy when it is right for
-            you.
+          <h2 class="display mt-4 text-4xl sm:text-5xl">Name the symptom. <em>We know</em> the medicine.</h2>
+          <p class="mt-5 text-lg leading-relaxed text-ink/70">
+            From birth control to hormone therapy, treatment is prescribed in your visit and sent straight to your pharmacy when it is right for you.
           </p>
         </div>
         <a href="/services" class="btn-secondary">Everything we treat</a>
       </div>
-      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-reveal-stagger>
         {
           TREATMENTS.map((t) => (
             <a href={`/services#${t.slug}`} class="group tile">
@@ -193,16 +201,12 @@ const faqSchema = {
               </div>
               <div class="flex items-start justify-between gap-4 p-6">
                 <div>
-                  <h3 class="font-display text-xl font-medium text-pine-900">{t.title}</h3>
+                  <h3 class="font-display text-2xl font-medium text-pine-900">{t.title}</h3>
                   <p class="mt-2 text-sm leading-relaxed text-ink/70">{t.blurb}</p>
-                  <p class="mt-3 text-xs font-medium uppercase tracking-wider text-pine-500">
-                    {t.examples.join(" · ")}
-                  </p>
+                  <p class="mt-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-pine-500">{t.examples.join(" · ")}</p>
                 </div>
                 <span class="arrow-chip mt-1">
-                  <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
-                  </svg>
+                  <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" /></svg>
                 </span>
               </div>
             </a>
@@ -210,79 +214,95 @@ const faqSchema = {
         }
       </div>
       <p class="mt-6 text-xs text-ink/50">
-        Medications are examples of what can be prescribed when clinically
-        appropriate. Every prescription decision is made by your clinician
-        during your visit.
+        Medications are examples of what can be prescribed when clinically appropriate. Every prescription decision is made by your clinician during your visit.
       </p>
+    </div>
+  </section>
+
+  <!-- Numbers -->
+  <section class="bg-pine-900 text-cream">
+    <div class="section grid gap-10 !py-16 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
+      <div>
+        <p class="font-display text-6xl leading-none text-cream"><span data-count={REVIEWS.google.rating} data-decimals="1">{REVIEWS.google.rating}</span></p>
+        <p class="mt-3 text-sm text-cream/60">Google rating across <span data-google-count>{REVIEWS.google.count}</span> verified reviews</p>
+      </div>
+      <div>
+        <p class="font-display text-6xl leading-none text-cream"><span data-count="35" data-suffix="+">35+</span></p>
+        <p class="mt-3 text-sm text-cream/60">Years caring for women, board certified since {DOCTOR.boardCertifiedSince}</p>
+      </div>
+      <div>
+        <p class="font-display text-6xl leading-none text-cream"><span data-count="30">30</span><span class="text-3xl text-cream/60"> min</span></p>
+        <p class="mt-3 text-sm text-cream/60">Every video visit, never a rushed seven minutes</p>
+      </div>
+      <div>
+        <p class="font-display text-6xl leading-none text-cream">$<span data-count={PRICING.initial.price}>{PRICING.initial.price}</span></p>
+        <p class="mt-3 text-sm text-cream/60">One flat fee, paid once, nothing billed later</p>
+      </div>
     </div>
   </section>
 
   <!-- How it works -->
   <section>
-    <div class="section">
-      <div class="max-w-2xl">
+    <div class="section grid items-center gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-5" data-reveal>
         <p class="eyebrow">How it works</p>
-        <h2 class="display mt-4 text-3xl sm:text-4xl">
-          Booked in minutes. Seen this week.
-        </h2>
+        <h2 class="display mt-4 text-4xl sm:text-5xl">Booked in minutes. <em>Seen</em> this week.</h2>
+        <div class="relative mt-10 overflow-hidden rounded-[2rem]">
+          <Image
+            src={visitWindow}
+            alt="A woman by a window smiling at her tablet during a video visit"
+            class="aspect-[4/3] w-full object-cover"
+            widths={[640, 960]}
+            sizes="(min-width: 1024px) 40vw, 92vw"
+          />
+        </div>
       </div>
-      <ol class="mt-12 grid gap-6 md:grid-cols-3">
+      <ol class="relative grid gap-4 lg:col-span-7" data-reveal-stagger>
         {
           steps.map((s) => (
-            <li class="card">
-              <p class="font-display text-3xl text-apricot-700">{s.n}</p>
-              <h3 class="mt-4 font-display text-xl font-medium text-pine-900">{s.title}</h3>
-              <p class="mt-3 text-sm leading-relaxed text-ink/70">{s.body}</p>
+            <li class="card relative flex gap-6 !p-7 sm:!p-8" data-spotlight>
+              <span class="font-display text-3xl leading-none text-apricot-500">{s.n}</span>
+              <div>
+                <h3 class="font-display text-2xl font-medium text-pine-900">{s.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink/70">{s.body}</p>
+              </div>
             </li>
           ))
         }
+        <li class="pl-1 pt-2">
+          <a href="/how-it-works" class="text-sm font-semibold text-pine-700 underline underline-offset-4 transition-colors hover:text-apricot-600">See the full process</a>
+        </li>
       </ol>
-      <div class="mt-10">
-        <a href="/how-it-works" class="btn-secondary">See the full process</a>
-      </div>
     </div>
   </section>
 
   <!-- Concern picker: routes into the guided start on /book -->
-  <section class="bg-pine-800 text-cream">
+  <section class="bg-sand/70">
     <div class="section grid items-center gap-12 lg:grid-cols-2">
-      <div>
-        <p class="eyebrow !text-apricot-300">Your care, matched</p>
-        <h2 class="display mt-4 text-3xl !text-cream sm:text-4xl">
-          Tell us what's going on. We'll show you the plan.
-        </h2>
-        <p class="mt-6 max-w-lg leading-relaxed text-cream/70">
-          Pick your concern, answer a few quick questions, and see exactly how
-          SheWellRX would treat what you are feeling, with the full price,
-          before you spend a cent. Nothing you tap is stored or sent anywhere.
+      <div data-reveal>
+        <p class="eyebrow">Your care, matched</p>
+        <h2 class="display mt-4 text-4xl sm:text-5xl">Tell us what's going on. We'll show you <em>the plan.</em></h2>
+        <p class="mt-6 max-w-lg text-lg leading-relaxed text-ink/70">
+          Pick your concern, answer a few quick questions, and see exactly how SheWellRX would treat what you are feeling, with the full price, before you spend a cent.
         </p>
-        <p class="mt-4 max-w-lg text-sm leading-relaxed text-cream/50">
-          SheWellRX is a fully virtual practice for patients in New Jersey.
-          Every visit happens on video, from wherever you are comfortable.
+        <p class="mt-4 max-w-lg text-sm leading-relaxed text-ink/50">
+          Nothing you tap is stored or sent anywhere. Every visit happens on video, for patients in New Jersey.
         </p>
       </div>
 
-      <div class="rounded-[2rem] bg-cream p-6 text-ink shadow-2xl sm:p-8">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-pine-500">Step 1 of 3 · Your concern</p>
-        <p class="mt-3 font-display text-xl text-pine-900">What brings you here today?</p>
-        <div class="mt-4 grid gap-2">
+      <div class="rounded-[2rem] bg-white p-6 shadow-[0_30px_70px_-40px_rgba(15,39,51,0.45)] sm:p-8" data-reveal>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-pine-500">Step 1 of 3 · Your concern</p>
+        <p class="mt-3 font-display text-2xl text-pine-900">What brings you here today?</p>
+        <div class="mt-5 grid gap-2">
           {
             concerns.map((c) => (
               <a
                 href={BOOKING_BY_CONCERN[c.key] ?? PORTAL_URL}
-                class="group flex items-center gap-4 rounded-2xl border border-pine-900/15 bg-white p-2.5 pr-4 text-left transition-all duration-200 hover:border-pine-500 hover:shadow-md"
+                class="group flex items-center gap-4 rounded-2xl border border-pine-900/10 bg-cream p-2.5 pr-4 text-left transition-all duration-300 hover:-translate-y-0.5 hover:border-pine-500/60 hover:bg-white hover:shadow-md"
               >
-                <Image
-                  src={tileImages[c.img]}
-                  alt=""
-                  widths={[96, 192]}
-                  sizes="48px"
-                  class="h-12 w-12 shrink-0 rounded-xl object-cover"
-                />
+                <Image src={tileImages[c.img]} alt="" widths={[96, 192]} sizes="48px" class="h-12 w-12 shrink-0 rounded-xl object-cover" />
                 <span class="flex-1 text-sm font-medium leading-snug">{c.label}</span>
-                <svg class="h-4 w-4 shrink-0 text-pine-400 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6" />
-                </svg>
+                <svg class="h-4 w-4 shrink-0 text-pine-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-apricot-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6" /></svg>
               </a>
             ))
           }
@@ -292,92 +312,79 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- The doctors -->
+  <!-- The doctor -->
   <section class="bg-white">
-    <div class="section grid items-center gap-12 lg:grid-cols-2">
-      <figure class="order-last overflow-hidden rounded-[2.5rem] lg:order-first">
-        <Image
-          src={telehealthVisit}
-          alt="A woman at home smiling during a telehealth video visit on her laptop"
-          class="h-full w-full object-cover"
-          widths={[480, 768, 1080]}
-          sizes="(min-width: 1024px) 45vw, 90vw"
-        />
+    <div class="section grid items-center gap-14 lg:grid-cols-12">
+      <figure class="relative mx-auto w-full max-w-sm lg:col-span-5" data-reveal>
+        <div class="aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-sand">
+          <Image
+            src={drCopur}
+            alt={`${DOCTOR.name}, board certified obstetrician gynecologist`}
+            class="h-full w-full object-cover object-top"
+            widths={[480, 600]}
+            sizes="(min-width: 1024px) 24rem, 90vw"
+          />
+        </div>
+        <figcaption class="absolute -bottom-5 left-6 right-6 rounded-2xl bg-pine-900 px-5 py-4 text-cream shadow-xl">
+          <p class="font-display text-lg leading-snug">"It's not in your head. It's your hormones."</p>
+          <p class="mt-1 text-xs text-cream/60">The conversation every visit starts from</p>
+        </figcaption>
       </figure>
-      <div>
+      <div class="lg:col-span-7" data-reveal>
         <p class="eyebrow">The person behind the plan</p>
-        <h2 class="display mt-4 text-3xl sm:text-4xl">
-          A doctor who stays with you.
-        </h2>
-        <p class="mt-6 max-w-lg leading-relaxed text-ink/70">
-          SheWellRX is not a marketplace of strangers. Your care comes from
-          {DOCTOR.name}, board certified in obstetrics and gynecology by the
-          American Board of Obstetrics and Gynecology, with more than 35 years
-          of listening behind him. When you come back, he already knows your
-          story. A certified nurse midwife joins the practice soon.
+        <h2 class="display mt-4 text-4xl sm:text-5xl">A doctor who <em>stays</em> with you.</h2>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink/70">
+          SheWellRX is not a marketplace of strangers. Your care comes from {DOCTOR.name}, board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology, with more than 35 years of listening behind him. When you come back, he already knows your story. A certified nurse midwife joins the practice soon.
         </p>
-        <ul class="mt-8 grid gap-3 text-sm text-ink/80 sm:grid-cols-2">
-          <li class="rounded-xl bg-cream px-4 py-3">ABOG board certified since {DOCTOR.boardCertifiedSince}, FACOG</li>
-          <li class="rounded-xl bg-cream px-4 py-3">{REVIEWS.google.rating} stars, {REVIEWS.google.count} Google reviews</li>
-          <li class="rounded-xl bg-cream px-4 py-3">Thirty minute video visits, never a waiting room</li>
-          <li class="rounded-xl bg-cream px-4 py-3">The same clinician at every visit</li>
+        <ul class="mt-8 grid gap-3 text-sm text-ink/80 sm:grid-cols-2" data-reveal-stagger>
+          <li class="rounded-2xl bg-cream px-4 py-3">ABOG board certified since {DOCTOR.boardCertifiedSince}, FACOG</li>
+          <li class="rounded-2xl bg-cream px-4 py-3">{REVIEWS.google.rating} stars, {REVIEWS.google.count} Google reviews</li>
+          <li class="rounded-2xl bg-cream px-4 py-3">Thirty minute video visits, never a waiting room</li>
+          <li class="rounded-2xl bg-cream px-4 py-3">The same doctor at every visit</li>
         </ul>
-        <a href="/doctor" class="btn-accent group mt-8">
-          Meet your clinician
-          <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
-          </svg>
+        <a href="/doctor" class="btn-primary group mt-9">
+          Meet your doctor
+          <svg class="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" /></svg>
         </a>
       </div>
     </div>
   </section>
 
   <!-- Pricing preview -->
-  <section class="bg-sand/60">
+  <section class="bg-sand/70">
     <div class="section">
-      <div class="max-w-2xl">
+      <div class="max-w-2xl" data-reveal>
         <p class="eyebrow">Simple pricing</p>
-        <h2 class="display mt-4 text-3xl sm:text-4xl">
-          One visit. One price. Nothing hidden.
-        </h2>
-        <p class="mt-4 leading-relaxed text-ink/70">
-          You will always know the full cost before you book. No insurance, no
-          membership, no bills that show up later.
+        <h2 class="display mt-4 text-4xl sm:text-5xl">One visit. One price. <em>Nothing hidden.</em></h2>
+        <p class="mt-5 text-lg leading-relaxed text-ink/70">
+          You will always know the full cost before you book. No insurance, no membership, no bills that show up later.
         </p>
       </div>
-      <div class="mt-12 grid gap-6 md:grid-cols-2">
+      <div class="mt-14 grid gap-6 md:grid-cols-2" data-reveal-stagger>
         {
-          [PRICING.initial, PRICING.followUp].map((tier) => (
-            <div class="card flex flex-col">
-              <h3 class="font-display text-xl font-medium text-pine-900">{tier.label}</h3>
-              <p class="mt-3">
-                <span class="font-display text-5xl text-pine-900">${tier.price}</span>
+          [PRICING.initial, PRICING.followUp].map((tier, i) => (
+            <div class="card relative flex flex-col !p-9" data-spotlight>
+              {i === 0 && <span class="absolute right-6 top-6 rounded-full bg-apricot-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-apricot-700">Most patients start here</span>}
+              <h3 class="font-display text-2xl font-medium text-pine-900">{tier.label}</h3>
+              <p class="mt-4">
+                <span class="font-display text-6xl leading-none text-pine-900">${tier.price}</span>
                 <span class="ml-2 inline-block text-sm text-ink/60">one time · {tier.duration}</span>
               </p>
-              <ul class="mt-6 flex-1 space-y-3">
+              <ul class="mt-7 flex-1 space-y-3">
                 {tier.includes.map((item) => (
                   <li class="flex gap-3 text-sm leading-relaxed text-ink/70">
-                    <svg
-                      class="mt-0.5 h-4 w-4 shrink-0 text-pine-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2.5"
-                    >
-                      <path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" />
-                    </svg>
+                    <svg class="mt-0.5 h-4 w-4 shrink-0 text-apricot-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" /></svg>
                     {item}
                   </li>
                 ))}
               </ul>
-              <a href={PORTAL_URL} class="btn-primary mt-8 w-full">Book a visit</a>
+              <a href={i === 0 ? PORTAL_URL : `${PORTAL_URL}?type=followup`} class={`${i === 0 ? "btn-accent" : "btn-primary"} mt-9 w-full`}>Book this visit</a>
             </div>
           ))
         }
       </div>
       <p class="mt-6 text-sm text-ink/60">
-        HSA and FSA accepted. Labs and medications are billed separately by your
-        lab and pharmacy. <a href="/pricing" class="font-medium text-apricot-700 underline underline-offset-4">Full pricing details</a>
+        HSA and FSA accepted. Labs and medications are billed separately by your lab and pharmacy. <a href="/pricing" class="font-medium text-apricot-700 underline underline-offset-4">Full pricing details</a> and your <a href="/good-faith-estimate" class="font-medium text-apricot-700 underline underline-offset-4">Good Faith Estimate</a>.
       </p>
     </div>
   </section>
@@ -385,35 +392,34 @@ const faqSchema = {
   <!-- Reviews -->
   <section class="bg-white">
     <div class="section">
-      <div class="flex flex-wrap items-end justify-between gap-6">
+      <div class="flex flex-wrap items-end justify-between gap-6" data-reveal>
         <div class="max-w-2xl">
           <p class="eyebrow">Patient voices</p>
-          <h2 class="display mt-4 text-3xl sm:text-4xl">
-            Rated <span data-google-rating>{REVIEWS.google.rating}</span> by the women we treat.
-          </h2>
+          <h2 class="display mt-4 text-4xl sm:text-5xl">Rated <span data-google-rating>{REVIEWS.google.rating}</span> by the women <em>he treats.</em></h2>
         </div>
-        <a
-          href={PRACTICE.googleMapsUrl}
-          rel="noopener"
-          target="_blank"
-          class="btn-secondary"
-        >
+        <a href={PRACTICE.googleMapsUrl} rel="noopener" target="_blank" class="btn-secondary">
           <span>Read all <span data-google-count>{REVIEWS.google.count}</span> Google reviews</span>
         </a>
       </div>
-      <div class="mt-12 grid gap-6 md:grid-cols-2">
-        {
-          REVIEWS.quotes.map((r) => (
-            <figure class="rounded-3xl border border-pine-900/10 bg-cream p-8">
-              <Stars rating={5} />
-              <blockquote class="mt-4 leading-relaxed text-ink/80">"{r.text}"</blockquote>
-              <figcaption class="mt-4 flex items-center justify-between text-sm">
-                <span class="font-semibold text-pine-900">{r.name}</span>
-                <span class="text-ink/50">Verified Google review · {r.when}</span>
-              </figcaption>
-            </figure>
-          ))
-        }
+      <div class="splide mt-12" id="reviews" aria-label="Patient reviews" data-reveal>
+        <div class="splide__track">
+          <ul class="splide__list">
+            {
+              REVIEWS.quotes.map((r) => (
+                <li class="splide__slide !flex">
+                  <figure class="flex h-full flex-col rounded-[1.75rem] border border-pine-900/[0.08] bg-cream p-8">
+                    <Stars rating={5} />
+                    <blockquote class="mt-4 flex-1 font-display text-xl leading-relaxed text-pine-900">"{r.text}"</blockquote>
+                    <figcaption class="mt-5 flex items-center justify-between text-sm">
+                      <span class="font-semibold text-pine-900">{r.name}</span>
+                      <span class="text-ink/50">Google review · {r.when}</span>
+                    </figcaption>
+                  </figure>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
       </div>
       <p class="mt-6 text-xs text-ink/50">
         Reviews are quoted, unedited, from the public Google listing of Dr. Copur's in person practice as of {REVIEWS.google.asOf}. They describe individual experiences; results vary, and no treatment outcome is guaranteed.
@@ -423,22 +429,20 @@ const faqSchema = {
 
   <!-- FAQ -->
   <section>
-    <div class="section max-w-3xl">
+    <div class="section max-w-3xl" data-reveal>
       <p class="eyebrow">Questions</p>
-      <h2 class="display mt-4 text-3xl sm:text-4xl">Frequently asked.</h2>
+      <h2 class="display mt-4 text-4xl sm:text-5xl">Frequently <em>asked.</em></h2>
       <div class="mt-10 divide-y divide-pine-900/10">
         {
           faqs.map((f) => (
             <details class="group py-5">
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-medium text-pine-900">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-xl font-medium text-pine-900">
                 {f.q}
-                <span class="text-pine-400 transition-transform group-open:rotate-45">
-                  <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" d="M12 5v14M5 12h14" />
-                  </svg>
+                <span class="faq-plus inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-pine-900/15 text-pine-700">
+                  <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 5v14M5 12h14" /></svg>
                 </span>
               </summary>
-              <p class="mt-3 text-sm leading-relaxed text-ink/70">{f.a}</p>
+              <p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-ink/70">{f.a}</p>
             </details>
           ))
         }
@@ -447,27 +451,60 @@ const faqSchema = {
   </section>
 
   <!-- Closing CTA -->
-  <section class="pb-16 sm:pb-24">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="relative overflow-hidden rounded-[2.5rem]">
-        <Image
-          src={vitalityOutdoors}
-          alt="A vibrant woman walking outdoors in golden evening light"
-          class="h-[26rem] w-full object-cover"
-          widths={[768, 1080, 1600]}
-          sizes="(min-width: 1152px) 1104px, 92vw"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-pine-900/85 via-pine-900/35 to-transparent"></div>
-        <div class="absolute inset-x-0 bottom-0 p-8 text-center sm:p-14">
-          <h2 class="display mx-auto max-w-2xl text-3xl !text-cream sm:text-4xl">
-            Feel like yourself again.
-          </h2>
-          <p class="mx-auto mt-3 max-w-xl text-cream/80">
-            Start your visit and get answers this week.
-          </p>
-          <a href={PORTAL_URL} class="btn-accent mt-6 !px-8 !py-4 !text-base">Book a visit</a>
-        </div>
+  <section class="pb-20 sm:pb-28">
+    <div class="mx-auto max-w-6xl px-6" data-reveal>
+      <div class="relative overflow-hidden rounded-[2.5rem] bg-pine-900 px-8 py-16 text-center text-cream sm:px-14 sm:py-24">
+        <div class="pointer-events-none absolute -left-24 -top-24 h-96 w-96 rounded-full bg-pine-600/40 blur-3xl" aria-hidden="true"></div>
+        <div class="pointer-events-none absolute -bottom-32 -right-16 h-[28rem] w-[28rem] rounded-full bg-apricot-500/25 blur-3xl" aria-hidden="true"></div>
+        <p class="eyebrow relative !text-apricot-300">Start today</p>
+        <h2 class="display relative mx-auto mt-4 max-w-2xl text-4xl !text-cream sm:text-6xl">Feel like <em class="!text-apricot-300">yourself</em> again.</h2>
+        <p class="relative mx-auto mt-5 max-w-xl text-cream/70">Start your visit now and get answers this week. Two minutes to begin, one flat price, no insurance needed.</p>
+        <a href={PORTAL_URL} class="btn-accent relative mt-8 !px-8 !py-4 !text-base">Start your visit</a>
+        <p class="relative mt-5 text-xs text-cream/50">Questions first? <a href={`mailto:${SITE.email}`} class="underline underline-offset-4">{SITE.email}</a></p>
       </div>
     </div>
   </section>
 </Layout>
+
+<style is:global>
+  /* Cursor spotlight for cards marked data-spotlight */
+  [data-spotlight] {
+    --mx: 50%;
+    --my: 50%;
+  }
+  @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    [data-spotlight]::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: radial-gradient(240px circle at var(--mx) var(--my), rgba(223, 111, 150, 0.12), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    [data-spotlight]:hover::before {
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  import Splide from "@splidejs/splide";
+  import "@splidejs/splide/css/core";
+  const el = document.getElementById("reviews");
+  if (el) {
+    new Splide(el, {
+      type: "loop",
+      perPage: 2,
+      gap: "1.5rem",
+      autoplay: true,
+      interval: 6000,
+      pauseOnHover: true,
+      arrows: true,
+      pagination: true,
+      breakpoints: { 768: { perPage: 1 } },
+      reducedMotion: { autoplay: false, speed: 0, rewindSpeed: 0 },
+    }).mount();
+  }
+</script>

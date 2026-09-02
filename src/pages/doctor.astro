@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import Stars from "../components/Stars.astro";
 import { SITE, DOCTOR, DOCTOR2, PRACTICE, PORTAL_URL, REVIEWS } from "../config";
 import portraitUpward from "../assets/portrait-upward.png";
+import drCopur from "../assets/dr-copur.jpg";
 
 const ratings = [
   { platform: "Google", rating: REVIEWS.google.rating, count: REVIEWS.google.count, url: PRACTICE.googleMapsUrl },
@@ -69,15 +70,19 @@ const teamSchema = {
           </a>
         </div>
       </div>
-      <figure class="overflow-hidden rounded-[2.5rem]">
+      <figure class="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[2.5rem] bg-sand">
         <Image
-          src={portraitUpward}
-          alt="A woman gazing upward in soft window light, calm and confident"
-          class="h-full max-h-[28rem] w-full object-cover object-top"
-          widths={[480, 768, 1080]}
-          sizes="(min-width: 1024px) 45vw, 90vw"
+          src={drCopur}
+          alt={`${DOCTOR.name}, board certified obstetrician gynecologist`}
+          class="h-full w-full object-cover object-top"
+          widths={[480, 600]}
+          sizes="(min-width: 1024px) 28rem, 90vw"
           loading="eager"
         />
+        <figcaption class="absolute bottom-4 left-4 right-4 rounded-2xl bg-cream/90 px-4 py-3 text-sm backdrop-blur">
+          <span class="font-semibold text-pine-900">{DOCTOR.name}</span>
+          <span class="block text-xs text-ink/60">Board certified in obstetrics and gynecology (ABOG) · New Jersey</span>
+        </figcaption>
       </figure>
     </div>
   </section>
@@ -86,9 +91,8 @@ const teamSchema = {
     <div class="section">
       <div class="grid gap-8 lg:grid-cols-2">
         <article class="card flex flex-col !p-10">
-          <!-- TODO: replace monograms with real photographs approved by each clinician. -->
           <div class="flex items-center gap-5">
-            <span class="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl bg-pine-800 font-display text-2xl text-apricot-300">HC</span>
+            <Image src={drCopur} alt={`${DOCTOR.name}, board certified ObGyn`} width={160} height={160} class="h-20 w-20 shrink-0 rounded-3xl object-cover object-top shadow-md" />
             <div>
               <h2 class="font-display text-2xl font-medium text-pine-900">{DOCTOR.name}</h2>
               <p class="mt-1 text-sm font-medium text-apricot-700">Physician · Board certified in Obstetrics and Gynecology (ABOG)</p>
