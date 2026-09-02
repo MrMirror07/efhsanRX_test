@@ -2,7 +2,7 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "efhsanrx-dist",
+      "name": "shewellrx-dist",
       "runtimeExecutable": "sh",
       "runtimeArgs": ["-c", "python3 -m http.server \"${PORT:-4899}\" -d dist"],
       "port": 4899,

@@ -1,6 +1,6 @@
-# EfhsanRX — Virtual Care Clinic Website
+# SheWellRX — Virtual Care Clinic Website
 
-Marketing site for EfhsanRX, a telehealth business. Built with [Astro](https://astro.build) and [Tailwind CSS v4](https://tailwindcss.com), deployed on Cloudflare Pages.
+Marketing site for SheWellRX, a telehealth business. Built with [Astro](https://astro.build) and [Tailwind CSS v4](https://tailwindcss.com), deployed on Cloudflare Pages.
 
 ## Pages
 

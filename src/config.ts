@@ -16,9 +16,9 @@ export const PORTAL_URL = "/book";
 export const PORTAL_LIVE = false;
 
 export const SITE = {
-  name: "EfhsanRX",
-  url: "https://efhsanrx.com",
-  email: "hello@efhsanrx.com",
+  name: "SheWellRX",
+  url: "https://shewellrx.com",
+  email: "hello@shewellrx.com",
 } as const;
 
 export const DOCTOR = {
@@ -51,7 +51,7 @@ export const DOCTOR = {
  * the St. Joseph's Health directory, and the Rutgers University Libraries
  * repository. She is a doctorally prepared certified nurse midwife, not an
  * MD, and the site is careful to say so accurately.
- * TODO: confirm bio wording, languages, and her role at EfhsanRX with her
+ * TODO: confirm bio wording, languages, and her role at SheWellRX with her
  * directly before launch.
  */
 export const DOCTOR2 = {
@@ -108,7 +108,7 @@ export const TREATMENTS = [
 ] as const;
 
 /**
- * The physical office is closing; EfhsanRX is a fully virtual practice.
+ * The physical office is closing; SheWellRX is a fully virtual practice.
  * Keep the address here for records and the Google listing link only.
  * Never display the street address on any page or invite office visits.
  */

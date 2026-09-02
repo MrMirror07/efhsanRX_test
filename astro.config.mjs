@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   // TODO: switch to the final custom domain when it's connected in Cloudflare
-  site: 'https://efhsanrx.com',
+  site: 'https://shewellrx.com',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()]

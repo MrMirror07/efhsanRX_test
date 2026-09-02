@@ -1,6 +1,6 @@
 # Research: Midi Health Playbook and Signup Conversion
 
-Compiled 2026-08-24. Applied to EfhsanRX with adjustments for our cash pay, single physician model.
+Compiled 2026-08-24. Applied to SheWellRX with adjustments for our cash pay, single physician model.
 
 ## Midi's positioning formula
 - Emotional, dignity based headline ("THE CARE YOU DESERVE") + a verbatim patient voice subhead ("My brain won't shut up and my jeans won't zip up.")
@@ -36,7 +36,7 @@ Six screens under 5 minutes: 1) visit reason (segmenting question first), 2) acc
 - Forms: 5 or fewer fields roughly doubles conversion; multi step with 2 to 3 fields per step beats one long form
 - Cost transparency answers the dominant objection (surprise bills) before it forms
 
-## Priority checklist for EfhsanRX
+## Priority checklist for SheWellRX
 1. Flat fee pricing table with "what's included" per row
 2. Dr. Copur's name, credentials, and photo near every CTA
 3. Google review rating with real counts next to the primary button

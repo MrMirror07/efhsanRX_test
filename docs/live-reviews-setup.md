@@ -10,7 +10,7 @@ The site ships with a verified snapshot of the practice's Google rating baked in
 
 ## One time setup (about 10 minutes)
 
-1. Go to [console.cloud.google.com](https://console.cloud.google.com), create a project (any name, e.g. `efhsanrx-site`).
+1. Go to [console.cloud.google.com](https://console.cloud.google.com), create a project (any name, e.g. `shewellrx-site`).
 2. In "APIs and Services", enable **Places API (New)**.
 3. Create an API key under "Credentials". Restrict it: API restriction to Places API (New) only. Do not add a website restriction, because the key is used server side.
 4. Find the practice's Place ID with Google's [Place ID Finder](https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder). Search for "FirstChoice ObGyn LLC Clifton NJ" and copy the ID that starts with `ChIJ`.

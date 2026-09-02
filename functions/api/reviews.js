@@ -20,7 +20,7 @@
 // the GOOGLE_PLACE_ID env var if the listing ever changes.
 const DEFAULT_PLACE_ID = "ChIJkxAbtCH6wokR_D9rgBZEMKQ";
 
-const CACHE_URL = "https://efhsanrx-cache.internal/api/reviews";
+const CACHE_URL = "https://shewellrx-cache.internal/api/reviews";
 
 export async function onRequestGet({ env, waitUntil }) {
   const key = env.GOOGLE_PLACES_API_KEY;

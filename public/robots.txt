@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://efhsanrx.com/sitemap-index.xml
+Sitemap: https://shewellrx.com/sitemap-index.xml
