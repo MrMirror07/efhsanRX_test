@@ -19,8 +19,6 @@ const year = new Date().getFullYear();
         <address class="mt-6 space-y-1 text-sm not-italic text-cream/60">
           <p>A fully virtual practice serving patients across New Jersey</p>
           <p>
-            <a href={PRACTICE.phoneHref} class="hover:text-cream">{PRACTICE.phone}</a>
-            &nbsp;·&nbsp;
             <a href={`mailto:${SITE.email}`} class="hover:text-cream">{SITE.email}</a>
           </p>
         </address>
@@ -61,6 +59,13 @@ const year = new Date().getFullYear();
         clinician determines they are appropriate. Telehealth visits are
         available to patients located in states where our clinicians hold an
         active license.
+      </p>
+      <p class="mt-4">
+        SheWellRX is a telehealth practice serving patients located in New
+        Jersey. Booking a visit means you accept our
+        <a href="/terms" class="underline underline-offset-4 hover:text-cream">Terms of Service</a>,
+        <a href="/telehealth-consent" class="underline underline-offset-4 hover:text-cream">Telehealth Consent and Terms of Care</a>, and
+        <a href="/privacy" class="underline underline-offset-4 hover:text-cream">Privacy Policy</a>.
       </p>
       <p class="mt-4">&copy; {year} {SITE.name}. All rights reserved.</p>
     </div>

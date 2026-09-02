@@ -1,0 +1,61 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../config";
+
+/**
+ * Landing page after a completed booking in the OptiMantra portal. Set as
+ * the confirmation page URL inside OptiMantra's online booking settings.
+ * Kept out of search results; only booked patients ever arrive here.
+ */
+const next = [
+  {
+    title: "Check your email",
+    body: "Your confirmation arrived with a link to the patient portal, your secure intake questionnaire, and your consent forms.",
+  },
+  {
+    title: "Complete your intake before the visit",
+    body: "Ten quiet minutes. Your clinician reads every answer before you connect, so the visit is spent on you, not on paperwork.",
+  },
+  {
+    title: "Join from anywhere private",
+    body: "Your video link is in the same email. Find a quiet spot, keep a list of your medications nearby, and we will take it from there.",
+  },
+];
+---
+
+<Layout
+  title="You're Booked | SheWellRX"
+  description="Your SheWellRX visit is booked. Here is exactly what happens next."
+  noindex
+>
+  <section class="section">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="eyebrow">Confirmed</p>
+      <h1 class="display mt-4 text-4xl sm:text-5xl">You're booked. Take a breath.</h1>
+      <p class="mt-6 text-lg leading-relaxed text-ink/70">
+        The hard part, deciding to be seen, is done. Everything from here is
+        designed to be simple.
+      </p>
+    </div>
+    <ol class="mx-auto mt-12 grid max-w-3xl gap-4">
+      {
+        next.map((s, i) => (
+          <li class="card flex gap-5 !p-6 sm:!p-8">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-pine-800 font-display text-lg text-cream">
+              {i + 1}
+            </span>
+            <div>
+              <h2 class="font-display text-xl font-medium text-pine-900">{s.title}</h2>
+              <p class="mt-2 text-sm leading-relaxed text-ink/70">{s.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-ink/60">
+      Need to change your time? Use the link in your confirmation email or write
+      to <a href={`mailto:${SITE.email}`} class="font-medium text-apricot-700 underline underline-offset-4">{SITE.email}</a>.
+      For emergencies, call 911.
+    </p>
+  </section>
+</Layout>

@@ -5,33 +5,6 @@ import Stars from "../components/Stars.astro";
 import { SITE, DOCTOR, DOCTOR2, PRACTICE, PORTAL_URL, REVIEWS } from "../config";
 import portraitUpward from "../assets/portrait-upward.png";
 
-const timeline = [
-  {
-    year: "1979",
-    text: "Graduates from Hacettepe University Faculty of Medicine, one of Turkey's most respected medical schools.",
-  },
-  {
-    year: "1986",
-    text: "Completes residency in obstetrics and gynecology at Lincoln Medical Center, the New York Medical College program in the Bronx.",
-  },
-  {
-    year: "1989",
-    text: "Earns board certification from the American Board of Obstetrics and Gynecology and becomes a Fellow of the American College of Obstetricians and Gynecologists.",
-  },
-  {
-    year: "1990s",
-    text: "Serves as ObGyn Residency Program Director at Lincoln Hospital and Associate Professor of Clinical Obstetrics and Gynecology at New York Medical College, training the next generation of women's health physicians. Recognized with the CREOG National Faculty Award and Best Teacher Awards in 1992, 1997, and 1999.",
-  },
-  {
-    year: "2002",
-    text: "Opens his private practice in northern New Jersey, today FirstChoice ObGyn in Clifton, where he has cared for thousands of women and families.",
-  },
-  {
-    year: "Today",
-    text: "Extends that same care online through SheWellRX, so expert help no longer depends on where you live or how far you can travel.",
-  },
-];
-
 const ratings = [
   { platform: "Google", rating: REVIEWS.google.rating, count: REVIEWS.google.count, url: PRACTICE.googleMapsUrl },
   { platform: "Healthgrades", rating: REVIEWS.healthgrades.rating, count: REVIEWS.healthgrades.count, url: "https://www.healthgrades.com/physician/dr-huseyin-copur-yvmm8" },
@@ -39,7 +12,7 @@ const ratings = [
   { platform: "Vitals", rating: REVIEWS.vitals.rating, count: REVIEWS.vitals.count, url: "https://www.vitals.com/doctors/Dr_Huseyin_Copur.html" },
 ];
 
-const physicianSchema = {
+const teamSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -48,7 +21,6 @@ const physicianSchema = {
       url: `${SITE.url}/doctor`,
       medicalSpecialty: "Gynecologic",
       worksFor: { "@type": "MedicalClinic", name: SITE.name, url: SITE.url },
-      memberOf: DOCTOR.memberships.map((m) => ({ "@type": "Organization", name: m })),
       knowsLanguage: DOCTOR.languages,
       areaServed: { "@type": "State", name: "New Jersey" },
     },
@@ -59,7 +31,7 @@ const physicianSchema = {
       jobTitle: "Certified Nurse Midwife",
       url: `${SITE.url}/doctor`,
       worksFor: { "@type": "MedicalClinic", name: SITE.name, url: SITE.url },
-      alumniOf: { "@type": "CollegeOrUniversity", name: "Rutgers School of Nursing" },
+      knowsLanguage: DOCTOR2.languages,
     },
   ],
 };
@@ -69,9 +41,8 @@ const physicianSchema = {
   title={`Our Doctors | ${SITE.name}`}
   description={`Meet the SheWellRX team: ${DOCTOR.name}, a board certified ObGyn rated ${REVIEWS.google.rating} stars on Google, and ${DOCTOR2.name}, a certified nurse midwife.`}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(physicianSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(teamSchema)} />
 
-  <!-- Intro -->
   <section class="relative overflow-hidden">
     <div
       class="pointer-events-none absolute -top-24 right-[-8%] h-[24rem] w-[24rem] rounded-full bg-pine-100 blur-3xl"
@@ -87,7 +58,8 @@ const physicianSchema = {
         <p class="mt-6 text-lg leading-relaxed text-ink/70">
           SheWellRX is not a marketplace of rotating strangers. It is a small
           clinical team that answers to its patients, not to an insurance
-          schedule. Meet the people on the other side of the screen.
+          schedule. Every visit is a thirty minute video conversation, and when
+          you come back, the person on your screen already knows your story.
         </p>
         <div class="mt-8 flex flex-wrap gap-4">
           <a href={PORTAL_URL} class="btn-primary">Book a visit</a>
@@ -109,63 +81,50 @@ const physicianSchema = {
     </div>
   </section>
 
-  <!-- Doctor cards -->
   <section class="bg-white">
     <div class="section">
       <div class="grid gap-8 lg:grid-cols-2">
-        <!-- Dr. Copur -->
         <article class="card flex flex-col !p-10">
-          <!-- TODO: replace monograms with real photographs, approved by each
-               clinician, before launch. No stock photos here. -->
+          <!-- TODO: replace monograms with real photographs approved by each clinician. -->
           <div class="flex items-center gap-5">
             <span class="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl bg-pine-800 font-display text-2xl text-apricot-300">HC</span>
             <div>
               <h2 class="font-display text-2xl font-medium text-pine-900">{DOCTOR.name}</h2>
-              <p class="mt-1 text-sm font-medium text-apricot-700">FACOG · {DOCTOR.specialty}</p>
+              <p class="mt-1 text-sm font-medium text-apricot-700">Board certified ObGyn</p>
             </div>
           </div>
           <p class="mt-6 leading-relaxed text-ink/70">
             Some doctors rush. Dr. Copur is known for the opposite. Across four
-            decades, from delivering generations of babies to guiding women
-            through menopause, his reviews repeat the same words: patient,
-            kind, thorough, and honest. He reads your full story before your
-            visit and remembers it when you come back.
+            decades of caring for women, his reviews repeat the same words:
+            patient, kind, thorough, and honest. He reads your full story before
+            your visit and remembers it when you come back.
           </p>
           <ul class="mt-6 grid gap-2 text-sm text-ink/80">
             <li class="rounded-xl bg-cream px-4 py-3">Board certified in obstetrics and gynecology since {DOCTOR.boardCertifiedSince}</li>
-            <li class="rounded-xl bg-cream px-4 py-3">Former residency program director, New York Medical College</li>
-            <li class="rounded-xl bg-cream px-4 py-3">CREOG National Faculty Award; Best Teacher Awards 1992, 1997, 1999</li>
+            <li class="rounded-xl bg-cream px-4 py-3">Former residency program director who trained a generation of women's health physicians</li>
             <li class="rounded-xl bg-cream px-4 py-3">{REVIEWS.google.rating} stars across {REVIEWS.google.count} Google reviews</li>
-            <li class="rounded-xl bg-cream px-4 py-3">Cares for patients in English, Spanish, and Turkish</li>
           </ul>
         </article>
 
-        <!-- Nurefsan Copur -->
         <article class="card flex flex-col !p-10">
           <div class="flex items-center gap-5">
             <span class="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl bg-pine-800 font-display text-2xl text-apricot-300">NC</span>
             <div>
               <h2 class="font-display text-2xl font-medium text-pine-900">{DOCTOR2.name}</h2>
-              <p class="mt-1 text-sm font-medium text-apricot-700">Certified Nurse Midwife · {DOCTOR2.specialty}</p>
+              <p class="mt-1 text-sm font-medium text-apricot-700">Certified Nurse Midwife</p>
             </div>
           </div>
           <p class="mt-6 leading-relaxed text-ink/70">{DOCTOR2.bio}</p>
           <ul class="mt-6 grid gap-2 text-sm text-ink/80">
-            <li class="rounded-xl bg-cream px-4 py-3">{DOCTOR2.education}</li>
-            <li class="rounded-xl bg-cream px-4 py-3">Certified nurse midwife, licensed in New Jersey</li>
-            <li class="rounded-xl bg-cream px-4 py-3">Midwifery practice at {DOCTOR2.affiliation}</li>
-            <li class="rounded-xl bg-cream px-4 py-3">{DOCTOR2.research}</li>
+            <li class="rounded-xl bg-cream px-4 py-3">Doctor of Nursing Practice</li>
+            <li class="rounded-xl bg-cream px-4 py-3">Certified nurse midwife licensed in New Jersey</li>
+            <li class="rounded-xl bg-cream px-4 py-3">English, with intermediate Spanish</li>
           </ul>
         </article>
       </div>
-      <p class="mt-6 text-xs text-ink/50">
-        Every credential above is drawn from public records: the NPI registry,
-        hospital directories, and the practice's own listings.
-      </p>
     </div>
   </section>
 
-  <!-- Ratings across platforms -->
   <section>
     <div class="section">
       <div class="max-w-2xl">
@@ -224,76 +183,15 @@ const physicianSchema = {
     </div>
   </section>
 
-  <!-- Career timeline -->
-  <section class="bg-white">
-    <div class="section">
-      <div class="max-w-2xl">
-        <p class="eyebrow">Dr. Copur's path</p>
-        <h2 class="display mt-4 text-3xl sm:text-4xl">
-          A career spent teaching and treating.
-        </h2>
-      </div>
-      <ol class="mt-12 space-y-0 border-l-2 border-pine-200 pl-8">
-        {
-          timeline.map((t) => (
-            <li class="relative pb-10 last:pb-0">
-              <span class="absolute -left-[2.45rem] top-1 h-4 w-4 rounded-full border-4 border-white bg-pine-500" />
-              <p class="font-display text-xl text-apricot-700">{t.year}</p>
-              <p class="mt-2 max-w-2xl leading-relaxed text-ink/70">{t.text}</p>
-            </li>
-          ))
-        }
-      </ol>
-    </div>
-  </section>
-
-  <!-- Credentials grid -->
   <section class="bg-pine-800 text-cream">
-    <div class="section grid gap-12 lg:grid-cols-2">
-      <div>
-        <p class="eyebrow !text-apricot-300">Credentials</p>
-        <h2 class="display mt-4 text-3xl !text-cream sm:text-4xl">
-          Memberships and affiliations.
-        </h2>
-        <p class="mt-6 max-w-lg leading-relaxed text-cream/70">
-          Dr. Copur maintains active membership in the leading professional
-          societies of his specialty and holds affiliations at respected New
-          Jersey hospitals. SheWellRX itself is fully virtual; when something
-          needs hands on care, we refer you to the right specialist and make
-          sure your records follow you.
-        </p>
-      </div>
-      <div class="space-y-8">
-        <div>
-          <h3 class="text-sm font-semibold uppercase tracking-wider text-apricot-300">
-            Professional memberships
-          </h3>
-          <ul class="mt-4 grid gap-2 text-sm text-cream/80">
-            {DOCTOR.memberships.map((m) => <li class="rounded-xl bg-cream/5 px-4 py-3">{m}</li>)}
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-sm font-semibold uppercase tracking-wider text-apricot-300">
-            Hospital affiliations
-          </h3>
-          <ul class="mt-4 grid gap-2 text-sm text-cream/80">
-            {DOCTOR.affiliations.map((a) => <li class="rounded-xl bg-cream/5 px-4 py-3">{a}</li>)}
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section>
     <div class="section text-center">
-      <h2 class="display mx-auto max-w-2xl text-3xl sm:text-4xl">
+      <h2 class="display mx-auto max-w-2xl text-3xl !text-cream sm:text-4xl">
         Put this team in your corner.
       </h2>
-      <p class="mx-auto mt-4 max-w-xl text-ink/70">
-        Book a video visit and talk it through this week.
+      <p class="mx-auto mt-4 max-w-xl text-cream/70">
+        Book a thirty minute video visit and talk it through this week.
       </p>
-      <a href={PORTAL_URL} class="btn-primary mt-8 !px-8 !py-4 !text-base">Book a visit</a>
+      <a href={PORTAL_URL} class="btn-accent mt-8 !px-8 !py-4 !text-base">Book a visit</a>
     </div>
   </section>
 </Layout>

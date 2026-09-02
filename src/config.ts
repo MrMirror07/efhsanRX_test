@@ -14,6 +14,16 @@
  */
 export const PORTAL_URL = "/book";
 
+/**
+ * The practice's live OptiMantra online booking page (services, times,
+ * payment). Verified working on 2026-09-01. Point PORTAL_URL at this and set
+ * PORTAL_LIVE to true once availability slots and the payment processor are
+ * configured inside OptiMantra; until then visitors would reach a calendar
+ * with no times.
+ */
+export const OPTIMANTRA_BOOKING_URL =
+  "https://www.optimantra.com/optimus/patient/patientaccess/servicesall?pid=bXNNTmxZTG9lMSt3RXlUbmpyaW1HQT09&lid=d0lHZEVzR0JTeG5ucWgya2RRNm93QT09";
+
 /** Set to true once PORTAL_URL points at the real OptiMantra booking page. */
 export const PORTAL_LIVE = false;
 
@@ -45,7 +55,7 @@ export const DOCTOR = {
   specialty: "Obstetrics & Gynecology",
   boardCertifiedSince: 1989,
   practicingSince: 2002, // private practice in northern NJ
-  languages: ["English", "Spanish", "Turkish"],
+  languages: ["English"],
   memberships: [
     "American Medical Association",
     "American College of Obstetricians and Gynecologists",
@@ -75,12 +85,13 @@ export const DOCTOR2 = {
   shortName: "Nurefsan Copur",
   credentials: "DNP, CNM",
   specialty: "Midwifery & Women's Health",
+  languages: ["English", "Spanish (intermediate)"],
   npi: "1093543399",
   education: "Doctor of Nursing Practice, Rutgers School of Nursing, 2024",
   affiliation: "St. Joseph's University Medical Center, Paterson, NJ",
   research:
     "Published doctoral research on supporting healthy gestational weight through app based pregnancy tracking (Rutgers University, 2024)",
-  bio: "Nurefsan Copur is a certified nurse midwife with a Doctor of Nursing Practice from Rutgers. Her side of the practice is the everyday fabric of women's health: contraception counseling, cycle concerns, and the questions that feel too small for an appointment but too big to ignore. Patients describe the same quality her research reflects, care that meets women where they already are.",
+  bio: "Nurefsan Copur is a doctorally prepared certified nurse midwife. Her side of the practice is the everyday fabric of women's health: contraception counseling, cycle concerns, and the questions that feel too small for an appointment but too big to ignore. She sees patients in English and speaks intermediate Spanish.",
 } as const;
 
 /** Treatment areas shown as visual tiles. Slugs anchor to /services. */
@@ -177,9 +188,9 @@ export const REVIEWS = {
  */
 export const PRICING = {
   initial: {
-    price: 149,
-    label: "Initial specialist visit",
-    duration: "45 to 60 minutes",
+    price: 249,
+    label: "Initial visit",
+    duration: "30 minutes",
     includes: [
       "A full video visit with our doctors, never a chatbot",
       "Review of your complete health history",
@@ -190,9 +201,9 @@ export const PRICING = {
     ],
   },
   followUp: {
-    price: 99,
+    price: 149,
     label: "Follow up visit",
-    duration: "15 to 30 minutes",
+    duration: "30 minutes",
     includes: [
       "A video visit with the clinician who already knows you",
       "Progress review and plan adjustments",

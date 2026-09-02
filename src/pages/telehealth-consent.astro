@@ -1,0 +1,95 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE, PRICING } from "../config";
+
+const updated = "September 1, 2026";
+---
+
+<Layout
+  title="Telehealth Consent and Terms of Care | SheWellRX"
+  description="What you agree to when you receive care from SheWellRX by video: how telehealth works, its limits, payment, privacy, and your rights as a New Jersey patient."
+>
+  <section class="section">
+    <div class="mx-auto max-w-3xl">
+      <p class="eyebrow">Legal</p>
+      <h1 class="display mt-4 text-4xl sm:text-5xl">Telehealth Consent and Terms of Care</h1>
+      <p class="mt-4 text-sm text-ink/50">Last updated {updated}. Please read this carefully. You accept these terms when you book or receive care from {SITE.name}.</p>
+
+      <div class="prose-legal mt-10 space-y-8 leading-relaxed text-ink/80">
+        <div>
+          <h2>1. Who we are</h2>
+          <p>{SITE.name} ("SheWellRX," "we," "us") is a telehealth medical practice offering women's health care by live video to patients who are physically located in the State of New Jersey at the time of their visit. Care is provided by clinicians licensed in New Jersey, including a board certified obstetrician gynecologist and a certified nurse midwife. We do not operate a physical clinic for patient visits. Our practice management platform, scheduling, secure messaging, and video visits are provided through OptiMantra, a HIPAA compliant electronic health record vendor that has signed a Business Associate Agreement with us.</p>
+        </div>
+
+        <div>
+          <h2>2. What telehealth is, and what it is not</h2>
+          <p>Telehealth means receiving medical evaluation, diagnosis, consultation, treatment, and prescribing through secure audio and video technology instead of in the same room as your clinician. Telehealth has real benefits: convenience, privacy, faster access, and continuity with a clinician who knows you. It also has limits. Your clinician cannot perform a physical examination, collect samples, or provide imaging through a screen. Some conditions cannot be evaluated or treated safely by video. When that is true for you, your clinician will say so plainly and refer you to in person care. Technology can fail, connections can drop, and in rare cases electronic security measures can be breached despite reasonable safeguards. By receiving care from us, you acknowledge that you understand these benefits and limits and consent to receive care by telehealth.</p>
+        </div>
+
+        <div>
+          <h2>3. Not for emergencies</h2>
+          <p>SheWellRX does not provide emergency or urgent care and does not monitor messages around the clock. If you believe you are experiencing a medical emergency, including heavy bleeding, severe pain, chest pain, difficulty breathing, thoughts of harming yourself, or any situation you feel is an emergency, call 911 or go to the nearest emergency room immediately. Do not wait for a reply from us.</p>
+        </div>
+
+        <div>
+          <h2>3a. Pregnancy</h2>
+          <p>We do not provide prenatal, obstetric, or pregnancy related care by telehealth. Pregnancy requires in person examinations and monitoring. If you are pregnant or become pregnant while under our care, tell your clinician right away so we can help you find appropriate in person care.</p>
+        </div>
+
+        <div>
+          <h2>4. Your part in your care</h2>
+          <p>Telehealth works when the information is complete and honest. You agree to provide accurate personal, medical, medication, allergy, and pregnancy status information; to complete the intake questionnaire and consent forms before your visit; to tell us where you are physically located at the time of each visit; to join your visit from a private, safe place with a reliable connection; and to follow up as your clinician recommends, including with in person care when referred. You must be at least eighteen years old to book care for yourself.</p>
+        </div>
+
+        <div>
+          <h2>5. Prescriptions and treatment decisions</h2>
+          <p>All treatment decisions, including whether to prescribe any medication, are made solely by your clinician based on professional judgment, applicable law, and your individual circumstances. Booking a visit or completing the intake does not guarantee any particular diagnosis, treatment, or prescription. Medications are sent electronically to the pharmacy you choose, and medications and lab tests are billed separately by the pharmacy or laboratory. We do not prescribe controlled substances by telehealth except where permitted by law and, in our clinicians' judgment, appropriate.</p>
+        </div>
+
+        <div>
+          <h2>6. Fees, payment, cancellation</h2>
+          <p>SheWellRX is a self pay practice and does not participate with insurance plans or Medicare or Medicaid. Our fees are published on our pricing page: currently ${PRICING.initial.price} for an initial visit and ${PRICING.followUp.price} for a follow up visit, each a thirty minute video visit. Full payment is collected when you book. Your fee covers the visit, your written plan, prescriptions sent to your pharmacy when appropriate, and follow up messaging for fourteen days after your visit. It does not cover medications, laboratory or imaging services, or care from other providers. You may reschedule or cancel through the link in your confirmation email up to twenty four hours before your visit for a full refund. Visits cancelled with less notice, or missed, are not refunded. If your clinician determines during a visit that telehealth is not appropriate for your concern, we will refund your visit fee. On request we will provide an itemized receipt, sometimes called a superbill, that you may submit to a health plan with out of network benefits; reimbursement is never guaranteed.</p>
+        </div>
+
+        <div>
+          <h2>7. Privacy and communications</h2>
+          <p>Your health information is protected health information under HIPAA and is handled as described in our <a href="/privacy">Privacy Policy</a>. Visits are not recorded. Clinical communication happens through the secure patient portal. Email and text messages are convenient but not fully secure; by providing your email address or mobile number you consent to receive appointment confirmations, reminders, and account notices through those channels, and you understand the risk that such messages could be seen by others with access to your devices. You may withdraw this consent at any time through the portal or by writing to us.</p>
+        </div>
+
+        <div>
+          <h2>8. No guarantees, and limits on liability</h2>
+          <p>Medicine is not an exact science and no outcome can be guaranteed. Our clinicians will exercise the same standard of care they would in person, adapted to what telehealth allows. To the fullest extent permitted by New Jersey law, SheWellRX is not liable for losses caused by information you did not disclose or disclosed inaccurately, by technology failures or interruptions outside our reasonable control, or by your decision not to follow a referral or treatment recommendation. Nothing in these terms limits liability that cannot be limited by law, including liability for professional negligence.</p>
+        </div>
+
+        <div>
+          <h2>9. Resolving disputes</h2>
+          <p>If you have a concern about your care, please tell us first at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>; most concerns are resolved quickly and directly. These terms are governed by the laws of the State of New Jersey. Any dispute that cannot be resolved informally shall be brought in the state or federal courts located in New Jersey, and you and SheWellRX each consent to that jurisdiction. You also have the right to file a complaint with the New Jersey Division of Consumer Affairs, State Board of Medical Examiners, or, for midwifery care, the New Jersey Board of Nursing, and, for privacy matters, with the United States Department of Health and Human Services Office for Civil Rights.</p>
+        </div>
+
+        <div>
+          <h2>10. Changes and contact</h2>
+          <p>We may update these terms as our practice or the law changes. The current version is always posted at this address with its effective date, and material changes will be presented to you in the portal before your next visit. Questions about these terms can be sent to <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+        </div>
+
+        <div class="rounded-2xl border border-pine-900/10 bg-white p-6 text-sm text-ink/70">
+          <p><strong class="text-pine-900">Your acknowledgment.</strong> By booking a visit, completing intake, or receiving care from SheWellRX, you confirm that you have read and understood this Telehealth Consent and Terms of Care, that you have had the opportunity to ask questions, that you are physically located in New Jersey at the time of your visit, and that you consent to receive care by telehealth. You may withdraw consent at any time by written notice, which will end future care but will not affect care already provided.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .prose-legal h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--color-pine-900);
+    margin-bottom: 0.6rem;
+  }
+  .prose-legal a {
+    color: var(--color-apricot-700);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+</style>

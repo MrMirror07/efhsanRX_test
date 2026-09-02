@@ -1,0 +1,86 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../config";
+
+const updated = "September 1, 2026";
+---
+
+<Layout
+  title="Terms of Service | SheWellRX"
+  description="The terms that govern your use of the SheWellRX website and patient portal."
+>
+  <section class="section">
+    <div class="mx-auto max-w-3xl">
+      <p class="eyebrow">Legal</p>
+      <h1 class="display mt-4 text-4xl sm:text-5xl">Terms of Service</h1>
+      <p class="mt-4 text-sm text-ink/50">Last updated {updated}. These terms cover this website and your account with {SITE.name}. Your medical care is governed by our <a href="/telehealth-consent" class="underline underline-offset-4">Telehealth Consent and Terms of Care</a>.</p>
+
+      <div class="prose-legal mt-10 space-y-8 leading-relaxed text-ink/80">
+        <div>
+          <h2>1. Agreement</h2>
+          <p>By visiting shewellrx.com, creating an account in our patient portal, or booking a visit, you agree to these Terms of Service and to our <a href="/privacy">Privacy Policy</a>. If you do not agree, please do not use the site or the portal. You must be at least eighteen years old and located in the United States to create an account.</p>
+        </div>
+
+        <div>
+          <h2>2. The website is information, not medical advice</h2>
+          <p>The content on this website, including descriptions of conditions, treatments, and medications, is general educational information. It is not medical advice, does not create a clinician and patient relationship, and is not a substitute for a visit. A clinician and patient relationship with SheWellRX begins only when a clinician accepts you as a patient through the portal. Never delay seeking care because of something you read here. For emergencies, call 911.</p>
+        </div>
+
+        <div>
+          <h2>3. The care matcher and other tools</h2>
+          <p>Our website includes a short questionnaire that helps you see whether a video visit may suit your concern. It stores nothing, transmits nothing, and produces general guidance only. It is not a diagnosis, a triage decision, or a promise of any particular treatment. Booking always leads to a real conversation with a clinician who decides what is appropriate for you.</p>
+        </div>
+
+        <div>
+          <h2>4. Your account</h2>
+          <p>You are responsible for keeping your portal login private and for the accuracy of the information you provide. Tell us promptly if you believe your account has been accessed without permission. You may not use the site or portal to impersonate another person, to obtain care for someone else without authority, to interfere with the security of our systems, or for any unlawful purpose.</p>
+        </div>
+
+        <div>
+          <h2>5. Payments</h2>
+          <p>Fees for visits are published on our pricing page and are collected in full when you book through our portal, using a payment processor that handles your card details directly; we do not store full card numbers. Refunds, rescheduling, and cancellations are governed by our Telehealth Consent and Terms of Care. Prices may change, and the price shown when you book is the price you pay.</p>
+        </div>
+
+        <div>
+          <h2>6. Reviews and third party links</h2>
+          <p>Patient reviews shown on this site are quoted from public review platforms and link to their sources; we do not edit them beyond length. Links to other websites, including review platforms, pharmacies, and laboratories, are provided for convenience. We do not control those sites and are not responsible for their content or practices.</p>
+        </div>
+
+        <div>
+          <h2>7. Our content</h2>
+          <p>The SheWellRX name, logo, text, photography, and design are owned by us or licensed to us and are protected by copyright and trademark law. You may view and print pages for your personal, non commercial use. Any other reproduction or use requires our written permission.</p>
+        </div>
+
+        <div>
+          <h2>8. Disclaimers and limitation of liability</h2>
+          <p>The website and portal are provided as available. We work to keep them accurate, secure, and online but cannot promise they will be error free or uninterrupted. To the fullest extent permitted by law, SheWellRX and its clinicians and staff are not liable for indirect, incidental, or consequential damages arising from use of the website or portal, and our total liability for claims relating to the website, as distinct from your medical care, will not exceed the amount you paid us in the twelve months before the claim. Nothing in these terms limits liability that cannot be limited under New Jersey law.</p>
+        </div>
+
+        <div>
+          <h2>9. Governing law and disputes</h2>
+          <p>These terms are governed by the laws of the State of New Jersey, without regard to its conflict of law rules. Disputes relating to the website or portal shall be brought in the state or federal courts located in New Jersey. If any part of these terms is found unenforceable, the rest remains in effect. Our failure to enforce a provision is not a waiver of it.</p>
+        </div>
+
+        <div>
+          <h2>10. Changes and contact</h2>
+          <p>We may revise these terms from time to time. The current version is always posted here with its effective date, and continued use after a change means you accept the revised terms. Questions can be sent to <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .prose-legal h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--color-pine-900);
+    margin-bottom: 0.6rem;
+  }
+  .prose-legal a {
+    color: var(--color-apricot-700);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+</style>
