@@ -114,9 +114,30 @@ import { PORTAL_URL } from "../config";
       hint?.remove();
       load(FRAME_COUNT - 1, () => draw(FRAME_COUNT - 1));
     } else {
-      // First frame first for instant paint, then the rest in order.
+      // First frame first for instant paint, then the rest only once the film
+      // is within a viewport of the top of the screen, so visitors who never
+      // scroll this far do not download 96 images.
       load(0, () => draw(0));
-      for (let i = 1; i < FRAME_COUNT; i++) load(i);
+      let restLoaded = false;
+      const loadRest = () => {
+        if (restLoaded) return;
+        restLoaded = true;
+        for (let i = 1; i < FRAME_COUNT; i++) load(i);
+      };
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            if (entries.some((e) => e.isIntersecting)) {
+              loadRest();
+              io.disconnect();
+            }
+          },
+          { rootMargin: "100% 0px" },
+        );
+        io.observe(section);
+      } else {
+        loadRest();
+      }
 
       let target = 0;
       let current = 0;

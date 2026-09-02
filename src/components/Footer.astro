@@ -1,6 +1,6 @@
 ---
 import Logo from "./Logo.astro";
-import { SITE, DOCTOR, PRACTICE, PORTAL_URL } from "../config";
+import { SITE, DOCTOR, PRACTICE, PORTAL_URL, OPTIMANTRA } from "../config";
 
 const year = new Date().getFullYear();
 ---
@@ -13,7 +13,7 @@ const year = new Date().getFullYear();
           <Logo />
         </div>
         <p class="mt-4 max-w-sm text-sm leading-relaxed">
-          Virtual women's health care from a small team of doctors who know
+          Virtual women's health care from a board certified ObGyn who knows
           your story. One flat fee, no insurance needed.
         </p>
         <address class="mt-6 space-y-1 text-sm not-italic text-cream/60">
@@ -31,13 +31,17 @@ const year = new Date().getFullYear();
           <li><a href="/how-it-works" class="hover:text-cream">How it works</a></li>
           <li><a href="/pricing" class="hover:text-cream">Pricing</a></li>
           <li><a href={PORTAL_URL} class="hover:text-cream">Book a visit</a></li>
+          <li><a href={OPTIMANTRA.portalLoginUrl} rel="noopener" class="hover:text-cream">Patient portal sign in</a></li>
         </ul>
       </div>
 
       <div>
         <h3 class="text-sm font-semibold uppercase tracking-wider text-cream">Practice</h3>
         <ul class="mt-4 space-y-3 text-sm">
-          <li><a href="/doctor" class="hover:text-cream">Meet our doctors</a></li>
+          <li><a href="/doctor" class="hover:text-cream">Meet our clinicians</a></li>
+          <li><a href="/good-faith-estimate" class="hover:text-cream">Good Faith Estimate</a></li>
+          <li><a href="/notice-of-privacy-practices" class="hover:text-cream">Notice of Privacy Practices</a></li>
+          <li><a href="/accessibility" class="hover:text-cream">Accessibility</a></li>
           <li><a href="/about" class="hover:text-cream">About us</a></li>
           <li>
             <a
@@ -66,6 +70,9 @@ const year = new Date().getFullYear();
         <a href="/terms" class="underline underline-offset-4 hover:text-cream">Terms of Service</a>,
         <a href="/telehealth-consent" class="underline underline-offset-4 hover:text-cream">Telehealth Consent and Terms of Care</a>, and
         <a href="/privacy" class="underline underline-offset-4 hover:text-cream">Privacy Policy</a>.
+        Self pay patients have the right to a
+        <a href="/good-faith-estimate" class="underline underline-offset-4 hover:text-cream">Good Faith Estimate</a> of charges.
+        Care is provided by {DOCTOR.name}, a physician licensed in New Jersey and board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology. {SITE.name} is the telehealth practice of {DOCTOR.practice}.
       </p>
       <p class="mt-4">&copy; {year} {SITE.name}. All rights reserved.</p>
     </div>

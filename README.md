@@ -10,9 +10,11 @@ Marketing site for SheWellRX, a telehealth business. Built with [Astro](https://
 | `/services` | Detailed care programs |
 | `/how-it-works` | Visit flow and patient promises |
 | `/about` | Mission and values |
-| `/book` | Visit request form (booking backend not yet connected) |
-| `/pricing` | Flat fee pricing, comparison, and pricing FAQ |
+| `/book` | Guided start: concern, fit questions, safety and eligibility check, price, then the matching OptiMantra service (stores nothing) |
+| `/booked` | Confirmation page OptiMantra redirects to after payment |
+| `/pricing` | Flat fee pricing, Good Faith Estimate notice, and pricing FAQ |
 | `/doctor` | Clinician bios, credentials, and independent ratings |
+| `/good-faith-estimate`, `/notice-of-privacy-practices`, `/telehealth-consent`, `/privacy`, `/terms`, `/accessibility` | Legal and patient rights pages |
 
 ## Development
 
@@ -31,9 +33,12 @@ Connected to this GitHub repo. Every push to `main` deploys automatically.
 - Build command: `npm run build`
 - Output directory: `dist`
 
+## OptiMantra
+
+Booking, consents, intake, payment, video, and the chart live in OptiMantra under a BAA. `src/config.ts` holds the verified deep links (`OPTIMANTRA`), and `PORTAL_LIVE` switches the final step of `/book` from the interim email path to the live scheduler once availability and a payment processor exist. See `docs/optimantra-setup-runbook.md`, `docs/intake-questionnaires.md`, `docs/data-migration-plan.md`, `docs/compliance-checklist.md`, and `docs/website-audit-2026-09.md`.
+
 ## TODO
 
-- Connect the `/book` form to a real scheduling/CRM backend (Cloudflare Worker, Formspree, or similar)
-- Replace placeholder copy and stats with final, legally reviewed content
-- Add real brand imagery/photography
-- Custom domain setup in Cloudflare
+- Set `PORTAL_LIVE = true` after OptiMantra availability and payments are configured
+- Real clinician photography
+- Per condition landing pages for search

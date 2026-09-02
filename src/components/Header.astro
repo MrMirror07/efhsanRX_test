@@ -1,12 +1,12 @@
 ---
 import Logo from "./Logo.astro";
-import { PORTAL_URL } from "../config";
+import { PORTAL_URL, OPTIMANTRA } from "../config";
 
 const links = [
   { href: "/services", label: "What we treat" },
   { href: "/how-it-works", label: "How it works" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/doctor", label: "Our doctors" },
+  { href: "/doctor", label: "Our clinicians" },
   { href: "/about", label: "About" },
 ];
 const current = Astro.url.pathname;
@@ -32,6 +32,7 @@ const current = Astro.url.pathname;
           </a>
         ))
       }
+      <a href={OPTIMANTRA.portalLoginUrl} rel="noopener" class="text-sm font-medium text-ink/60 transition-colors hover:text-pine-600">Patient portal</a>
       <a href={PORTAL_URL} class="btn-primary">Book a visit</a>
     </nav>
 
@@ -60,6 +61,7 @@ const current = Astro.url.pathname;
           </a>
         ))
       }
+      <a href={OPTIMANTRA.portalLoginUrl} rel="noopener" class="rounded-xl px-3 py-3 text-base font-medium text-ink/70 transition-colors hover:bg-pine-900/5">Patient portal</a>
       <a href={PORTAL_URL} class="btn-primary mt-3 w-full">Book a visit</a>
     </nav>
   </div>

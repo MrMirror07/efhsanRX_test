@@ -12,7 +12,7 @@ interface Props {
 
 const {
   title = "SheWellRX | Women's Telehealth with a Board Certified ObGyn",
-  description = "Virtual women's health from a board certified ObGyn and a certified nurse midwife. One flat fee, no insurance. Menopause and hormone care from home.",
+  description = "Virtual women's health from a board certified ObGyn (ABOG). One flat fee, no insurance. Menopause, hormone, birth control, and period care by video for patients in New Jersey.",
   noindex = false,
 } = Astro.props;
 
@@ -31,11 +31,23 @@ const clinicSchema = {
   email: SITE.email,
   medicalSpecialty: "Gynecologic",
   areaServed: { "@type": "State", name: "New Jersey" },
+  priceRange: `$${PRICING.followUp.price} - $${PRICING.initial.price}`,
+  paymentAccepted: "Credit card, debit card, HSA, FSA",
+  currenciesAccepted: "USD",
+  availableService: [
+    { "@type": "MedicalProcedure", name: PRICING.initial.label, procedureType: "Telehealth" },
+    { "@type": "MedicalProcedure", name: PRICING.followUp.label, procedureType: "Telehealth" },
+  ],
   founder: {
     "@type": "Physician",
     name: DOCTOR.name,
     medicalSpecialty: "Gynecologic",
     url: `${SITE.url}/doctor`,
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "Board certification",
+      name: "American Board of Obstetrics and Gynecology",
+    },
   },
 };
 ---
@@ -70,8 +82,9 @@ const clinicSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(clinicSchema)} />
   </head>
   <body class="flex min-h-screen flex-col">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-pine-800 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-cream">Skip to content</a>
     <Header />
-    <main class="flex-1">
+    <main id="main" class="flex-1">
       <slot />
     </main>
     <Footer />

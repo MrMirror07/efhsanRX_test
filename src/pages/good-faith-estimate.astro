@@ -1,0 +1,96 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE, PRICING, DOCTOR, PORTAL_URL } from "../config";
+
+const updated = "September 1, 2026";
+---
+
+<Layout
+  title="Good Faith Estimate | SheWellRX"
+  description="Your right to a Good Faith Estimate under the No Surprises Act. SheWellRX is self pay: one flat visit fee, known before you book, with no bills afterward."
+>
+  <section class="section">
+    <div class="mx-auto max-w-3xl">
+      <p class="eyebrow">Your rights as a self pay patient</p>
+      <h1 class="display mt-4 text-4xl sm:text-5xl">Good Faith Estimate</h1>
+      <p class="mt-4 text-sm text-ink/50">Last updated {updated}. This notice explains your right under federal law to know the cost of care in advance, and states our expected charges.</p>
+
+      <div class="prose-legal mt-10 space-y-8 leading-relaxed text-ink/80">
+        <div>
+          <h2>1. You have the right to receive a Good Faith Estimate</h2>
+          <p>Under the federal No Surprises Act, health care providers must give patients who do not have insurance, or who choose not to use insurance, an estimate of the expected charges for medical items and services before those services are provided. SheWellRX does not participate with any insurance plan, so every patient is a self pay patient and every patient has this right. You may ask for a Good Faith Estimate before you schedule, and we provide one automatically when you book.</p>
+        </div>
+
+        <div>
+          <h2>2. Our expected charges</h2>
+          <p>Our fees are flat and published. They are the only charges you will receive from SheWellRX for a visit.</p>
+          <table class="mt-4 w-full text-sm">
+            <thead>
+              <tr class="text-left text-xs uppercase tracking-wider text-pine-500">
+                <th class="py-2 pr-4">Service</th>
+                <th class="py-2 pr-4">What it is</th>
+                <th class="py-2">Expected charge</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-pine-900/10">
+              <tr>
+                <td class="py-3 pr-4 font-medium text-pine-900">{PRICING.initial.label}</td>
+                <td class="py-3 pr-4">{PRICING.initial.duration} video visit with a licensed clinician, written plan, prescriptions and lab orders when appropriate, 14 days of follow up messaging</td>
+                <td class="py-3 font-display text-lg text-pine-900">${PRICING.initial.price}</td>
+              </tr>
+              <tr>
+                <td class="py-3 pr-4 font-medium text-pine-900">{PRICING.followUp.label}</td>
+                <td class="py-3 pr-4">{PRICING.followUp.duration} video visit for established patients, plan adjustments, renewals when appropriate, 14 days of follow up messaging</td>
+                <td class="py-3 font-display text-lg text-pine-900">${PRICING.followUp.price}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="mt-4">The fee is collected in full when you book and nothing further is billed by SheWellRX for that visit. If your clinician decides during the visit that telehealth is not appropriate for your concern, the fee is refunded.</p>
+        </div>
+
+        <div>
+          <h2>3. What is not included</h2>
+          <p>Some care involves other providers who bill you directly at their own prices. These are not SheWellRX charges and are not included in our estimate: prescription medications filled by your pharmacy; laboratory tests performed by the laboratory you choose; imaging; and any in person care we refer you to. Before ordering a test we tell you why, and you can ask the laboratory for its cash price in advance.</p>
+        </div>
+
+        <div>
+          <h2>4. Your written estimate</h2>
+          <p>When you book, the practice issues a written Good Faith Estimate through the secure patient portal. It lists your name and date of birth, the service, the expected charge, the clinician's name and National Provider Identifier, and the date of the estimate. If you schedule at least three business days ahead you receive it at least one business day before the visit; if you schedule at least ten business days ahead you receive it at least three business days before. You may also request an estimate at any time, without scheduling, by writing to <a href={`mailto:${SITE.email}`}>{SITE.email}</a>; we respond within three business days.</p>
+        </div>
+
+        <div>
+          <h2>5. If a bill is higher than the estimate</h2>
+          <p>If you are billed at least $400 more than your Good Faith Estimate, you have the right to dispute the bill through the federal patient provider dispute resolution process within 120 calendar days of the bill. Because our fees are flat and paid in advance, this should never happen, but the right exists and you may learn more or start a dispute at <a href="https://www.cms.gov/nosurprises" rel="noopener" target="_blank">cms.gov/nosurprises</a> or by calling 1-800-985-3059.</p>
+        </div>
+
+        <div>
+          <h2>6. Keep a copy</h2>
+          <p>Keep your estimate with your records. You can save or print this page, and the personalized estimate stays available in your patient portal.</p>
+        </div>
+
+        <div class="rounded-2xl border border-pine-900/10 bg-white p-6 text-sm text-ink/70">
+          <p><strong class="text-pine-900">Practice information.</strong> {SITE.name}, a telehealth practice of {DOCTOR.name}, serving patients located in New Jersey. Contact: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href={PORTAL_URL} class="btn-primary !px-8 !py-4 !text-base">Start your visit</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .prose-legal h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--color-pine-900);
+    margin-bottom: 0.6rem;
+  }
+  .prose-legal a {
+    color: var(--color-apricot-700);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+</style>

@@ -1,0 +1,86 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE, DOCTOR } from "../config";
+
+const effective = "September 1, 2026";
+---
+
+<Layout
+  title="Notice of Privacy Practices | SheWellRX"
+  description="How SheWellRX may use and disclose your protected health information under HIPAA, and your rights over that information."
+>
+  <section class="section">
+    <div class="mx-auto max-w-3xl">
+      <p class="eyebrow">HIPAA notice</p>
+      <h1 class="display mt-4 text-4xl sm:text-5xl">Notice of Privacy Practices</h1>
+      <p class="mt-4 text-sm text-ink/50">Effective {effective}. {SITE.name}, the telehealth practice of {DOCTOR.name}.</p>
+
+      <div class="mt-8 rounded-2xl border border-pine-900/10 bg-white p-6 text-sm font-semibold uppercase leading-relaxed tracking-wide text-pine-900">
+        This notice describes how medical information about you may be used and disclosed and how you can get access to this information. Please review it carefully.
+      </div>
+
+      <div class="prose-legal mt-10 space-y-8 leading-relaxed text-ink/80">
+        <div>
+          <h2>Our duties</h2>
+          <p>We are required by law to keep your protected health information private, to give you this notice of our legal duties and privacy practices, to follow the notice currently in effect, and to tell you if a breach of your unsecured health information occurs. We may change this notice; the current version is always posted here and in the patient portal, and it applies to all information we hold.</p>
+        </div>
+
+        <div>
+          <h2>How we may use and disclose your health information</h2>
+          <p><strong>Treatment.</strong> We use your information to care for you and share it with others involved in your care: for example, sending a prescription to your pharmacy, ordering a laboratory test, or referring you to an in person specialist.</p>
+          <p class="mt-3"><strong>Payment.</strong> We use your information to collect the fees you pay us and, at your request, to prepare itemized receipts you may submit to a health plan.</p>
+          <p class="mt-3"><strong>Health care operations.</strong> We use your information to run the practice: quality review, training, compliance, and business planning.</p>
+          <p class="mt-3"><strong>Appointment reminders and care information.</strong> We may contact you by email, text message, phone, or through the portal about appointments, follow up, test results, and treatment options related to your care. You can tell us how and where to reach you.</p>
+          <p class="mt-3"><strong>Required or permitted by law.</strong> We may disclose information when the law requires it, including to public health authorities, to report abuse or neglect, in response to a court order or lawful subpoena, to health oversight agencies such as the New Jersey State Board of Medical Examiners, to avert a serious threat to health or safety, to coroners and medical examiners, for workers' compensation, and to specialized government functions permitted by law.</p>
+          <p class="mt-3"><strong>People involved in your care.</strong> With your agreement, or when you are unable to object and we judge it in your interest, we may share information with a family member or friend involved in your care.</p>
+          <p class="mt-3"><strong>Business associates.</strong> Vendors that handle information for us, such as OptiMantra for records, scheduling, messaging, and video, and our payment processor for card transactions, receive only what they need and are bound by written agreements and by law to protect it.</p>
+        </div>
+
+        <div>
+          <h2>Uses that require your written authorization</h2>
+          <p>We will not use or disclose your health information for marketing, sell your health information, or share psychotherapy notes without your written authorization. Any other use or disclosure not described in this notice also requires your written authorization. You may revoke an authorization in writing at any time, except to the extent we have already acted on it.</p>
+        </div>
+
+        <div>
+          <h2>Your rights</h2>
+          <p><strong>Access.</strong> You may inspect and receive a copy of your medical record, in the form and format you request when readily producible, usually within thirty days. We may charge a reasonable, cost based fee permitted by New Jersey and federal law.</p>
+          <p class="mt-3"><strong>Amendment.</strong> You may ask us to correct information you believe is wrong or incomplete. If we decline, we will explain why in writing and you may add a statement of disagreement to your record.</p>
+          <p class="mt-3"><strong>Accounting of disclosures.</strong> You may request a list of certain disclosures we have made of your information in the past six years, other than for treatment, payment, operations, and disclosures you authorized.</p>
+          <p class="mt-3"><strong>Restrictions.</strong> You may ask us to limit how we use or share your information. We are not required to agree, except that we must honor a request not to share information with a health plan about a service you paid for entirely out of pocket. Because SheWellRX is a self pay practice, we do not send information to health plans unless you ask us to.</p>
+          <p class="mt-3"><strong>Confidential communications.</strong> You may ask us to contact you in a particular way or at a particular place, and we will accommodate reasonable requests.</p>
+          <p class="mt-3"><strong>Paper copy.</strong> You may request a paper copy of this notice at any time, even if you agreed to receive it electronically.</p>
+          <p class="mt-3"><strong>Breach notification.</strong> You have the right to be notified if your unsecured health information is breached.</p>
+        </div>
+
+        <div>
+          <h2>Complaints</h2>
+          <p>If you believe your privacy rights have been violated, you may file a complaint with us by writing to <a href={`mailto:${SITE.email}`}>{SITE.email}</a>, or with the Secretary of the United States Department of Health and Human Services, Office for Civil Rights, at <a href="https://www.hhs.gov/ocr/complaints" rel="noopener" target="_blank">hhs.gov/ocr/complaints</a> or 1-800-368-1019. We will never retaliate against you for filing a complaint.</p>
+        </div>
+
+        <div>
+          <h2>Acknowledgment</h2>
+          <p>New Jersey and federal law ask us to make a good faith effort to obtain your written acknowledgment that you received this notice. You sign that acknowledgment electronically in the patient portal before your first visit. Your care does not depend on signing it.</p>
+        </div>
+
+        <div class="rounded-2xl border border-pine-900/10 bg-white p-6 text-sm text-ink/70">
+          <p><strong class="text-pine-900">Privacy contact.</strong> {SITE.name}, {DOCTOR.name}, <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. For how this website itself handles information, see our <a href="/privacy">website Privacy Policy</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .prose-legal h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--color-pine-900);
+    margin-bottom: 0.6rem;
+  }
+  .prose-legal a {
+    color: var(--color-apricot-700);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+</style>

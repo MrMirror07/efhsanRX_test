@@ -38,8 +38,8 @@ const teamSchema = {
 ---
 
 <Layout
-  title={`Our Doctors | ${SITE.name}`}
-  description={`Meet the SheWellRX team: ${DOCTOR.name}, a board certified ObGyn rated ${REVIEWS.google.rating} stars on Google, and ${DOCTOR2.name}, a certified nurse midwife.`}
+  title={`Our Clinicians | ${SITE.name}`}
+  description={`Meet ${DOCTOR.name}, board certified in obstetrics and gynecology (ABOG) and rated ${REVIEWS.google.rating} stars on Google, and ${DOCTOR2.name}, the certified nurse midwife joining SheWellRX.`}
 >
   <script type="application/ld+json" set:html={JSON.stringify(teamSchema)} />
 
@@ -51,15 +51,16 @@ const teamSchema = {
     </div>
     <div class="section relative grid items-center gap-12 lg:grid-cols-2">
       <div>
-        <p class="eyebrow">Our doctors</p>
+        <p class="eyebrow">Our clinicians</p>
         <h1 class="display mt-4 text-4xl sm:text-5xl">
-          Two clinicians. One promise: you will be heard.
+          One promise: you will be heard.
         </h1>
         <p class="mt-6 text-lg leading-relaxed text-ink/70">
           SheWellRX is not a marketplace of rotating strangers. It is a small
-          clinical team that answers to its patients, not to an insurance
-          schedule. Every visit is a thirty minute video conversation, and when
-          you come back, the person on your screen already knows your story.
+          practice that answers to its patients, not to an insurance schedule.
+          Every visit is a thirty minute video conversation with {DOCTOR.name},
+          and when you come back, the person on your screen already knows your
+          story. You may always request the physician for any visit.
         </p>
         <div class="mt-8 flex flex-wrap gap-4">
           <a href={PORTAL_URL} class="btn-primary">Book a visit</a>
@@ -90,17 +91,18 @@ const teamSchema = {
             <span class="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl bg-pine-800 font-display text-2xl text-apricot-300">HC</span>
             <div>
               <h2 class="font-display text-2xl font-medium text-pine-900">{DOCTOR.name}</h2>
-              <p class="mt-1 text-sm font-medium text-apricot-700">Board certified ObGyn</p>
+              <p class="mt-1 text-sm font-medium text-apricot-700">Physician · Board certified in Obstetrics and Gynecology (ABOG)</p>
             </div>
           </div>
           <p class="mt-6 leading-relaxed text-ink/70">
-            Some doctors rush. Dr. Copur is known for the opposite. Across four
-            decades of caring for women, his reviews repeat the same words:
+            Some doctors rush. Dr. Copur is known for the opposite. Across more
+            than 35 years of caring for women, his reviews repeat the same words:
             patient, kind, thorough, and honest. He reads your full story before
             your visit and remembers it when you come back.
           </p>
           <ul class="mt-6 grid gap-2 text-sm text-ink/80">
-            <li class="rounded-xl bg-cream px-4 py-3">Board certified in obstetrics and gynecology since {DOCTOR.boardCertifiedSince}</li>
+            <li class="rounded-xl bg-cream px-4 py-3">Board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology (an ABMS member board) since {DOCTOR.boardCertifiedSince}, FACOG</li>
+            <li class="rounded-xl bg-cream px-4 py-3">Licensed physician in New Jersey; all visits by live video</li>
             <li class="rounded-xl bg-cream px-4 py-3">Former residency program director who trained a generation of women's health physicians</li>
             <li class="rounded-xl bg-cream px-4 py-3">{REVIEWS.google.rating} stars across {REVIEWS.google.count} Google reviews</li>
           </ul>
@@ -111,13 +113,14 @@ const teamSchema = {
             <span class="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl bg-pine-800 font-display text-2xl text-apricot-300">NC</span>
             <div>
               <h2 class="font-display text-2xl font-medium text-pine-900">{DOCTOR2.name}</h2>
-              <p class="mt-1 text-sm font-medium text-apricot-700">Certified Nurse Midwife</p>
+              <p class="mt-1 text-sm font-medium text-apricot-700">Certified Nurse Midwife (not a physician)</p>
+              <span class="mt-2 inline-block rounded-full bg-pine-100 px-3 py-1 text-xs font-semibold text-pine-800">Joining SheWellRX soon</span>
             </div>
           </div>
           <p class="mt-6 leading-relaxed text-ink/70">{DOCTOR2.bio}</p>
           <ul class="mt-6 grid gap-2 text-sm text-ink/80">
-            <li class="rounded-xl bg-cream px-4 py-3">Doctor of Nursing Practice</li>
-            <li class="rounded-xl bg-cream px-4 py-3">Certified nurse midwife licensed in New Jersey</li>
+            <li class="rounded-xl bg-cream px-4 py-3">Doctor of Nursing Practice (a nursing doctorate, not a medical degree)</li>
+            <li class="rounded-xl bg-cream px-4 py-3">Certified nurse midwife licensed in New Jersey; not yet booking visits at SheWellRX</li>
             <li class="rounded-xl bg-cream px-4 py-3">English, with intermediate Spanish</li>
           </ul>
         </article>
@@ -189,7 +192,7 @@ const teamSchema = {
         Put this team in your corner.
       </h2>
       <p class="mx-auto mt-4 max-w-xl text-cream/70">
-        Book a thirty minute video visit and talk it through this week.
+        Start your visit and talk it through with Dr. Copur this week.
       </p>
       <a href={PORTAL_URL} class="btn-accent mt-8 !px-8 !py-4 !text-base">Book a visit</a>
     </div>

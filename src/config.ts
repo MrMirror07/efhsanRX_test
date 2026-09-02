@@ -5,46 +5,81 @@
  */
 
 /**
- * The external patient portal where visitors book, complete intake, sign
- * consents, and join their video visit: OptiMantra (BAA included in the
- * license, online booking, questionnaires per service, telehealth).
- * TODO: replace with the practice's public OptiMantra booking link once the
- * account exists, then set PORTAL_LIVE to true. Every "Book a visit" button
- * and the care matcher results point here.
+ * OptiMantra is the system of record: booking, consents, intake, payment,
+ * video visits, and the chart all live there under a signed BAA. This site
+ * never stores or transmits health information; it only guides the visitor
+ * to the right OptiMantra service.
+ *
+ * Every URL below was captured from the practice's live OptiMantra account on
+ * 2026-09-01. The per service links land directly on the date and time step
+ * with that service preselected (sid = OptiMantra's encrypted service id).
+ * Never append quiz answers or health details to these URLs.
+ */
+const OM_PID = "bXNNTmxZTG9lMSt3RXlUbmpyaW1HQT09";
+const OM_LID = "d0lHZEVzR0JTeG5ucWgya2RRNm93QT09";
+const OM_BASE = "https://www.optimantra.com/optimus/patient/patientaccess";
+
+export const OPTIMANTRA = {
+  /** Full service menu (both visit types). */
+  bookingUrl: `${OM_BASE}/servicesall?pid=${OM_PID}&lid=${OM_LID}`,
+  /** Existing patients sign in here for messages, forms, results, and visits. */
+  portalLoginUrl:
+    "https://www.optimantra.com/optimus/om/patient/login?accessPoint=L1YvN0JQYzk1ZnRsdlFXNEhOOXJWUT09",
+  services: {
+    initial: {
+      name: "Initial Telehealth Visit",
+      url: `${OM_BASE}/practsNslotsNEW?sid=dnFWenUvMC9rVGt3bG40cGlSRCtqUT09&pid=${OM_PID}&lid=${OM_LID}`,
+    },
+    followUp: {
+      name: "Follow Up Telehealth Visit",
+      url: `${OM_BASE}/practsNslotsNEW?sid=UmpQSlh2b3czTkUxOW1aUGlqY2Yzdz09&pid=${OM_PID}&lid=${OM_LID}`,
+    },
+  },
+} as const;
+
+/** Kept for older imports; the full menu link above is the same page. */
+export const OPTIMANTRA_BOOKING_URL = OPTIMANTRA.bookingUrl;
+
+/**
+ * Every "Book a visit" button opens the guided start on this site, which ends
+ * by handing the visitor to the matching OptiMantra service. Keep this as a
+ * site route so the safety and eligibility check always runs first.
  */
 export const PORTAL_URL = "/book";
 
 /**
- * The practice's live OptiMantra online booking page (services, times,
- * payment). Verified working on 2026-09-01. Point PORTAL_URL at this and set
- * PORTAL_LIVE to true once availability slots and the payment processor are
- * configured inside OptiMantra; until then visitors would reach a calendar
- * with no times.
+ * Flip to true once Dr. Copur's online booking availability exists in
+ * OptiMantra (Settings > Scheduling > Online Booking > Availability) and a
+ * payment processor is connected. Until then the final step shows the interim
+ * "we will schedule you by email" path instead of an empty calendar.
  */
-export const OPTIMANTRA_BOOKING_URL =
-  "https://www.optimantra.com/optimus/patient/patientaccess/servicesall?pid=bXNNTmxZTG9lMSt3RXlUbmpyaW1HQT09&lid=d0lHZEVzR0JTeG5ucWgya2RRNm93QT09";
-
-/** Set to true once PORTAL_URL points at the real OptiMantra booking page. */
-export const PORTAL_LIVE = false;
+export const PORTAL_LIVE = true;
 
 /**
- * Per concern booking links for the care matcher. OptiMantra's scheduler may
- * accept a service or practitioner preselection in the URL; until that is
- * confirmed, every key falls back to the plain portal link so the handoff
- * always works. Never pass quiz answers or health details in these URLs.
+ * Federal rules stop a Medicare enrolled physician from taking cash from a
+ * Medicare beneficiary for covered care unless he has opted out and the
+ * patient signs a private contract. Until Dr. Copur's Medicare status is
+ * confirmed, the guided start asks about Medicare and Medicaid and routes
+ * those visitors to email instead of online booking. Set to false once an
+ * opt out (with the private contract loaded in OptiMantra) is in place.
  */
+export const SCREEN_MEDICARE = true;
+
+/** Per concern entry points into the guided start (used by tiles and the home page picker). */
 export const BOOKING_BY_CONCERN: Record<string, string> = {
-  menopause: PORTAL_URL,
-  "birth-control": PORTAL_URL,
-  intimacy: PORTAL_URL,
-  periods: PORTAL_URL,
-  else: PORTAL_URL,
+  menopause: "/book?concern=menopause",
+  "hormone-therapy": "/book?concern=hormone-therapy",
+  "birth-control": "/book?concern=birth-control",
+  intimacy: "/book?concern=intimacy",
+  periods: "/book?concern=periods",
+  labs: "/book?concern=labs",
+  else: "/book?concern=else",
 };
 
 export const SITE = {
   name: "SheWellRX",
   url: "https://shewellrx.com",
-  email: "hello@shewellrx.com",
+  email: "njobgyn@gmail.com",
 } as const;
 
 export const DOCTOR = {
@@ -81,6 +116,8 @@ export const DOCTOR = {
  * directly before launch.
  */
 export const DOCTOR2 = {
+  /** Not yet bookable. She is added as an OptiMantra practitioner later. */
+  status: "joining" as const,
   name: "Nurefsan Copur, DNP, CNM",
   shortName: "Nurefsan Copur",
   credentials: "DNP, CNM",

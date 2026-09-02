@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../config";
+
+const updated = "September 1, 2026";
+---
+
+<Layout
+  title="Accessibility | SheWellRX"
+  description="SheWellRX's commitment to an accessible website and accessible video visits, and how to request help or report a barrier."
+>
+  <section class="section">
+    <div class="mx-auto max-w-3xl">
+      <p class="eyebrow">Accessibility</p>
+      <h1 class="display mt-4 text-4xl sm:text-5xl">Care that everyone can reach.</h1>
+      <p class="mt-4 text-sm text-ink/50">Last updated {updated}.</p>
+
+      <div class="prose-legal mt-10 space-y-8 leading-relaxed text-ink/80">
+        <div>
+          <h2>Our commitment</h2>
+          <p>{SITE.name} wants every woman to be able to use this website and attend her video visit. We design to the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA: semantic headings, descriptive link text, text alternatives for images, sufficient color contrast, full keyboard operability, visible focus, and respect for your reduced motion setting.</p>
+        </div>
+        <div>
+          <h2>During your visit</h2>
+          <p>Video visits run in our patient portal, provided by OptiMantra, which supports captions and screen readers in modern browsers. If you need an interpreter, including American Sign Language, extra time, or another accommodation, tell us when you book or write to <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and we will arrange it at no charge.</p>
+        </div>
+        <div>
+          <h2>Tell us about a barrier</h2>
+          <p>If any part of this site or the portal is hard to use, email <a href={`mailto:${SITE.email}?subject=Accessibility`}>{SITE.email}</a> with the page and what happened. We aim to reply within two business days and to fix genuine barriers quickly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .prose-legal h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--color-pine-900);
+    margin-bottom: 0.6rem;
+  }
+  .prose-legal a {
+    color: var(--color-apricot-700);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+</style>
