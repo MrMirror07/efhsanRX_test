@@ -30,6 +30,31 @@ if (!reduced && "IntersectionObserver" in window) {
     { rootMargin: "0px 0px -10% 0px", threshold: 0.08 },
   );
   targets.forEach((t) => io.observe(t));
+  // Catch up: anything already at or above the fold gets revealed even when
+  // the visitor jumped past it (anchor links, fast flings, keyboard End).
+  let ticking = false;
+  const catchUp = () => {
+    ticking = false;
+    const limit = window.innerHeight * 0.92;
+    targets.forEach((t) => {
+      if (!t.classList.contains("is-in") && t.getBoundingClientRect().top < limit) {
+        t.classList.add("is-in");
+        io.unobserve(t);
+      }
+    });
+  };
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(catchUp);
+      }
+    },
+    { passive: true },
+  );
+  window.addEventListener("load", catchUp);
+  setTimeout(catchUp, 250);
 } else {
   targets.forEach((t) => t.classList.add("is-in"));
 }

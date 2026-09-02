@@ -10,8 +10,8 @@ import { PORTAL_URL } from "../config";
 ---
 
 <section id="film" class="relative bg-pine-900" data-no-reveal>
-  <div id="film-track" class="h-[320vh]">
-    <div class="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
+  <div id="film-track" class="h-[260svh] sm:h-[320vh]">
+    <div class="sticky top-0 flex h-[100svh] items-center justify-center overflow-hidden">
       <canvas id="film-canvas" class="absolute inset-0 h-full w-full" aria-hidden="true"></canvas>
       <div
         class="pointer-events-none absolute inset-0 bg-gradient-to-t from-pine-900/75 via-pine-900/10 to-pine-900/40"
@@ -107,8 +107,8 @@ import { PORTAL_URL } from "../config";
     });
 
     if (reduced) {
-      track.classList.remove("h-[320vh]");
-      track.classList.add("h-screen");
+      track.classList.remove("h-[260svh]", "sm:h-[320vh]");
+      track.classList.add("h-[100svh]");
       phases.forEach((p) => (p.style.opacity = p.dataset.phase === "2" ? "1" : "0"));
       cta?.classList.remove("pointer-events-none");
       hint?.remove();

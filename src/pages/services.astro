@@ -1,209 +1,253 @@
 ---
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-import { PORTAL_URL, TREATMENTS } from "../config";
-import calmTea from "../assets/calm-tea.png";
-import tileBirthControl from "../assets/tile-birth-control.png";
-import tileMenopause from "../assets/tile-menopause.png";
-import tileHormone from "../assets/tile-hormone.png";
-import tileIntimacy from "../assets/tile-intimacy.png";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { PORTAL_URL, TREATMENTS, PRICING, DOCTOR, SITE } from "../config";
+import { CONDITIONS } from "../data/conditions";
+import portraitSouthAsian from "../assets/portrait-southasian.jpg";
+import portraitBlack from "../assets/portrait-black.jpg";
+import portraitAsian from "../assets/portrait-asian.jpg";
+import portraitHijab from "../assets/portrait-hijab.jpg";
+import visitWindow from "../assets/visit-window.jpg";
 import tileLabs from "../assets/tile-labs.png";
 
-const tileImages = {
-  "birth-control": tileBirthControl,
-  menopause: tileMenopause,
-  "hormone-therapy": tileHormone,
-  "sexual-health": tileIntimacy,
-  periods: calmTea,
+/**
+ * Symptom explorer. One area is visible at a time; the list on the left (or
+ * the strip on top on phones) switches panels. Each area links to its full
+ * New Jersey condition guide and into the guided booking start.
+ */
+const conditionBySlug: Record<string, string> = {
+  menopause: "menopause-treatment-new-jersey",
+  "hormone-therapy": "hormone-therapy-new-jersey",
+  "birth-control": "birth-control-online-new-jersey",
+  periods: "pcos-irregular-periods-new-jersey",
+  "sexual-health": "vaginal-dryness-painful-sex-new-jersey",
+};
+const concernBySlug: Record<string, string> = {
+  menopause: "menopause",
+  "hormone-therapy": "hormone-therapy",
+  "birth-control": "birth-control",
+  periods: "periods",
+  "sexual-health": "intimacy",
+  labs: "labs",
+};
+const images = {
+  menopause: portraitSouthAsian,
+  "hormone-therapy": portraitBlack,
+  "birth-control": portraitAsian,
+  "sexual-health": visitWindow,
+  periods: portraitHijab,
   labs: tileLabs,
 } as const;
 
-/** Deeper detail per treatment area, keyed by the slugs in TREATMENTS. */
-const detail: Record<
-  (typeof TREATMENTS)[number]["slug"],
-  { intro: string; prescribed: string[]; visit: string[] }
-> = {
+const detail: Record<string, { intro: string; prescribed: string[]; visit: string[]; symptoms: string[] }> = {
   "birth-control": {
-    intro:
-      "There is no single best contraceptive, only the one that fits your body, your history, and what you want the next few years to look like. Your visit is a real conversation about the options, not a form with checkboxes.",
-    prescribed: [
-      "Combined estrogen and progestin pills",
-      "Progestin only pills for those who should avoid estrogen",
-      "The patch and the vaginal ring",
-      "Emergency contraception guidance",
-    ],
-    visit: [
-      "A method matched to your health history and preferences",
-      "A prescription sent to your pharmacy the same day when appropriate",
-      "A clear plan for what to expect in the first months",
-    ],
+    intro: "There is no single best contraceptive, only the one that fits your body, your history, and what you want the next few years to look like. Your visit is a real conversation about the options, not a form with checkboxes.",
+    prescribed: ["Combined estrogen and progestin pills", "Progestin only pills for those who should avoid estrogen", "The patch and the vaginal ring", "Emergency contraception guidance"],
+    visit: ["A method matched to your health history and preferences", "A prescription sent to your pharmacy the same day when appropriate", "A clear plan for what to expect in the first months"],
+    symptoms: [],
   },
   menopause: {
-    intro:
-      "Hot flashes, night sweats, sleep that falls apart at 3 a.m. Perimenopause and menopause are not something to white knuckle through. Treatment exists, it works, and a specialist can tell you which kind is safe for you.",
-    prescribed: [
-      "Menopausal hormone therapy when your history allows it",
-      "Non hormonal options for vasomotor symptoms",
-      "Support for sleep and mood alongside the hormonal picture",
-    ],
-    visit: [
-      "A full review of symptoms, history, and contraindications",
-      "An honest conversation about benefits and risks, in plain language",
-      "A written plan you can share with any other doctor you see",
-    ],
+    intro: "Hot flashes, night sweats, sleep that falls apart at 3 a.m. Perimenopause and menopause are not something to white knuckle through. Treatment exists, it works, and a specialist can tell you which kind is safe for you.",
+    prescribed: ["Menopausal hormone therapy when your history allows it", "Non hormonal options for vasomotor symptoms", "Support for sleep and mood alongside the hormonal picture"],
+    visit: ["A full review of symptoms, history, and contraindications", "An honest conversation about benefits and risks, in plain language", "A written plan you can share with any other doctor you see"],
+    symptoms: [],
   },
   "hormone-therapy": {
-    intro:
-      "Hormone therapy has been argued about in headlines for twenty years. What you need is not a headline, it is a doctor who knows the evidence and your chart. Started at the right dose for the right patient, it can change daily life.",
-    prescribed: [
-      "Estradiol patches, gels, and tablets",
-      "Micronized progesterone for uterine protection",
-      "Low dose regimens designed to start gently",
-    ],
-    visit: [
-      "Screening for the conditions that make hormones unsafe",
-      "A dosing plan reviewed and adjusted at follow ups",
-      "Lab work ordered only when it will change the decision",
-    ],
+    intro: "Hormone therapy has been argued about in headlines for twenty years. What you need is not a headline, it is a doctor who knows the evidence and your chart. Started at the right dose for the right patient, it can change daily life.",
+    prescribed: ["Estradiol patches, gels, and tablets", "Micronized progesterone for uterine protection", "Low dose regimens designed to start gently"],
+    visit: ["Screening for the conditions that make hormones unsafe", "A dosing plan reviewed and adjusted at follow ups", "Lab work ordered only when it will change the decision"],
+    symptoms: [],
   },
   "sexual-health": {
-    intro:
-      "Dryness, pain with intimacy, desire that faded and never came back. These are medical issues with medical answers, and they deserve the same seriousness as any other diagnosis. No awkward waiting room required.",
-    prescribed: [
-      "Vaginal estrogen creams and tablets",
-      "Moisturizers and comfort care that actually help",
-      "Evaluation of medications that may be lowering desire",
-    ],
-    visit: [
-      "A private, judgment free conversation with your clinician",
-      "Treatment started the same week when appropriate",
-      "Follow up messaging to adjust what is not working",
-    ],
+    intro: "Dryness, pain with intimacy, desire that faded and never came back. These are medical issues with medical answers, and they deserve the same seriousness as any other diagnosis. No awkward waiting room required.",
+    prescribed: ["Vaginal estrogen creams and tablets", "Moisturizers and comfort care that actually help", "Evaluation of medications that may be lowering desire"],
+    visit: ["A private, judgment free conversation with your clinician", "Treatment started the same week when appropriate", "Follow up messaging to adjust what is not working"],
+    symptoms: [],
   },
   periods: {
-    intro:
-      "A period that floods through protection, cramps that cancel plans, cycles that vanish for months. Your cycle is a vital sign, and when it changes, something is being said. We find out what.",
-    prescribed: [
-      "Cycle regulation with hormonal options",
-      "Treatment for heavy bleeding when appropriate",
-      "Care plans for PCOS and irregular cycles",
-    ],
-    visit: [
-      "A structured evaluation of your bleeding pattern",
-      "Lab and imaging orders when the story calls for them",
-      "A plain answer about what needs in person care",
-    ],
+    intro: "A period that floods through protection, cramps that cancel plans, cycles that vanish for months. Your cycle is a vital sign, and when it changes, something is being said. We find out what.",
+    prescribed: ["Cycle regulation with hormonal options", "Treatment for heavy bleeding when appropriate", "Care plans for PCOS and irregular cycles"],
+    visit: ["A structured evaluation of your bleeding pattern", "Lab and imaging orders when the story calls for them", "A plain answer about what needs in person care"],
+    symptoms: [],
   },
   labs: {
-    intro:
-      "Lab work should answer a question, not pad a bill. When your plan needs data, we order exactly what will change the decision and send you to a lab near your home, then explain every line of the result.",
-    prescribed: [
-      "Hormone panels timed to your cycle",
-      "Thyroid testing when symptoms overlap",
-      "Preventive screenings appropriate to your age",
-    ],
-    visit: [
-      "Orders sent to a national lab close to you",
-      "Results reviewed together, in words you can use",
-      "No test ordered without telling you why first",
-    ],
+    intro: "Lab work should answer a question, not pad a bill. When your plan needs data, we order exactly what will change the decision and send you to a lab near your home, then explain every line of the result.",
+    prescribed: ["Hormone panels timed to your cycle", "Thyroid testing when symptoms overlap", "Preventive screenings appropriate to your age"],
+    visit: ["Orders sent to a national lab close to you", "Results reviewed together, in words you can use", "No test ordered without telling you why first"],
+    symptoms: ["A result I already have and want explained", "Fatigue that no one has checked", "A family history I want screened for", "Not sure which test I need"],
   },
 };
+for (const t of TREATMENTS) {
+  const c = CONDITIONS.find((x) => x.slug === conditionBySlug[t.slug]);
+  if (c) detail[t.slug].symptoms = c.symptoms.slice(0, 6);
+}
+
+const title = "What We Treat by Video in New Jersey | SheWellRX";
+const description =
+  "Menopause, hormone therapy, birth control, PCOS, sexual health, and labs by video across New Jersey with a board certified ObGyn. See what a visit includes.";
 ---
 
-<Layout
-  title="Birth Control, Menopause and Hormone Care | SheWellRX"
-  description="SheWellRX treats birth control, menopause, hormone therapy, sexual health, period problems, and lab work by video, with prescriptions sent to your pharmacy."
->
-  <section class="section">
-    <div class="max-w-2xl">
-      <p class="eyebrow">What we treat</p>
-      <h1 class="display mt-4 text-4xl sm:text-5xl">
-        Real symptoms. Real medicine. Real answers.
-      </h1>
-      <p class="mt-6 text-lg leading-relaxed text-ink/70">
-        Every visit is a conversation with a clinician who specializes in
-        women's health. When medication is right for you, the prescription
-        goes to your pharmacy before the day ends.
-      </p>
+<Layout title={title} description={description}>
+  <section class="relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-x-0 top-0 h-[30rem] bg-[radial-gradient(55%_50%_at_85%_0%,rgba(60,111,127,0.14),transparent_70%)]" aria-hidden="true"></div>
+    <div class="section relative !pb-8">
+      <Breadcrumbs items={[{ name: "What we treat", href: "/services" }]} />
+      <div class="mt-8 max-w-3xl">
+        <p class="eyebrow">What we treat</p>
+        <h1 class="display mt-4 text-4xl sm:text-5xl lg:text-6xl">Real symptoms. Real medicine. <em>Real answers.</em></h1>
+        <p class="mt-6 text-lg leading-relaxed text-ink/70">
+          Every visit is a thirty minute video conversation with {DOCTOR.name}, a board certified ObGyn licensed in New Jersey. Choose an area to see the symptoms we hear every day, what can be prescribed by video, and what your visit includes.
+        </p>
+      </div>
     </div>
   </section>
 
-  <section class="bg-white">
-    <div class="section space-y-8">
-      {
-        TREATMENTS.map((t, i) => (
-          <article
-            id={t.slug}
-            class="grid scroll-mt-24 items-center gap-8 overflow-hidden rounded-[2rem] border border-pine-900/10 bg-cream lg:grid-cols-2"
-          >
-            <figure class:list={["h-full min-h-64", i % 2 === 1 && "lg:order-last"]}>
-              <Image
-                src={tileImages[t.slug]}
-                alt={`${t.title} at SheWellRX`}
-                class="h-full w-full object-cover"
-                widths={[480, 768, 1080]}
-                sizes="(min-width: 1024px) 45vw, 90vw"
-              />
-            </figure>
-            <div class="p-8 sm:p-10 lg:py-12">
-              <h2 class="font-display text-2xl font-medium text-pine-900 sm:text-3xl">{t.title}</h2>
-              <p class="mt-4 leading-relaxed text-ink/70">{detail[t.slug].intro}</p>
-              <h3 class="mt-6 text-xs font-semibold uppercase tracking-[0.15em] text-pine-500">
-                What can be prescribed
-              </h3>
-              <ul class="mt-3 space-y-2">
-                {detail[t.slug].prescribed.map((p) => (
-                  <li class="flex gap-3 text-sm leading-relaxed text-ink/70">
-                    <svg class="mt-0.5 h-4 w-4 shrink-0 text-pine-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" />
-                    </svg>
-                    {p}
-                  </li>
-                ))}
-              </ul>
-              <h3 class="mt-6 text-xs font-semibold uppercase tracking-[0.15em] text-pine-500">
-                What your visit includes
-              </h3>
-              <ul class="mt-3 space-y-2">
-                {detail[t.slug].visit.map((p) => (
-                  <li class="flex gap-3 text-sm leading-relaxed text-ink/70">
-                    <svg class="mt-0.5 h-4 w-4 shrink-0 text-pine-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" />
-                    </svg>
-                    {p}
-                  </li>
-                ))}
-              </ul>
-              <a href={PORTAL_URL} class="btn-primary group mt-8">
-                Book this visit
-                <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
-                </svg>
-              </a>
-            </div>
-          </article>
-        ))
-      }
-      <p class="text-xs leading-relaxed text-ink/50">
-        Medication names and classes above are examples of what can be
-        prescribed when clinically appropriate. Nothing on this page is a
-        guarantee of prescription. Every treatment decision is made by your
-        clinician, with you, during your visit.
-      </p>
+  <section class="bg-white" id="explorer">
+    <div class="section !pt-8 lg:grid lg:grid-cols-12 lg:gap-12">
+      <!-- Area list -->
+      <nav class="lg:col-span-4" aria-label="Treatment areas">
+        <ul class="-mx-6 flex snap-x gap-2 overflow-x-auto px-6 pb-2 lg:sticky lg:top-24 lg:mx-0 lg:flex-col lg:gap-1.5 lg:overflow-visible lg:px-0" id="area-list">
+          {
+            TREATMENTS.map((t, i) => (
+              <li class="snap-start">
+                <button
+                  type="button"
+                  class="area-btn group flex w-full items-center gap-3 whitespace-nowrap rounded-2xl border border-pine-900/10 bg-cream px-4 py-3 text-left text-sm font-medium text-ink/80 transition-all duration-300 hover:border-pine-500/50 hover:bg-white aria-selected:border-pine-900 aria-selected:bg-pine-900 aria-selected:text-cream lg:whitespace-normal lg:px-5 lg:py-4"
+                  data-area={t.slug}
+                  aria-selected={i === 0 ? "true" : "false"}
+                  aria-controls={`panel-${t.slug}`}
+                  id={`tab-${t.slug}`}
+                  role="tab"
+                >
+                  <span class="h-2 w-2 shrink-0 rounded-full bg-apricot-500 transition-transform duration-300 group-aria-selected:scale-125" aria-hidden="true"></span>
+                  <span class="flex-1">{t.title}</span>
+                  <svg class="hidden h-4 w-4 shrink-0 opacity-0 transition-all duration-300 group-aria-selected:opacity-100 lg:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6" /></svg>
+                </button>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-4 hidden text-xs text-ink/50 lg:block">Not sure? <a href={PORTAL_URL} class="font-medium text-apricot-700 underline underline-offset-4">Start with a visit</a> and Dr. Copur helps you find the right next step, even if it is not with us.</p>
+      </nav>
+
+      <!-- Panels -->
+      <div class="mt-8 lg:col-span-8 lg:mt-0">
+        {
+          TREATMENTS.map((t, i) => {
+            const d = detail[t.slug];
+            const cond = conditionBySlug[t.slug];
+            return (
+              <article id={`panel-${t.slug}`} role="tabpanel" aria-labelledby={`tab-${t.slug}`} class:list={["area-panel", i !== 0 && "hidden"]} data-area={t.slug}>
+                <div class="grid gap-6 sm:grid-cols-5">
+                  <figure class="overflow-hidden rounded-[1.75rem] sm:col-span-2">
+                    <Image src={images[t.slug]} alt={`${t.title} care at SheWellRX`} class="aspect-[4/5] w-full object-cover" widths={[480, 720]} sizes="(min-width: 1024px) 24vw, 90vw" loading={i === 0 ? "eager" : "lazy"} />
+                  </figure>
+                  <div class="sm:col-span-3">
+                    <h2 id={t.slug} class="display scroll-mt-28 text-3xl sm:text-4xl">{t.title}</h2>
+                    <p class="mt-4 text-[15px] leading-relaxed text-ink/70">{d.intro}</p>
+                    {d.symptoms.length > 0 && (
+                      <div class="mt-5">
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-pine-500">Sounds familiar?</p>
+                        <ul class="mt-2.5 flex flex-wrap gap-2">
+                          {d.symptoms.map((s) => (
+                            <li><button type="button" class="symptom-chip rounded-full border border-pine-900/15 bg-cream px-3.5 py-2 text-[13px] font-medium text-pine-900 transition-all duration-300 hover:border-pine-500 hover:bg-white aria-pressed:border-apricot-500 aria-pressed:bg-apricot-50 aria-pressed:text-apricot-800" aria-pressed="false">{s}</button></li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div class="mt-8 grid gap-5 md:grid-cols-2">
+                  <div class="card !p-7" data-spotlight>
+                    <h3 class="text-[11px] font-semibold uppercase tracking-[0.18em] text-pine-500">What can be prescribed</h3>
+                    <ul class="mt-4 space-y-2.5">
+                      {d.prescribed.map((p) => (
+                        <li class="flex gap-3 text-sm leading-relaxed text-ink/75">
+                          <svg class="mt-0.5 h-4 w-4 shrink-0 text-apricot-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" /></svg>
+                          {p}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="card !p-7" data-spotlight>
+                    <h3 class="text-[11px] font-semibold uppercase tracking-[0.18em] text-pine-500">What your visit includes</h3>
+                    <ul class="mt-4 space-y-2.5">
+                      {d.visit.map((p) => (
+                        <li class="flex gap-3 text-sm leading-relaxed text-ink/75">
+                          <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-pine-400" aria-hidden="true"></span>
+                          {p}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                <div class="mt-7 flex flex-wrap items-center gap-4">
+                  <a href={`${PORTAL_URL}?concern=${concernBySlug[t.slug]}`} class="btn-accent group !px-7 !py-3.5">
+                    Start your visit · ${PRICING.initial.price}
+                    <svg class="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" /></svg>
+                  </a>
+                  {cond ? (
+                    <a href={`/conditions/${cond}/`} class="text-sm font-semibold text-pine-800 underline underline-offset-4 transition-colors hover:text-apricot-700">Read the full New Jersey guide</a>
+                  ) : (
+                    <a href="/online-gynecologist-new-jersey/" class="text-sm font-semibold text-pine-800 underline underline-offset-4 transition-colors hover:text-apricot-700">How online gynecology works in New Jersey</a>
+                  )}
+                </div>
+              </article>
+            );
+          })
+        }
+        <p class="mt-8 text-xs leading-relaxed text-ink/50">
+          Medication names and classes above are examples of what can be prescribed when clinically appropriate. Nothing on this page is a guarantee of prescription. Every treatment decision is made by your clinician, with you, during your visit, and never from a questionnaire alone.
+        </p>
+      </div>
     </div>
   </section>
 
-  <section>
-    <div class="section text-center">
-      <h2 class="display mx-auto max-w-2xl text-3xl sm:text-4xl">
-        Not sure where you fit?
-      </h2>
-      <p class="mx-auto mt-4 max-w-xl text-ink/70">
-        Start with a visit. Your clinician will help you find the right next
-        step, even if that step is not with us.
-      </p>
-      <a href={PORTAL_URL} class="btn-accent mt-8">Start with a visit</a>
+  <section class="bg-sand/60">
+    <div class="section text-center" data-reveal>
+      <h2 class="display mx-auto max-w-2xl text-3xl sm:text-4xl">Not sure where you fit?</h2>
+      <p class="mx-auto mt-4 max-w-xl text-ink/70">Start with a visit. Your clinician will help you find the right next step, even if that step is not with us.</p>
+      <a href={PORTAL_URL} class="btn-accent mt-8 !px-8 !py-4 !text-base">Start with a visit</a>
+      <p class="mt-4 text-xs text-ink/50">Questions first? <a href={`mailto:${SITE.email}`} class="underline underline-offset-4">{SITE.email}</a></p>
     </div>
   </section>
 </Layout>
+
+<script>
+  // Area tabs with hash support (old links like /services#menopause still work).
+  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>(".area-btn"));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>(".area-panel"));
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const select = (area: string, scroll = false) => {
+    tabs.forEach((t) => t.setAttribute("aria-selected", String(t.dataset.area === area)));
+    panels.forEach((p) => {
+      const on = p.dataset.area === area;
+      p.classList.toggle("hidden", !on);
+      if (on && !reduced) {
+        p.classList.remove("fit-in");
+        void p.offsetWidth;
+        p.classList.add("fit-in");
+      }
+    });
+    const tab = tabs.find((t) => t.dataset.area === area);
+    tab?.scrollIntoView({ inline: "center", block: "nearest", behavior: reduced ? "auto" : "smooth" });
+    if (scroll) document.getElementById("explorer")?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+  };
+  tabs.forEach((t) =>
+    t.addEventListener("click", () => {
+      const area = t.dataset.area ?? "";
+      select(area);
+      history.replaceState(null, "", `#${area}`);
+    }),
+  );
+  const initial = location.hash.replace("#", "");
+  if (initial && tabs.some((t) => t.dataset.area === initial)) select(initial, true);
+  window.addEventListener("hashchange", () => {
+    const a = location.hash.replace("#", "");
+    if (tabs.some((t) => t.dataset.area === a)) select(a, true);
+  });
+  document.querySelectorAll<HTMLButtonElement>(".symptom-chip").forEach((chip) =>
+    chip.addEventListener("click", () => chip.setAttribute("aria-pressed", String(chip.getAttribute("aria-pressed") !== "true"))),
+  );
+</script>

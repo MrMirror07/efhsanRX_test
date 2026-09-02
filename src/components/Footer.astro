@@ -1,6 +1,7 @@
 ---
 import Logo from "./Logo.astro";
 import { SITE, DOCTOR, PRACTICE, PORTAL_URL, OPTIMANTRA } from "../config";
+import { CONDITIONS } from "../data/conditions";
 
 const year = new Date().getFullYear();
 ---
@@ -20,7 +21,14 @@ const year = new Date().getFullYear();
         <a href={PORTAL_URL} class="btn-accent mt-8">Start your visit</a>
       </div>
 
-      <div class="grid gap-10 sm:grid-cols-3 md:col-span-7">
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 md:col-span-7">
+        <div>
+          <h3 class="text-[11px] font-semibold uppercase tracking-[0.22em] text-cream/50">Conditions</h3>
+          <ul class="mt-5 space-y-3 text-sm">
+            {CONDITIONS.map((c) => <li><a href={`/conditions/${c.slug}/`} class="transition-colors hover:text-cream">{c.name}</a></li>)}
+            <li><a href="/online-gynecologist-new-jersey/" class="transition-colors hover:text-cream">Online gynecologist in NJ</a></li>
+          </ul>
+        </div>
         <div>
           <h3 class="text-[11px] font-semibold uppercase tracking-[0.22em] text-cream/50">Care</h3>
           <ul class="mt-5 space-y-3 text-sm">

@@ -48,3 +48,13 @@ Why: the previous look (cream ground, Fraunces serif, terracotta accent, Inter b
 - Logo (`src/components/Logo.astro`): serif S ribbon in a deep sea disc with one orchid point; wordmark SheWell + RX. Favicon, Apple touch icon, and the social image are rendered from the same mark by `scripts/build-brand.mjs` (run `node scripts/build-brand.mjs` after editing the mark).
 - Imagery: two editorial photos generated on Higgsfield (Soul 2.0) for the hero and the how-it-works section; Dr. Copur's portrait from his OptiMantra profile, cropped 4:5 so the hospital logo on the coat stays out of frame.
 - Header: condensed glass bar with a dot under the current page; full screen mobile menu with large serif links. Footer: dark editorial with a serif line and a "Your rights" column.
+
+## Round 3 (2026-09-02): SEO pages, symptom explorer, diversity, smoothness
+
+- Five condition landing pages under `/conditions/<slug>/` (menopause, hormone therapy, birth control, PCOS/periods, dryness/painful sex) built from `src/data/conditions.ts`, each with symptom chips, "how Dr. Copur treats this by video", prescribe / in-person lists, FAQ, medically-reviewed author box, MedicalWebPage + FAQPage + BreadcrumbList schema.
+- Hub page `/online-gynecologist-new-jersey/` explaining NJ telehealth rules in plain language, listing all 21 counties, linking every condition page.
+- `/services` rebuilt as a symptom explorer (sticky area list on desktop, horizontal snap strip on phones); old `/services#hash` links still resolve.
+- Four editorial portraits (hijab, Black, Asian, South Asian women) in a new "Every woman" home section and across the explorer.
+- Layout schema: MedicalClinic with areaServed (NJ + counties), priceRange, availableService, Physician credentials and sameAs profiles; geo meta; unique titles under 60 chars and descriptions under 160 chars on every page.
+- Motion: reveal catch-up on fast scroll or anchor jumps so no section stays hidden; film scroll uses svh on phones; sections get 4rem padding on phones and 8rem on wide screens; `overflow-x: clip` on html/body; `scroll-margin-top` for anchors under the sticky header.
+- Still to do: Nurefsan Copur portrait (waiting on a usable photo), Google Business Profile and Search Console setup, real backlinks (NJ directories, Healthgrades/Zocdoc profile links pointing at shewellrx.com).

@@ -234,3 +234,15 @@ details[open] .faq-plus { transform: rotate(45deg); }
 }
 .splide__pagination__page.is-active { width: 1.5rem; background: var(--color-apricot-500); }
 .splide__slide { height: auto; }
+
+/* Anchored sections land below the sticky header. */
+[id] { scroll-margin-top: 5.5rem; }
+/* Tighter, consistent rhythm on phones; roomier on large screens. */
+@media (max-width: 640px) {
+  .section { padding-top: 4rem; padding-bottom: 4rem; }
+}
+@media (min-width: 1280px) {
+  .section { padding-top: 8rem; padding-bottom: 8rem; }
+}
+/* Never let a wide element scroll the page sideways on phones. */
+html, body { overflow-x: clip; }
