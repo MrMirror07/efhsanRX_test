@@ -29,7 +29,7 @@ const faqs = [
   },
   {
     q: "Why is SheWellRX a self-pay practice?",
-    a: "SheWellRX is a self-pay practice and does not bill insurance. Visits billed through insurance are often limited to a few minutes and priced after the fact. A flat fee allows a full hour, unhurried visit and a price you know before you schedule, with no bill arriving afterward. A superbill is available on request if your plan includes out-of-network benefits.",
+    a: "SheWellRX is a self-pay practice and does not bill insurance. Visits billed through insurance are often limited to a few minutes and priced after the fact. A flat fee allows an unhurried visit and a price you know before you schedule, with no bill arriving afterward. A superbill is available on request if your plan includes out-of-network benefits.",
   },
 ];
 
@@ -72,7 +72,7 @@ const faqSchema = {
           <h2 class="font-display text-xl font-medium text-pine-900">{PRICING.visit.label}</h2>
           <p class="mt-3">
             <span class="font-display text-6xl text-pine-900">${PRICING.visit.price}</span>
-            <span class="ml-2 inline-block text-sm text-ink/60">per visit · {PRICING.visit.duration}</span>
+            <span class="ml-2 inline-block text-sm text-ink/60">per visit</span>
           </p>
           <p class="mt-3 text-sm text-ink/70">The same price for your first visit and every return visit.</p>
           <ul class="mt-6 flex-1 space-y-3">
@@ -131,7 +131,7 @@ const faqSchema = {
           A self-pay new patient gynecology visit in person averages about the
           same as our flat fee, and virtual menopause clinics charge as much or
           more, often for a shorter visit with a nurse practitioner. Your visit
-          at SheWellRX is a one hour video visit with a board certified
+          at SheWellRX is a private video visit with a board certified
           ObGyn, and there is no membership.
         </p>
         <ul class="mt-8 space-y-3">

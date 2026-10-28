@@ -94,13 +94,15 @@ if (hero && !reduced) {
     .from(hero.querySelectorAll("[data-hero-float]"), { y: 24, opacity: 0, duration: 0.9, stagger: 0.15 }, 0.8);
 
   // Gentle parallax on the hero media while scrolling the first screen.
+  // Desktop only: on phones the trust row sits directly under the photo.
   const media = hero.querySelector<HTMLElement>("[data-hero-media]");
+  const wide = window.matchMedia("(min-width: 1024px)");
   if (media) {
     window.addEventListener(
       "scroll",
       () => {
-        const y = Math.min(window.scrollY, 700);
-        media.style.transform = `translateY(${y * 0.08}px)`;
+        const y = wide.matches ? Math.min(window.scrollY, 700) : 0;
+        media.style.transform = y ? `translateY(${y * 0.08}px)` : "";
       },
       { passive: true },
     );

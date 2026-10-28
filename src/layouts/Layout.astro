@@ -85,7 +85,7 @@ const siteSchema = {
       ].map((name) => ({ "@type": "MedicalTherapy", name })),
       makesOffer: {
         "@type": "Offer",
-        name: `${PRICING.visit.label}, ${PRICING.visit.duration}`,
+        name: PRICING.visit.label,
         price: PRICING.visit.price,
         priceCurrency: "USD",
         url: `${SITE.url}/pricing/`,
