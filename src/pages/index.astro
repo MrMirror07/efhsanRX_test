@@ -112,136 +112,178 @@ const faqSchema = {
 <Layout>
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
-  <!-- Hero -->
-  <section class="relative overflow-hidden" data-hero>
-    <div class="pointer-events-none absolute inset-x-0 top-0 h-[42rem] bg-[radial-gradient(60%_50%_at_80%_10%,rgba(60,111,127,0.16),transparent_70%),radial-gradient(40%_40%_at_10%_90%,rgba(223,111,150,0.12),transparent_70%)]" aria-hidden="true"></div>
-    <div class="section relative grid items-center gap-14 !py-14 lg:grid-cols-12 lg:gap-10 sm:!py-20">
-      <div class="lg:col-span-6">
-        <p class="eyebrow" data-hero-line>Women's telehealth · New Jersey</p>
-        <h1 class="display mt-5 text-[2.75rem] leading-[1.02] sm:text-6xl lg:text-[4.25rem]">
-          <span class="block" data-hero-line>Women's health care,</span>
-          <span class="block" data-hero-line>by video, that</span>
-          <span class="block" data-hero-line><em>listens</em> to you.</span>
-        </h1>
-        <p class="mt-7 max-w-xl text-lg leading-relaxed text-ink/70" data-hero-fade>
-          Perimenopause and menopause, contraception, cycle concerns, and intimate health,
-          cared for in a one hour video visit with <strong class="font-semibold text-pine-900">Dr. Huseyin Copur, MD, FACOG</strong>,
-          a board certified ObGyn. One transparent fee of ${PRICING.visit.price}, with no insurance required.
-        </p>
-        <div class="mt-9 flex flex-wrap items-center gap-4" data-hero-fade>
-          <a href={PORTAL_URL} class="btn-accent group !px-7 !py-4 !text-base">
-            Start your visit
-            <svg class="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" /></svg>
-          </a>
-          <a href="/how-it-works" class="btn-secondary !py-4 !text-base">See how it works</a>
-        </div>
-        <div class="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-ink/70" data-hero-fade>
-          <a href={PRACTICE.googleMapsUrl} rel="noopener" target="_blank" class="inline-flex items-center gap-2 transition-colors hover:text-pine-900">
-            <Stars rating={REVIEWS.google.rating} />
-            <span><strong class="font-semibold text-pine-900" data-google-rating>{REVIEWS.google.rating}</strong> from <span data-google-count>{REVIEWS.google.count}</span> Google reviews</span>
-          </a>
-          <span class="hidden h-4 w-px bg-pine-900/15 sm:block" aria-hidden="true"></span>
-          <span>Dr. Huseyin Copur · Board certified ObGyn (ABOG) since {DOCTOR.boardCertifiedSince}</span>
-        </div>
-      </div>
+  <!-- Opening: hero and care team share one airy ground with a slow breathing aura -->
+  <div class="relative overflow-hidden bg-gradient-to-b from-cream via-cream to-pine-50/80">
+    <div class="aura aura-teal -right-40 -top-40 h-[42rem] w-[42rem] sm:-right-24" aria-hidden="true"></div>
+    <div class="aura aura-orchid -left-48 top-[26rem] h-[36rem] w-[36rem]" aria-hidden="true"></div>
+    <div class="aura aura-teal -left-32 bottom-[-12rem] h-[34rem] w-[34rem] opacity-70" aria-hidden="true"></div>
 
-      <div class="relative lg:col-span-6" data-hero-media>
-        <div class="overflow-hidden rounded-[2.5rem] shadow-[0_40px_80px_-40px_rgba(15,39,51,0.45)]">
-          <Image
-            src={heroEditorial}
-            alt="A woman at home by a sunlit window, smiling during a video visit on her tablet"
-            class="aspect-[4/5] w-full object-cover sm:aspect-[5/4] lg:aspect-[4/5]"
-            widths={[640, 960, 1280]}
-            sizes="(min-width: 1024px) 46vw, 92vw"
-            loading="eager"
-            fetchpriority="high"
-          />
-        </div>
-        <div class="absolute -left-4 bottom-8 flex items-center gap-3 rounded-2xl bg-white/95 p-3 pr-5 shadow-[0_24px_50px_-24px_rgba(15,39,51,0.5)] backdrop-blur sm:left-6" data-hero-float>
-          <div class="flex -space-x-3">
-            <Image src={drCopur} alt="" width={96} height={96} class="h-12 w-12 rounded-full border-2 border-white object-cover object-top" />
-            <Image src={nurefsan} alt="" width={96} height={96} class="h-12 w-12 rounded-full border-2 border-white object-cover object-top" />
+    <!-- Hero -->
+    <section class="relative" data-hero>
+      <div class="section relative grid items-center gap-16 !pb-16 !pt-12 sm:!pt-20 lg:grid-cols-12 lg:gap-12 lg:!pb-24">
+        <div class="lg:col-span-6">
+          <p class="eyebrow flex items-center gap-3" data-hero-line>
+            <span class="h-px w-8 bg-pine-500/50" aria-hidden="true"></span>
+            Women's telehealth · New Jersey
+          </p>
+          <h1 class="display mt-6 text-[2.85rem] !font-light leading-[1.02] tracking-[-0.03em] sm:text-6xl lg:text-[3.6rem] xl:text-[3.85rem]">
+            <span class="block" data-hero-line>Women's health care,</span>
+            <span class="block" data-hero-line>by video, that</span>
+            <span class="block" data-hero-line><em class="!font-light">listens</em> to you.</span>
+          </h1>
+          <p class="mt-8 max-w-[34rem] text-lg leading-[1.75] text-ink/65" data-hero-fade>
+            Perimenopause and menopause, contraception, cycle concerns, and intimate health,
+            cared for in a one hour video visit with <strong class="font-semibold text-pine-900">Dr. Huseyin Copur, MD, FACOG</strong>,
+            a board certified ObGyn. One transparent fee of ${PRICING.visit.price}, with no insurance required.
+          </p>
+          <div class="mt-10 flex flex-wrap items-center gap-4" data-hero-fade>
+            <a href={PORTAL_URL} class="btn-accent group !px-8 !py-4 !text-base">
+              Start your visit
+              <svg class="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" /></svg>
+            </a>
+            <a href="/how-it-works" class="btn-secondary !bg-white/50 !py-4 !text-base backdrop-blur">See how it works</a>
           </div>
-          <div class="text-sm leading-tight">
-            <p class="font-semibold text-pine-900">Your care team</p>
-            <p class="mt-0.5 text-xs text-ink/60">Dr. Huseyin Copur, board certified ObGyn, with a certified nurse midwife joining soon</p>
+          <dl class="mt-12 grid max-w-[34rem] grid-cols-3 divide-x divide-pine-900/10 border-y border-pine-900/10 py-5 text-left" data-hero-fade>
+            <div class="pr-4">
+              <dt class="sr-only">Google rating</dt>
+              <dd>
+                <a href={PRACTICE.googleMapsUrl} rel="noopener" target="_blank" class="group block">
+                  <span class="flex items-baseline gap-1.5 font-display text-2xl text-pine-900"><span data-google-rating>{REVIEWS.google.rating}</span><Stars rating={REVIEWS.google.rating} class="h-3 w-3" /></span>
+                  <span class="mt-1 block text-xs leading-snug text-ink/55 transition-colors group-hover:text-pine-900"><span data-google-count>{REVIEWS.google.count}</span> Google reviews</span>
+                </a>
+              </dd>
+            </div>
+            <div class="px-4">
+              <dt class="sr-only">Board certification</dt>
+              <dd>
+                <span class="block font-display text-2xl text-pine-900">ABOG</span>
+                <span class="mt-1 block text-xs leading-snug text-ink/55">Board certified since {DOCTOR.boardCertifiedSince}</span>
+              </dd>
+            </div>
+            <div class="pl-4">
+              <dt class="sr-only">Visit</dt>
+              <dd>
+                <span class="block font-display text-2xl text-pine-900">${PRICING.visit.price}</span>
+                <span class="mt-1 block text-xs leading-snug text-ink/55">One hour, by video</span>
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="relative mx-auto mb-6 w-full max-w-[30rem] lg:col-span-6 lg:mb-0 lg:max-w-none lg:pl-8" data-hero-media>
+          <div class="relative">
+            <span class="arch-line" aria-hidden="true"></span>
+            <div class="arch relative overflow-hidden bg-sand shadow-[0_50px_100px_-50px_rgba(15,39,51,0.5)]">
+              <Image
+                src={heroEditorial}
+                alt="A woman at home by a sunlit window, smiling during a video visit on her tablet"
+                class="aspect-[4/5] w-full object-cover"
+                widths={[640, 960, 1280]}
+                sizes="(min-width: 1024px) 44vw, 92vw"
+                loading="eager"
+                fetchpriority="high"
+              />
+              <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-pine-900/25 via-transparent to-white/10" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="glass absolute -left-3 bottom-10 flex max-w-[19rem] items-center gap-3.5 rounded-[1.25rem] p-3 pr-5 sm:-left-8" data-hero-float>
+            <Image src={drCopur} alt="" width={112} height={112} class="h-14 w-14 shrink-0 rounded-full object-cover object-top ring-2 ring-white" />
+            <div class="leading-tight">
+              <p class="text-[10px] font-semibold uppercase tracking-[0.18em] text-pine-500">Your physician</p>
+              <p class="mt-1 font-display text-[1.05rem] text-pine-900">Dr. Huseyin Copur, MD</p>
+              <p class="mt-0.5 text-xs text-ink/55">Board certified ObGyn · FACOG</p>
+            </div>
+          </div>
+          <div class="absolute right-4 top-6 sm:right-6" data-hero-float>
+            <span class="chip !border-white/70 !bg-white/75"><span class="chip-dot"></span> Now scheduling video visits</span>
           </div>
         </div>
-        <div class="absolute right-4 top-5 sm:right-6" data-hero-float>
-          <span class="chip"><span class="chip-dot"></span> Now scheduling video visits</span>
+      </div>
+
+      <!-- Conditions marquee -->
+      <div class="relative border-y border-pine-900/[0.07] py-5" data-hero-fade>
+        <div class="marquee" aria-hidden="true">
+          {
+            [0, 1].map(() => (
+              <div class="marquee-track">
+                {marquee.map((m) => (
+                  <span class="flex items-center gap-10 whitespace-nowrap font-display text-lg font-light italic text-pine-900/60">
+                    {m}
+                    <span class="h-1 w-1 rounded-full bg-apricot-300" />
+                  </span>
+                ))}
+              </div>
+            ))
+          }
+        </div>
+        <p class="sr-only">We treat {marquee.join(", ")}.</p>
+      </div>
+    </section>
+
+    <!-- The care team -->
+    <section class="relative">
+      <div class="section grid items-center gap-16 lg:grid-cols-12 lg:gap-12">
+        <figure class="relative mx-auto w-full max-w-[22rem] lg:col-span-5 lg:max-w-[24rem]" data-reveal>
+          <span class="arch-line" aria-hidden="true"></span>
+          <div class="arch relative aspect-[4/5] overflow-hidden bg-sand shadow-[0_50px_100px_-50px_rgba(15,39,51,0.5)]">
+            <Image
+              src={drCopur}
+              alt={`${DOCTOR.name}, board certified obstetrician gynecologist`}
+              class="h-full w-full object-cover object-top"
+              widths={[480, 640]}
+              sizes="(min-width: 1024px) 24rem, 90vw"
+            />
+          </div>
+          <figcaption class="glass absolute -bottom-6 left-1/2 w-[86%] -translate-x-1/2 rounded-[1.25rem] px-5 py-4 text-center">
+            <p class="font-display text-lg text-pine-900">Dr. Huseyin Copur, MD, FACOG</p>
+            <p class="mt-0.5 text-xs text-ink/55">Board certified ObGyn (ABOG) since {DOCTOR.boardCertifiedSince}</p>
+          </figcaption>
+        </figure>
+
+        <div class="lg:col-span-7 lg:pl-6" data-reveal>
+          <p class="eyebrow flex items-center gap-3">
+            <span class="h-px w-8 bg-pine-500/50" aria-hidden="true"></span>
+            Your care team
+          </p>
+          <h2 class="display mt-5 text-4xl !font-light tracking-[-0.03em] sm:text-[3.4rem] sm:leading-[1.05]">A small team that <em class="!font-light">knows</em> your history.</h2>
+          <p class="mt-7 max-w-xl text-lg leading-[1.75] text-ink/65">
+            Your care stays with a small team rather than a rotating roster, so at every follow-up visit your history is already known. Today each visit is with Dr. Copur, and you may always request the physician.
+          </p>
+
+          <dl class="mt-10 max-w-xl divide-y divide-pine-900/10 border-y border-pine-900/10 text-sm">
+            <div class="flex items-baseline justify-between gap-6 py-4">
+              <dt class="text-ink/50">Board certification</dt>
+              <dd class="text-right font-medium text-pine-900">American Board of Obstetrics and Gynecology, since {DOCTOR.boardCertifiedSince}</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-6 py-4">
+              <dt class="text-ink/50">Fellowship</dt>
+              <dd class="text-right font-medium text-pine-900">American College of Obstetricians and Gynecologists</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-6 py-4">
+              <dt class="text-ink/50">Experience</dt>
+              <dd class="text-right font-medium text-pine-900">More than thirty five years in women's health</dd>
+            </div>
+          </dl>
+
+          <div class="glass mt-8 flex max-w-xl items-center gap-4 rounded-[1.25rem] p-4 pr-6">
+            <Image src={nurefsan} alt="" width={112} height={112} class="h-14 w-14 shrink-0 rounded-full object-cover object-top ring-2 ring-white" />
+            <div class="text-sm leading-snug">
+              <p class="font-semibold text-pine-900">{DOCTOR2.name} <span class="ml-1 rounded-full bg-apricot-50 px-2 py-0.5 align-middle text-[10px] font-semibold uppercase tracking-[0.12em] text-apricot-700">Joining soon</span></p>
+              <p class="mt-1 text-ink/60">Certified nurse midwife (not a physician), for {DOCTOR2.focus.map((f) => f.toLowerCase()).join(", ").replace(/, ([^,]*)$/, ", and $1")}.</p>
+            </div>
+          </div>
+
+          <div class="mt-10 flex flex-wrap items-center gap-6">
+            <a href="/doctor" class="btn-primary group">
+              Meet the care team
+              <svg class="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" /></svg>
+            </a>
+            <a href={PORTAL_URL} class="text-sm font-semibold text-pine-700 underline decoration-pine-900/20 underline-offset-[6px] transition-colors hover:text-apricot-600 hover:decoration-apricot-600/40">Schedule a video visit</a>
+          </div>
         </div>
       </div>
-    </div>
-
-    <!-- Conditions marquee -->
-    <div class="relative border-y border-pine-900/[0.06] bg-white/60 py-4" data-hero-fade>
-      <div class="marquee" aria-hidden="true">
-        {
-          [0, 1].map(() => (
-            <div class="marquee-track">
-              {marquee.map((m) => (
-                <span class="flex items-center gap-10 whitespace-nowrap font-display text-lg text-pine-900/80">
-                  {m}
-                  <span class="h-1.5 w-1.5 rounded-full bg-apricot-400" />
-                </span>
-              ))}
-            </div>
-          ))
-        }
-      </div>
-      <p class="sr-only">We treat {marquee.join(", ")}.</p>
-    </div>
-  </section>
-
-  <!-- The care team -->
-  <section class="bg-white">
-    <div class="section grid items-center gap-14 lg:grid-cols-12">
-      <figure class="relative mx-auto w-full max-w-sm lg:col-span-5" data-reveal>
-        <div class="aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-sand">
-          <Image
-            src={drCopur}
-            alt={`${DOCTOR.name}, board certified obstetrician gynecologist`}
-            class="h-full w-full object-cover object-top"
-            widths={[480, 600]}
-            sizes="(min-width: 1024px) 24rem, 90vw"
-          />
-        </div>
-        <figcaption class="absolute -bottom-5 left-6 right-6 rounded-2xl bg-pine-900 px-5 py-4 text-cream shadow-xl">
-          <p class="font-display text-lg leading-snug">Dr. Huseyin Copur, MD, FACOG</p>
-          <p class="mt-1 text-xs text-cream/60">Board certified ObGyn (ABOG) since {DOCTOR.boardCertifiedSince}</p>
-        </figcaption>
-      </figure>
-      <div class="lg:col-span-7" data-reveal>
-        <p class="eyebrow">Your care team</p>
-        <h2 class="display mt-4 text-4xl sm:text-5xl">A small team that <em>knows</em> your history.</h2>
-        <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink/70">
-          Your care comes from a small team rather than a rotating roster. {DOCTOR.name} is board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology, with more than thirty five years of experience in women's health. {DOCTOR2.name}, a doctorally prepared certified nurse midwife, joins the practice soon. At each follow-up visit, your history is already known, and you may always request the physician.
-        </p>
-        <ul class="mt-8 grid gap-4 sm:grid-cols-2" data-reveal-stagger>
-          <li class="flex gap-4 rounded-[1.5rem] bg-cream p-5">
-            <Image src={drCopur} alt="" width={112} height={112} class="h-14 w-14 shrink-0 rounded-2xl object-cover object-top" />
-            <div class="text-sm leading-relaxed">
-              <p class="font-semibold text-pine-900">{DOCTOR.name}</p>
-              <p class="text-xs text-ink/60">Physician · Board certified ObGyn (ABOG) since {DOCTOR.boardCertifiedSince}</p>
-              <p class="mt-2 text-ink/70">Perimenopause and menopause, hormone therapy, and complex cycle concerns.</p>
-            </div>
-          </li>
-          <li class="flex gap-4 rounded-[1.5rem] bg-cream p-5">
-            <Image src={nurefsan} alt="" width={112} height={112} class="h-14 w-14 shrink-0 rounded-2xl object-cover object-top" />
-            <div class="text-sm leading-relaxed">
-              <p class="font-semibold text-pine-900">{DOCTOR2.name}</p>
-              <p class="text-xs text-ink/60">Certified Nurse Midwife (not a physician) · Joining soon</p>
-              <p class="mt-2 text-ink/70">{DOCTOR2.focus.map((f, i) => (i ? f.toLowerCase() : f)).join(", ").replace(/, ([^,]*)$/, ", and $1")}.</p>
-            </div>
-          </li>
-        </ul>
-        <a href="/doctor" class="btn-primary group mt-9">
-          Meet the care team
-          <svg class="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" /></svg>
-        </a>
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <!-- Scroll driven brand film -->
   <FilmScroll />
