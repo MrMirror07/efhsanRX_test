@@ -53,9 +53,8 @@ export const PORTAL_LIVE = true;
 
 /**
  * SheWellRX does not see Medicare patients (decided 2026-10-28). The guided
- * start asks about Medicare and Medicaid before booking: Medicare patients
- * are told kindly that the practice cannot see them, and Medicaid patients
- * are asked to email so their situation can be reviewed.
+ * start asks about Medicare before booking and tells Medicare patients kindly
+ * that the practice cannot see them. Medicaid is not asked about.
  */
 export const SCREEN_MEDICARE = true;
 
