@@ -32,7 +32,7 @@ export const CONDITIONS: Condition[] = [
     name: "Menopause and perimenopause",
     title: "Menopause Treatment Online in New Jersey | SheWellRX",
     description:
-      "Perimenopause and menopause care by video in New Jersey. Hot flashes, sleep, mood, and vaginal comfort treated by a board certified OB-GYN. $249, self-pay.",
+      "Perimenopause and menopause care by video in New Jersey. Hot flashes, sleep, mood, and vaginal comfort treated by a board certified OB-GYN. $250, self-pay.",
     h1: "Relief from perimenopause and menopause symptoms, by video, across New Jersey",
     eyebrow: "Menopause · New Jersey telehealth",
     intro:
@@ -58,11 +58,11 @@ export const CONDITIONS: Condition[] = [
       },
       {
         title: "Treatment matched to your risks and preferences",
-        body: "Menopausal hormone therapy relieves hot flashes and night sweats better than any other treatment, and it is safe for many women when started at the right time. If it is not the right choice for you, non hormonal medications and vaginal estrogen are effective alternatives. Your care plan is written, and it is yours to keep.",
+        body: "Menopausal hormone therapy relieves hot flashes and night sweats better than any other treatment, and it is safe for many women when started at the right time. If it is not the right choice for you, non hormonal medications and vaginal estrogen are effective alternatives.",
       },
       {
         title: "Follow-up that continues",
-        body: "Two weeks of secure messaging are included with every visit, and return visits are the same $249. Doses are adjusted, side effects are addressed, and your plan is reviewed at each step.",
+        body: "Two weeks of secure messaging are included with every visit, and return visits are the same $250. Doses are adjusted, side effects are addressed, and your plan is reviewed at each step.",
       },
     ],
     prescribe: [
@@ -92,7 +92,7 @@ export const CONDITIONS: Condition[] = [
       },
       {
         q: "How much does it cost?",
-        a: "Every video visit is $249, new or returning, paid once at booking. Medications and any labs are billed by your pharmacy or lab at their prices. SheWellRX does not participate with insurance; you can request an itemized superbill for out of network benefits.",
+        a: "Every video visit is $250, new or returning, paid once at booking. Medications and any labs are billed by your pharmacy or lab at their prices. SheWellRX does not participate with insurance; you can request an itemized superbill for out of network benefits.",
       },
       {
         q: "Do I have to be in New Jersey?",
@@ -168,7 +168,7 @@ export const CONDITIONS: Condition[] = [
       },
       {
         q: "What does it cost?",
-        a: "$249 per video visit, new or returning, paid once at booking. Medications are billed by your pharmacy; generic estradiol and progesterone are usually inexpensive with or without insurance.",
+        a: "$250 per video visit, new or returning, paid once at booking. Medications are billed by your pharmacy; generic estradiol and progesterone are usually inexpensive with or without insurance.",
       },
     ],
     related: ["menopause-treatment-new-jersey", "vaginal-dryness-painful-sex-new-jersey", "online-gynecologist-new-jersey"],
@@ -239,7 +239,7 @@ export const CONDITIONS: Condition[] = [
       },
       {
         q: "What does it cost?",
-        a: "$249 per video visit, including return visits for renewals, paid once at booking. The medication is billed by your pharmacy; many generic pills cost little with or without insurance.",
+        a: "$250 per video visit, including return visits for renewals, paid once at booking. The medication is billed by your pharmacy; many generic pills cost little with or without insurance.",
       },
     ],
     related: ["pcos-irregular-periods-new-jersey", "vaginal-dryness-painful-sex-new-jersey", "online-gynecologist-new-jersey"],
@@ -253,7 +253,7 @@ export const CONDITIONS: Condition[] = [
     name: "PCOS and period problems",
     title: "PCOS and Irregular Periods Treatment in NJ | SheWellRX",
     description:
-      "Heavy, painful, or irregular periods and PCOS evaluated by video in New Jersey. Labs and imaging when needed, and a written plan from a board certified ObGyn.",
+      "Heavy, painful, or irregular periods and PCOS evaluated by video in New Jersey. Labs and imaging when needed, evaluated by a board certified ObGyn.",
     h1: "Heavy, painful, or irregular periods, evaluated carefully and treated",
     eyebrow: "Periods and PCOS · New Jersey telehealth",
     intro:
@@ -312,7 +312,7 @@ export const CONDITIONS: Condition[] = [
       },
       {
         q: "What does it cost?",
-        a: "$249 per video visit, new or returning, paid at booking. Labs and imaging are billed by the lab or imaging center; we tell you what we are ordering and why before we order it.",
+        a: "$250 per video visit, new or returning, paid at booking. Labs and imaging are billed by the lab or imaging center; we tell you what we are ordering and why before we order it.",
       },
     ],
     related: ["birth-control-online-new-jersey", "menopause-treatment-new-jersey", "online-gynecologist-new-jersey"],
@@ -383,7 +383,7 @@ export const CONDITIONS: Condition[] = [
       },
       {
         q: "What does it cost?",
-        a: "$249 per video visit, new or returning, paid once at booking. Prescriptions are billed by your pharmacy.",
+        a: "$250 per video visit, new or returning, paid once at booking. Prescriptions are billed by your pharmacy.",
       },
     ],
     related: ["menopause-treatment-new-jersey", "hormone-therapy-new-jersey", "online-gynecologist-new-jersey"],

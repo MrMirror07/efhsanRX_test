@@ -13,7 +13,7 @@ interface Props {
 
 const {
   title = "Online OB-GYN & Gynecologist in New Jersey | SheWellRX",
-  description = "Video visits with a board certified OB-GYN anywhere in New Jersey. Menopause, hormone therapy, birth control, PCOS, and more. $249 flat fee, self-pay.",
+  description = `Video visits with Dr. Huseyin Copur, a board certified OB-GYN, anywhere in New Jersey. Menopause, hormone therapy, birth control, PCOS. $${PRICING.visit.price}, self-pay.`,
   noindex = false,
 } = Astro.props;
 
@@ -22,46 +22,119 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
 // The sticky mobile booking bar stays hidden on the booking page itself.
 const showMobileCta = Astro.url.pathname.replace(/\/$/, "") !== PORTAL_URL.replace(/\/$/, "");
 
+// One linked graph for the whole site: the website, the clinic, and the
+// physician, each with a stable @id that page level schema can point to.
 // Fully virtual practice: no street address in the schema, a service area
 // instead, so search engines never advertise a walk in location.
-const clinicSchema = {
+const ID = {
+  website: `${SITE.url}/#website`,
+  clinic: `${SITE.url}/#clinic`,
+  physician: `${SITE.url}/doctor/#huseyin-copur`,
+};
+const siteSchema = {
   "@context": "https://schema.org",
-  "@type": "MedicalClinic",
-  name: SITE.name,
-  url: SITE.url,
-  email: SITE.email,
-  medicalSpecialty: "Gynecologic",
-  description: "Women's telehealth practice: video visits with a board certified ObGyn for patients located in New Jersey. A self-pay practice with one transparent fee per visit; insurance is not billed.",
-  areaServed: [
-    { "@type": "State", name: "New Jersey", sameAs: "https://en.wikipedia.org/wiki/New_Jersey" },
-    ...NJ_COUNTIES.map((c) => ({ "@type": "AdministrativeArea", name: `${c} County, New Jersey` })),
-  ],
-  availableLanguage: "English",
-  isAcceptingNewPatients: true,
-  priceRange: `$${PRICING.visit.price}`,
-  paymentAccepted: "Credit card, debit card, HSA, FSA",
-  currenciesAccepted: "USD",
-  availableService: [
-    { "@type": "MedicalProcedure", name: PRICING.visit.label, procedureType: "Telehealth" },
-  ],
-  founder: {
-    "@type": "Physician",
-    name: DOCTOR.name,
-    medicalSpecialty: "Gynecologic",
-    url: `${SITE.url}/doctor`,
-    hasCredential: {
-      "@type": "EducationalOccupationalCredential",
-      credentialCategory: "Board certification",
-      name: "American Board of Obstetrics and Gynecology",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": ID.website,
+      url: SITE.url,
+      name: SITE.name,
+      alternateName: ["SheWellRX Women's Telehealth", DOCTOR.practice],
+      description: "Online OB-GYN video visits for women in New Jersey with Dr. Huseyin Copur, MD, FACOG, a board certified obstetrician gynecologist.",
+      inLanguage: "en-US",
+      publisher: { "@id": ID.clinic },
     },
-    memberOf: DOCTOR.memberships.map((m) => ({ "@type": "Organization", name: m })),
-    sameAs: [
-      PRACTICE.googleMapsUrl,
-      "https://www.healthgrades.com/physician/dr-huseyin-copur-yvmm8",
-      "https://www.zocdoc.com/doctor/huseyin-copur-md-433548",
-      "https://www.vitals.com/doctors/Dr_Huseyin_Copur.html",
-    ],
-  },
+    {
+      "@type": "MedicalClinic",
+      "@id": ID.clinic,
+      name: SITE.name,
+      alternateName: DOCTOR.practice,
+      legalName: DOCTOR.practice,
+      url: SITE.url,
+      email: SITE.email,
+      telephone: "+1-201-441-9300",
+      logo: { "@type": "ImageObject", url: `${SITE.url}/brand/mark-512.png`, width: 512, height: 512 },
+      image: `${SITE.url}/og-image.jpg`,
+      medicalSpecialty: ["Gynecologic", "Obstetric"],
+      description: `Women's telehealth practice of ${DOCTOR.name}, ${DOCTOR.credentials.split(", ")[1]}, a board certified ObGyn: video visits for patients located in New Jersey. A self-pay practice with one transparent fee of $${PRICING.visit.price} per visit; insurance is not billed.`,
+      areaServed: [
+        { "@type": "State", name: "New Jersey", sameAs: "https://en.wikipedia.org/wiki/New_Jersey" },
+        ...NJ_COUNTIES.map((c) => ({ "@type": "AdministrativeArea", name: `${c} County, New Jersey` })),
+      ],
+      availableLanguage: "English",
+      isAcceptingNewPatients: true,
+      priceRange: `$${PRICING.visit.price}`,
+      paymentAccepted: "Credit card, debit card, HSA, FSA",
+      currenciesAccepted: "USD",
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "09:00",
+          closes: "17:00",
+        },
+      ],
+      availableService: [
+        "Menopause and perimenopause care",
+        "Menopausal hormone therapy",
+        "Birth control and contraception",
+        "Genitourinary syndrome of menopause and vaginal health",
+        "PCOS and irregular periods",
+        "Heavy menstrual bleeding evaluation",
+        "Hormone and thyroid laboratory testing",
+      ].map((name) => ({ "@type": "MedicalTherapy", name })),
+      makesOffer: {
+        "@type": "Offer",
+        name: `${PRICING.visit.label}, ${PRICING.visit.duration}`,
+        price: PRICING.visit.price,
+        priceCurrency: "USD",
+        url: `${SITE.url}/pricing/`,
+      },
+      founder: { "@id": ID.physician },
+      employee: { "@id": ID.physician },
+      sameAs: [PRACTICE.googleMapsUrl],
+    },
+    {
+      "@type": ["Physician", "Person"],
+      "@id": ID.physician,
+      name: DOCTOR.name,
+      givenName: "Huseyin",
+      familyName: "Copur",
+      honorificPrefix: "Dr.",
+      honorificSuffix: DOCTOR.credentials,
+      jobTitle: "Board certified obstetrician gynecologist",
+      description: `Dr. Huseyin Copur is board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology since ${DOCTOR.boardCertifiedSince} and a Fellow of the American College of Obstetricians and Gynecologists, with more than thirty five years of experience in women's health.`,
+      url: `${SITE.url}/doctor/`,
+      image: `${SITE.url}/brand/dr-huseyin-copur.jpg`,
+      medicalSpecialty: ["Gynecologic", "Obstetric"],
+      knowsAbout: ["Menopause", "Perimenopause", "Menopausal hormone therapy", "Contraception", "Polycystic ovary syndrome", "Abnormal uterine bleeding"],
+      knowsLanguage: DOCTOR.languages,
+      worksFor: { "@id": ID.clinic },
+      areaServed: { "@type": "State", name: "New Jersey" },
+      hasCredential: [
+        {
+          "@type": "EducationalOccupationalCredential",
+          credentialCategory: "Board certification",
+          name: "Diplomate, American Board of Obstetrics and Gynecology",
+          recognizedBy: { "@type": "Organization", name: "American Board of Obstetrics and Gynecology", url: "https://www.abog.org" },
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          credentialCategory: "Fellowship",
+          name: "Fellow of the American College of Obstetricians and Gynecologists (FACOG)",
+          recognizedBy: { "@type": "Organization", name: "American College of Obstetricians and Gynecologists", url: "https://www.acog.org" },
+        },
+      ],
+      memberOf: DOCTOR.memberships.map((m) => ({ "@type": "Organization", name: m })),
+      sameAs: [
+        PRACTICE.googleMapsUrl,
+        "https://www.healthgrades.com/physician/dr-huseyin-copur-yvmm8",
+        "https://www.zocdoc.com/doctor/huseyin-copur-md-433548",
+        "https://www.vitals.com/doctors/Dr_Huseyin_Copur.html",
+        "https://www.linkedin.com/in/huseyin-copur-628716b8",
+      ],
+    },
+  ],
 };
 ---
 
@@ -73,6 +146,9 @@ const clinicSchema = {
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    {!noindex && <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
+    <meta name="author" content={`${DOCTOR.name}, ${DOCTOR.credentials.split(", ")[1]}`} />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM summary" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -91,13 +167,16 @@ const clinicSchema = {
     <meta property="og:image:height" content="630" />
     <meta name="twitter:image" content={new URL("/og-image.jpg", SITE.url).href} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta property="og:image:alt" content="SheWellRX, online OB-GYN video visits in New Jersey" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Figtree:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script type="application/ld+json" set:html={JSON.stringify(clinicSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(siteSchema)} />
   </head>
   <body class="flex min-h-screen flex-col">
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-pine-800 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-cream">Skip to content</a>

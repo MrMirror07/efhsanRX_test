@@ -30,7 +30,7 @@ Say the term on the left. The right column is what it replaces.
 |---|---|
 | clinician, your clinician, a board certified ObGyn | our doctors, the doctor, he |
 | video visit, telehealth visit | video call, chat, consult |
-| care plan, written care plan | treatment you keep, game plan |
+| next steps, treatment (a written care plan is not promised; removed 2026-10-28) | treatment you keep, game plan, written care plan |
 | evaluation, review | checkup, look |
 | what you are experiencing, your concern, your symptoms | what feels off, what is going on with you |
 | perimenopause and menopause | the change, "meno" |
@@ -49,7 +49,7 @@ Say the term on the left. The right column is what it replaces.
 | secure messaging | texting the doctor |
 | the women in our care, our patients | the women he treats, his patients |
 
-Style points: "board certified" without a hyphen, "ObGyn" as written, "follow-up visit" with a hyphen when it modifies a noun, numbers under one hundred spelled out in prose, prices as figures ($249).
+Style points: "board certified" without a hyphen, "ObGyn" as written, "follow-up visit" with a hyphen when it modifies a noun, numbers under one hundred spelled out in prose, prices as figures ($250).
 
 ## Structure
 

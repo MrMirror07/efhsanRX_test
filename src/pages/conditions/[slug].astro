@@ -36,11 +36,12 @@ const schema = {
       description: c.description,
       inLanguage: "en-US",
       lastReviewed: c.reviewed,
-      reviewedBy: { "@type": "Physician", name: DOCTOR.name, medicalSpecialty: "Gynecologic", url: `${SITE.url}/doctor` },
+      reviewedBy: { "@id": `${SITE.url}/doctor/#huseyin-copur` },
+      isPartOf: { "@id": `${SITE.url}/#website` },
       about: { "@type": "MedicalCondition", name: c.medicalCondition },
       specialty: "Gynecologic",
       audience: { "@type": "MedicalAudience", audienceType: "Patient", geographicArea: { "@type": "State", name: "New Jersey" } },
-      publisher: { "@type": "MedicalClinic", name: SITE.name, url: SITE.url },
+      publisher: { "@id": `${SITE.url}/#clinic` },
     },
     {
       "@type": "FAQPage",
@@ -153,7 +154,7 @@ const schema = {
       <div class="lg:col-span-8" data-reveal>
         <p class="eyebrow !text-apricot-300">Simple pricing</p>
         <h2 class="display mt-3 text-3xl !text-cream sm:text-4xl">${PRICING.visit.price} per video visit</h2>
-        <p class="mt-4 max-w-2xl text-cream/70">Thirty minute video visits for new and returning patients, a written plan, prescriptions and lab orders when appropriate, and two weeks of messaging. Paid once at booking, nothing billed later. HSA and FSA accepted. Self pay patients receive a <a href="/good-faith-estimate" class="underline underline-offset-4 hover:text-cream">Good Faith Estimate</a>.</p>
+        <p class="mt-4 max-w-2xl text-cream/70">Thirty minute video visits for new and returning patients, prescriptions and lab orders when appropriate, and two weeks of messaging. Paid once at booking, nothing billed later. HSA and FSA accepted. Self pay patients receive a <a href="/good-faith-estimate" class="underline underline-offset-4 hover:text-cream">Good Faith Estimate</a>.</p>
       </div>
       <div class="lg:col-span-4 lg:text-right" data-reveal>
         <a href={bookHref} class="btn-accent !px-8 !py-4 !text-base">Schedule this visit</a>

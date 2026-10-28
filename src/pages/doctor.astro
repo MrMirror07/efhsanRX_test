@@ -18,13 +18,12 @@ const teamSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Physician",
-      name: DOCTOR.name,
-      url: `${SITE.url}/doctor`,
-      medicalSpecialty: "Gynecologic",
-      worksFor: { "@type": "MedicalClinic", name: SITE.name, url: SITE.url },
-      knowsLanguage: DOCTOR.languages,
-      areaServed: { "@type": "State", name: "New Jersey" },
+      "@type": "ProfilePage",
+      "@id": `${SITE.url}/doctor/#page`,
+      url: `${SITE.url}/doctor/`,
+      name: `Dr. Huseyin Copur, MD, FACOG, and the SheWellRX care team`,
+      isPartOf: { "@id": `${SITE.url}/#website` },
+      mainEntity: { "@id": `${SITE.url}/doctor/#huseyin-copur` },
     },
     {
       "@type": "Person",
@@ -32,7 +31,7 @@ const teamSchema = {
       honorificSuffix: DOCTOR2.credentials,
       jobTitle: "Certified Nurse Midwife",
       url: `${SITE.url}/doctor`,
-      worksFor: { "@type": "MedicalClinic", name: SITE.name, url: SITE.url },
+      worksFor: { "@id": `${SITE.url}/#clinic` },
       knowsLanguage: DOCTOR2.languages,
     },
   ],
@@ -40,7 +39,7 @@ const teamSchema = {
 ---
 
 <Layout
-  title={`Your Clinicians | ${SITE.name}`}
+  title={`Dr. Huseyin Copur, MD, FACOG, OB-GYN | ${SITE.name}`}
   description={`Your care team at SheWellRX: ${DOCTOR.name}, board certified ObGyn (ABOG) rated ${REVIEWS.google.rating} on Google, and ${DOCTOR2.shortName}, certified nurse midwife, joining soon.`}
 >
   <script type="application/ld+json" set:html={JSON.stringify(teamSchema)} />
