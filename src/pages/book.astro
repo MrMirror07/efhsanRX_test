@@ -9,8 +9,8 @@ import { SITE, PRICING, PORTAL_LIVE, OPTIMANTRA, REVIEWS, DOCTOR, SCREEN_MEDICAR
  * the full price before she commits. Booking, consents, identity, intake, and
  * payment all happen inside OptiMantra (BAA covered) on the next page.
  *
- * Deep links: /book?concern=<key> skips the first question,
- * /book?type=followup preselects the follow up visit.
+ * Deep links: /book?concern=<key> skips the first question. Every visit,
+ * new or returning, is the same $249 video visit.
  */
 
 type Question = {
@@ -266,8 +266,7 @@ const redFlags = [
   "Thoughts of harming yourself",
 ];
 
-const initialUrl = OPTIMANTRA.services.initial.url;
-const followUpUrl = OPTIMANTRA.services.followUp.url;
+const visitUrl = OPTIMANTRA.services.initial.url;
 const optionClass =
   "flow-option group flex w-full items-center gap-4 rounded-2xl border border-pine-900/15 bg-white px-5 py-4 text-left text-sm font-medium leading-snug transition-all duration-200 hover:border-pine-500 hover:shadow-md aria-pressed:border-pine-700 aria-pressed:bg-pine-50";
 ---
@@ -483,7 +482,7 @@ const optionClass =
           <a href={`mailto:${SITE.email}?subject=Medicare%20or%20Medicaid%20patient`} class="btn-primary mt-6 w-full">Email us about my coverage</a>
         </div>
 
-        <!-- 9. Visit type, price, and handoff -->
+        <!-- 9. Price and handoff -->
         <div data-step="visit" class="flow-step mt-6 hidden">
           <p class="eyebrow">Book and pay</p>
           <h2 class="display mt-3 text-2xl sm:text-3xl">You can schedule your video visit.</h2>
@@ -493,29 +492,19 @@ const optionClass =
             <button type="button" id="flow-copy" class="mt-3 text-xs font-medium text-pine-600 underline underline-offset-4 hover:text-pine-800">Copy this summary to paste into your intake</button>
           </div>
 
-          <p class="mt-6 text-sm font-medium text-pine-900">Choose your visit</p>
-          <div class="mt-3 grid gap-3">
-            <button type="button" class="flow-visit rounded-2xl border border-pine-900/15 bg-white p-5 text-left transition-all hover:border-pine-500 aria-pressed:border-pine-700 aria-pressed:bg-pine-50" data-visit="initial" aria-pressed="true">
-              <span class="flex items-baseline justify-between gap-4">
-                <span class="font-display text-lg font-medium text-pine-900">{PRICING.initial.label}</span>
-                <span class="font-display text-2xl text-pine-900">${PRICING.initial.price}</span>
-              </span>
-              <span class="mt-1 block text-xs text-ink/60">{PRICING.initial.duration} video visit, paid once. For patients new to SheWellRX.</span>
-            </button>
-            <button type="button" class="flow-visit rounded-2xl border border-pine-900/15 bg-white p-5 text-left transition-all hover:border-pine-500 aria-pressed:border-pine-700 aria-pressed:bg-pine-50" data-visit="followup" aria-pressed="false">
-              <span class="flex items-baseline justify-between gap-4">
-                <span class="font-display text-lg font-medium text-pine-900">{PRICING.followUp.label}</span>
-                <span class="font-display text-2xl text-pine-900">${PRICING.followUp.price}</span>
-              </span>
-              <span class="mt-1 block text-xs text-ink/60">{PRICING.followUp.duration} video visit for patients already in our care.</span>
-            </button>
+          <div class="mt-6 rounded-2xl border border-pine-700 bg-pine-50 p-5">
+            <span class="flex items-baseline justify-between gap-4">
+              <span class="font-display text-lg font-medium text-pine-900">{PRICING.visit.label}</span>
+              <span class="font-display text-2xl text-pine-900">${PRICING.visit.price}</span>
+            </span>
+            <span class="mt-1 block text-xs text-ink/60">{PRICING.visit.duration} with a board certified ObGyn, paid once. The same price for new and returning patients.</span>
           </div>
 
           <div class="mt-6 rounded-2xl border border-pine-900/10 bg-white p-5 text-sm leading-relaxed text-ink/70">
             <p class="font-semibold text-pine-900">Your Good Faith Estimate</p>
             <p class="mt-2">
               As a self-pay patient, you are entitled to know the full cost in advance. The visit fee is the only charge from SheWellRX:
-              <strong class="text-pine-900" id="flow-price">${PRICING.initial.price}</strong> for the visit you chose, paid once when you book. Medications and laboratory tests, if any, are billed separately by your pharmacy or laboratory at their own prices. You may cancel or reschedule up to 24 hours before your visit for a full refund.
+              <strong class="text-pine-900">${PRICING.visit.price}</strong> for your visit, paid once when you book. Medications and laboratory tests, if any, are billed separately by your pharmacy or laboratory at their own prices. You may cancel or reschedule up to 24 hours before your visit for a full refund.
               <a href="/good-faith-estimate" class="font-medium text-apricot-700 underline underline-offset-4">Read the full estimate</a>.
             </p>
           </div>
@@ -526,7 +515,7 @@ const optionClass =
           </p>
 
           {PORTAL_LIVE ? (
-            <a id="flow-cta" href={initialUrl} data-initial={initialUrl} data-followup={followUpUrl} class="btn-accent group mt-6 w-full !py-4 !text-base" rel="noopener">
+            <a id="flow-cta" href={visitUrl} class="btn-accent group mt-6 w-full !py-4 !text-base" rel="noopener">
               <span>Choose a time and pay</span>
               <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" /></svg>
             </a>
@@ -534,7 +523,7 @@ const optionClass =
             <div class="mt-6 rounded-2xl bg-pine-50 p-5 text-sm leading-relaxed text-pine-900">
               <p class="font-semibold">Online scheduling will open shortly.</p>
               <p class="mt-2">
-                Email <a href={`mailto:${SITE.email}?subject=Book%20my%20visit`} class="font-medium text-apricot-700 underline underline-offset-4">{SITE.email}</a> with the visit you chose and a few times that suit you. We reply within one business day with your secure booking link, and payment is made only once your time is confirmed.
+                Email <a href={`mailto:${SITE.email}?subject=Book%20my%20visit`} class="font-medium text-apricot-700 underline underline-offset-4">{SITE.email}</a> with a few times that suit you. We reply within one business day with your secure booking link, and payment is made only once your time is confirmed.
               </p>
               <a id="flow-cta" href={`mailto:${SITE.email}?subject=Book%20my%20visit`} class="btn-accent mt-4 w-full">Email us to schedule</a>
             </div>
@@ -567,15 +556,12 @@ const optionClass =
     const back = document.getElementById("flow-back") as HTMLButtonElement | null;
     const restart = document.getElementById("flow-restart") as HTMLButtonElement | null;
     const summaryEl = document.getElementById("flow-summary");
-    const priceEl = document.getElementById("flow-price");
-    const cta = document.getElementById("flow-cta") as HTMLAnchorElement | null;
     const copyBtn = document.getElementById("flow-copy") as HTMLButtonElement | null;
 
     const stepEl = (id: string) => steps.find((s) => s.dataset.step === id);
     const history: string[] = [];
     let current = "concern";
     let concern = "";
-    let visit: "initial" | "followup" = "initial";
     // Answers keyed by question, each a list of chosen labels, plus the prompt.
     const answers = new Map<string, { label: string; values: string[] }>();
 
@@ -596,12 +582,6 @@ const optionClass =
       const preg = answers.get("pregnancy");
       if (preg?.values[0] === "planning") parts.push("Planning a pregnancy in the next year");
       return parts.join(". ") + ".";
-    };
-
-    const applyVisit = () => {
-      root.querySelectorAll<HTMLButtonElement>(".flow-visit").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.visit === visit)));
-      if (priceEl) priceEl.textContent = visit === "initial" ? "$249" : "$149";
-      if (cta && cta.dataset.initial) cta.href = visit === "initial" ? cta.dataset.initial : (cta.dataset.followup ?? cta.dataset.initial);
     };
 
     const render = () => {
@@ -625,10 +605,7 @@ const optionClass =
       });
       if (back) back.style.display = history.length ? "" : "none";
       if (restart) restart.style.display = current === "concern" ? "none" : "";
-      if (current === "visit") {
-        if (summaryEl) summaryEl.textContent = buildSummary();
-        applyVisit();
-      }
+      if (current === "visit" && summaryEl) summaryEl.textContent = buildSummary();
       window.scrollTo({ top: Math.max(0, root.getBoundingClientRect().top + window.scrollY - 96), behavior: "smooth" });
     };
 
@@ -688,13 +665,6 @@ const optionClass =
       btn.addEventListener("click", () => go(btn.dataset.go ?? "concern"));
     });
 
-    root.querySelectorAll<HTMLButtonElement>(".flow-visit").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        visit = btn.dataset.visit === "followup" ? "followup" : "initial";
-        applyVisit();
-      });
-    });
-
     copyBtn?.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(buildSummary());
@@ -725,7 +695,6 @@ const optionClass =
     // Deep links from tiles and the home page picker.
     const params = new URLSearchParams(location.search);
     const pre = params.get("concern");
-    if (params.get("type") === "followup") visit = "followup";
     if (pre && stepEl(`fit-${pre}-0`)) {
       concern = pre;
       current = `fit-${pre}-0`;

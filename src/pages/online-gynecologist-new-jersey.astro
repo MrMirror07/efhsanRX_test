@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     q: "Do I need insurance?",
-    a: "No. SheWellRX is a self-pay practice and does not bill insurance: $249 for a thirty minute initial visit and $149 for a follow-up visit, paid once when you schedule. HSA and FSA cards are accepted, and a superbill, an itemized receipt for out-of-network benefits, is available on request.",
+    a: "No. SheWellRX is a self-pay practice and does not bill insurance: $249 for every thirty minute video visit, first or return, paid once when you schedule. HSA and FSA cards are accepted, and a superbill, an itemized receipt for out-of-network benefits, is available on request.",
   },
   {
     q: "How quickly can I be seen?",
@@ -67,7 +67,7 @@ const schema = {
           A thirty minute video visit with {DOCTOR.name}, board certified in obstetrics and gynecology and in practice in northern New Jersey since 2002. {DOCTOR2.name}, a certified nurse midwife, joins the practice soon. Perimenopause and menopause, hormone therapy, birth control, polycystic ovary syndrome (PCOS) and menstrual cycle concerns, and sexual health are evaluated and treated from your home, with a written care plan and two weeks of follow-up messaging. One flat fee; we do not bill insurance.
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-4">
-          <a href={PORTAL_URL} class="btn-accent group !px-7 !py-4 !text-base">Start your visit · ${PRICING.initial.price}</a>
+          <a href={PORTAL_URL} class="btn-accent group !px-7 !py-4 !text-base">Start your visit · ${PRICING.visit.price}</a>
           <a href="/doctor" class="btn-secondary !py-4 !text-base">Meet your clinicians</a>
         </div>
       </div>

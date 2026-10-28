@@ -74,7 +74,7 @@ const steps = [
 const faqs = [
   {
     q: "How much does a visit cost?",
-    a: `$${PRICING.initial.price} for your initial visit and $${PRICING.followUp.price} for follow-up visits. One payment per visit, nothing recurring, no membership, and no unexpected bills. HSA and FSA cards are accepted.`,
+    a: `$${PRICING.visit.price} per video visit, whether it is your first visit or a return visit. One payment per visit, nothing recurring, no membership, and no unexpected bills. HSA and FSA cards are accepted.`,
   },
   {
     q: "Do you take insurance?",
@@ -126,7 +126,7 @@ const faqSchema = {
         <p class="mt-7 max-w-xl text-lg leading-relaxed text-ink/70" data-hero-fade>
           Perimenopause and menopause, contraception, cycle concerns, and intimate health,
           cared for in a thirty minute video visit with a board certified ObGyn. You leave
-          with a written care plan. One transparent fee of ${PRICING.initial.price}, with no insurance required.
+          with a written care plan. One transparent fee of ${PRICING.visit.price}, with no insurance required.
         </p>
         <div class="mt-9 flex flex-wrap items-center gap-4" data-hero-fade>
           <a href={PORTAL_URL} class="btn-accent group !px-7 !py-4 !text-base">
@@ -256,7 +256,7 @@ const faqSchema = {
         <p class="mt-3 text-sm text-cream/60">Every video visit, unhurried</p>
       </div>
       <div>
-        <p class="font-display text-6xl leading-none text-cream">$<span data-count={PRICING.initial.price}>{PRICING.initial.price}</span></p>
+        <p class="font-display text-6xl leading-none text-cream">$<span data-count={PRICING.visit.price}>{PRICING.visit.price}</span></p>
         <p class="mt-3 text-sm text-cream/60">One transparent fee, paid once, nothing billed later</p>
       </div>
     </div>
@@ -415,40 +415,35 @@ const faqSchema = {
 
   <!-- Pricing preview -->
   <section class="bg-sand/70">
-    <div class="section">
-      <div class="max-w-2xl" data-reveal>
+    <div class="section grid items-center gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-6" data-reveal>
         <p class="eyebrow">Simple pricing</p>
         <h2 class="display mt-4 text-4xl sm:text-5xl">One visit. One price. <em>Nothing hidden.</em></h2>
         <p class="mt-5 text-lg leading-relaxed text-ink/70">
-          You will always know the full cost before you schedule. We do not bill insurance, there is no membership, and nothing is billed later.
+          Every video visit is ${PRICING.visit.price}, whether it is your first or a return visit. You will always know the full cost before you schedule. We do not bill insurance, there is no membership, and nothing is billed later.
+        </p>
+        <p class="mt-6 text-sm text-ink/60">
+          HSA and FSA accepted. Labs and medications are billed separately by your lab and pharmacy. <a href="/pricing" class="font-medium text-apricot-700 underline underline-offset-4">Full pricing details</a> and your <a href="/good-faith-estimate" class="font-medium text-apricot-700 underline underline-offset-4">Good Faith Estimate</a>.
         </p>
       </div>
-      <div class="mt-14 grid gap-6 md:grid-cols-2" data-reveal-stagger>
-        {
-          [PRICING.initial, PRICING.followUp].map((tier, i) => (
-            <div class="card relative flex flex-col !p-9" data-spotlight>
-              {i === 0 && <span class="absolute right-6 top-6 rounded-full bg-apricot-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-apricot-700">Most patients start here</span>}
-              <h3 class="font-display text-2xl font-medium text-pine-900">{tier.label}</h3>
-              <p class="mt-4">
-                <span class="font-display text-6xl leading-none text-pine-900">${tier.price}</span>
-                <span class="ml-2 inline-block text-sm text-ink/60">one time · {tier.duration}</span>
-              </p>
-              <ul class="mt-7 flex-1 space-y-3">
-                {tier.includes.map((item) => (
-                  <li class="flex gap-3 text-sm leading-relaxed text-ink/70">
-                    <svg class="mt-0.5 h-4 w-4 shrink-0 text-apricot-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" /></svg>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <a href={i === 0 ? PORTAL_URL : `${PORTAL_URL}?type=followup`} class={`${i === 0 ? "btn-accent" : "btn-primary"} mt-9 w-full`}>Schedule this visit</a>
-            </div>
-          ))
-        }
+      <div class="lg:col-span-6" data-reveal>
+        <div class="card relative flex flex-col !p-9" data-spotlight>
+          <h3 class="font-display text-2xl font-medium text-pine-900">{PRICING.visit.label}</h3>
+          <p class="mt-4">
+            <span class="font-display text-6xl leading-none text-pine-900">${PRICING.visit.price}</span>
+            <span class="ml-2 inline-block text-sm text-ink/60">per visit · {PRICING.visit.duration}</span>
+          </p>
+          <ul class="mt-7 space-y-3">
+            {PRICING.visit.includes.map((item) => (
+              <li class="flex gap-3 text-sm leading-relaxed text-ink/70">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-apricot-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <a href={PORTAL_URL} class="btn-accent mt-9 w-full">Schedule a video visit</a>
+        </div>
       </div>
-      <p class="mt-6 text-sm text-ink/60">
-        HSA and FSA accepted. Labs and medications are billed separately by your lab and pharmacy. <a href="/pricing" class="font-medium text-apricot-700 underline underline-offset-4">Full pricing details</a> and your <a href="/good-faith-estimate" class="font-medium text-apricot-700 underline underline-offset-4">Good Faith Estimate</a>.
-      </p>
     </div>
   </section>
 

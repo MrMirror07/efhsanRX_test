@@ -52,6 +52,8 @@ Footer: SheWellRX does not provide emergency care. Visits are for patients physi
 
 ## Email template 2: "Booking confirmed, follow up" (assign to Follow Up Telehealth Visit)
 
+Retired 2026-10-28: every visit is now one $249 video visit, and the Follow Up Telehealth Visit service is no longer bookable online. Kept for reference only.
+
 Same as template 1 with these changes: subject unchanged; payment paragraph says "$149"; step 2 links the "SheWellRX Follow Up" questionnaire; step 1 becomes "Your consent on file still applies. If anything about your health or contact details has changed, update it in the portal."
 
 ## Reminder Email (Settings > Communications > Reminder Email, practitioner Huseyin Copur, MD)

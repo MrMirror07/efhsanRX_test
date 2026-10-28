@@ -30,10 +30,6 @@ export const OPTIMANTRA = {
       name: "Initial Telehealth Visit",
       url: `${OM_BASE}/practsNslotsNEW?sid=dnFWenUvMC9rVGt3bG40cGlSRCtqUT09&pid=${OM_PID}&lid=${OM_LID}`,
     },
-    followUp: {
-      name: "Follow Up Telehealth Visit",
-      url: `${OM_BASE}/practsNslotsNEW?sid=UmpQSlh2b3czTkUxOW1aUGlqY2Yzdz09&pid=${OM_PID}&lid=${OM_LID}`,
-    },
   },
 } as const;
 
@@ -222,31 +218,21 @@ export const REVIEWS = {
 } as const;
 
 /**
- * Flat cash pricing. One time payment per visit, no insurance, no membership.
+ * One flat self-pay price for every visit, new or returning (decided 2026-10-28).
+ * One time payment per visit, no insurance, no membership.
  * Chosen from market research (see docs/pricing-intake-data-research.md).
  */
 export const PRICING = {
-  initial: {
+  visit: {
     price: 249,
-    label: "Initial visit",
+    label: "Video visit",
     duration: "30 minutes",
     includes: [
       "A thirty minute video visit with a board certified ObGyn",
       "Review of your complete health history",
       "A written care plan you keep",
-      "Prescriptions sent to your pharmacy when appropriate",
+      "Prescriptions and renewals sent to your pharmacy when appropriate",
       "Laboratory orders when they will guide your care",
-      "Secure messaging for fourteen days after your visit",
-    ],
-  },
-  followUp: {
-    price: 149,
-    label: "Follow-up visit",
-    duration: "30 minutes",
-    includes: [
-      "A video visit with the clinician who already knows you",
-      "A review of your progress and adjustments to your care plan",
-      "Prescription renewals when appropriate",
       "Secure messaging for fourteen days after your visit",
     ],
   },

@@ -62,7 +62,7 @@ export const CONDITIONS: Condition[] = [
       },
       {
         title: "Follow-up that continues",
-        body: "Two weeks of secure messaging are included with every visit, and follow-up visits are $149. Doses are adjusted, side effects are addressed, and your plan is reviewed at each step.",
+        body: "Two weeks of secure messaging are included with every visit, and return visits are the same $249. Doses are adjusted, side effects are addressed, and your plan is reviewed at each step.",
       },
     ],
     prescribe: [
@@ -92,7 +92,7 @@ export const CONDITIONS: Condition[] = [
       },
       {
         q: "How much does it cost?",
-        a: "The initial video visit is $249 and follow ups are $149, paid once at booking. Medications and any labs are billed by your pharmacy or lab at their prices. SheWellRX does not participate with insurance; you can request an itemized superbill for out of network benefits.",
+        a: "Every video visit is $249, new or returning, paid once at booking. Medications and any labs are billed by your pharmacy or lab at their prices. SheWellRX does not participate with insurance; you can request an itemized superbill for out of network benefits.",
       },
       {
         q: "Do I have to be in New Jersey?",
@@ -168,7 +168,7 @@ export const CONDITIONS: Condition[] = [
       },
       {
         q: "What does it cost?",
-        a: "$249 for the initial video visit and $149 for follow ups, paid once at booking. Medications are billed by your pharmacy; generic estradiol and progesterone are usually inexpensive with or without insurance.",
+        a: "$249 per video visit, new or returning, paid once at booking. Medications are billed by your pharmacy; generic estradiol and progesterone are usually inexpensive with or without insurance.",
       },
     ],
     related: ["menopause-treatment-new-jersey", "vaginal-dryness-painful-sex-new-jersey", "online-gynecologist-new-jersey"],
@@ -239,7 +239,7 @@ export const CONDITIONS: Condition[] = [
       },
       {
         q: "What does it cost?",
-        a: "$249 for the initial visit and $149 for follow ups and renewals, paid once at booking. The medication is billed by your pharmacy; many generic pills cost little with or without insurance.",
+        a: "$249 per video visit, including return visits for renewals, paid once at booking. The medication is billed by your pharmacy; many generic pills cost little with or without insurance.",
       },
     ],
     related: ["pcos-irregular-periods-new-jersey", "vaginal-dryness-painful-sex-new-jersey", "online-gynecologist-new-jersey"],
@@ -312,7 +312,7 @@ export const CONDITIONS: Condition[] = [
       },
       {
         q: "What does it cost?",
-        a: "$249 for the initial video visit and $149 for follow ups, paid at booking. Labs and imaging are billed by the lab or imaging center; we tell you what we are ordering and why before we order it.",
+        a: "$249 per video visit, new or returning, paid at booking. Labs and imaging are billed by the lab or imaging center; we tell you what we are ordering and why before we order it.",
       },
     ],
     related: ["birth-control-online-new-jersey", "menopause-treatment-new-jersey", "online-gynecologist-new-jersey"],
@@ -383,7 +383,7 @@ export const CONDITIONS: Condition[] = [
       },
       {
         q: "What does it cost?",
-        a: "$249 for the initial visit and $149 for follow ups, paid once at booking. Prescriptions are billed by your pharmacy.",
+        a: "$249 per video visit, new or returning, paid once at booking. Prescriptions are billed by your pharmacy.",
       },
     ],
     related: ["menopause-treatment-new-jersey", "hormone-therapy-new-jersey", "online-gynecologist-new-jersey"],
