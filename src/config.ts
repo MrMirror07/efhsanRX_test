@@ -27,7 +27,7 @@ export const OPTIMANTRA = {
     "https://www.optimantra.com/optimus/om/patient/login?accessPoint=L1YvN0JQYzk1ZnRsdlFXNEhOOXJWUT09",
   services: {
     initial: {
-      name: "Initial Telehealth Visit",
+      name: "Telehealth Visit", // renamed from "Initial Telehealth Visit" on 2026-10-28; same service id
       url: `${OM_BASE}/practsNslotsNEW?sid=dnFWenUvMC9rVGt3bG40cGlSRCtqUT09&pid=${OM_PID}&lid=${OM_LID}`,
     },
   },
