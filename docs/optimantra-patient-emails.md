@@ -32,7 +32,7 @@ Where: on video, from anywhere private in New Jersey. Your link is below and com
 
 Join your visit: VIDEO_CHAT_LINK
 
-Payment: your $249 visit fee was charged today to the card you entered. The charge appears as SHEWELLRX on your statement. Your receipt is saved in the patient portal under Superbills, and you may request an itemized superbill for out of network reimbursement at any time. This fee is the only charge from SheWellRX; medications and lab tests, if any, are billed by your pharmacy or lab. Your written Good Faith Estimate will follow in the portal.
+Payment: your $250 visit fee was charged today to the card you entered. The charge appears as SHEWELLRX on your statement. Your receipt is saved in the patient portal under Superbills, and you may request an itemized superbill for out of network reimbursement at any time. This fee is the only charge from SheWellRX; medications and lab tests, if any, are billed by your pharmacy or lab. Your written Good Faith Estimate will follow in the portal.
 
 Three things to do before we meet (about ten minutes):
 1. Sign your telehealth consent: [insert Consent Form link: SheWellRX Telehealth Consent and Terms of Care]
@@ -52,7 +52,7 @@ Footer: SheWellRX does not provide emergency care. Visits are for patients physi
 
 ## Email template 2: "Booking confirmed, follow up" (assign to Follow Up Telehealth Visit)
 
-Retired 2026-10-28: every visit is now one $249 video visit, and the Follow Up Telehealth Visit service is no longer bookable online. Kept for reference only.
+Retired 2026-10-28: every visit is now one video visit ($249, now $250), and the Follow Up Telehealth Visit service is no longer bookable online. Kept for reference only.
 
 Same as template 1 with these changes: subject unchanged; payment paragraph says "$149"; step 2 links the "SheWellRX Follow Up" questionnaire; step 1 becomes "Your consent on file still applies. If anything about your health or contact details has changed, update it in the portal."
 
@@ -98,7 +98,7 @@ Visits are with Huseyin Copur, MD, a physician licensed in New Jersey and board 
 
 ## Provider description (Settings > Business > Provider Settings > Description (Online Bookings))
 
-Huseyin Copur, MD, FACOG. Board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology since 1989 and licensed in New Jersey. Every SheWellRX visit is a thirty minute video visit, followed by a written care plan and two weeks of secure messaging.
+Huseyin Copur, MD, FACOG. Board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology since 1989 and licensed in New Jersey. Every SheWellRX visit is a thirty minute video visit, with prescriptions sent to your pharmacy when appropriate and two weeks of secure messaging.
 
 ## Nurefsan Copur, DNP, CNM: online booking description (paste when she is added as a practitioner)
 

@@ -96,3 +96,14 @@ Why: the previous look (cream ground, Fraunces serif, terracotta accent, Inter b
 - Search Console: both domain properties verified by DNS TXT records (shewellrx.com in Cloudflare, firstchoiceobgyn.com in Hostinger hPanel); keep both records. Change of address submitted and confirmed on 2026-10-28 ("This site is currently moving: firstchoiceobgyn.com to shewellrx.com"); validation passed the homepage 301 and both verifications.
 - From Google's sample check: the indexed PDF /wp-content/uploads/2024/07/Laborist-Coverage.pdf now 301s to the home page (any uploads PDF does), and spam URLs injected into the old site under a numeric first folder (for example /785955/JIABEN-...) now return 410 Gone so they are dropped instead of passing anything to shewellrx.com.
 - Business Profile website edit moved to extended review ("may take up to 7 days"); submit the name and description only after it clears.
+
+## Round 7 (2026-10-28): care team first, $250, no written care plan, SEO and AI search
+
+- Home page: "Your care team" moved directly under the hero; the hero lede, trust row, floating card and portrait caption name Dr. Huseyin Copur, MD, FACOG, board certified ObGyn.
+- Fee is $250 everywhere (config, condition pages, hub, meta descriptions, OptiMantra service and confirmation email).
+- Every promise of a written care plan removed from the site, OptiMantra, the voice guide and the Business Profile description draft.
+- Sitemap carries lastmod, priority and changefreq and leaves out /booked and /404. robots.txt names the AI search crawlers (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot, Bingbot and others) and keeps /booked and /api out. `/llms.txt` summarizes the practice for AI assistants.
+- One linked schema graph: WebSite, MedicalClinic (hours, $250 offer, phone, logo, services) and Physician (ABOG and FACOG credentials, profiles) with stable @ids; the doctor page is a ProfilePage and condition pages point to the physician as reviewer.
+- Sharper titles on about, how it works, book, pricing and doctor; every title under 60 and description under 160 characters.
+- Search Console: sitemap-index.xml submitted for shewellrx.com and home page recrawl requested. IndexNow: key file `/8645c056684041a191ce32b38964dc8e.txt`, all 19 URLs submitted (Bing, Yandex and others). Resubmit after big content changes with the same key.
+
