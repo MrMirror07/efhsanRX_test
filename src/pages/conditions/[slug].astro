@@ -5,6 +5,7 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import { CONDITIONS } from "../../data/conditions";
 import { SITE, DOCTOR, PRICING, REVIEWS } from "../../config";
 import drCopur from "../../assets/dr-copur.jpg";
+import drCopurHeadshot from "../../assets/dr-copur-headshot.jpg";
 import imgMenopause from "../../assets/tile-menopause.png";
 import imgHormone from "../../assets/tile-hormone.png";
 import imgBirthControl from "../../assets/tile-birth-control.png";
@@ -187,7 +188,7 @@ const schema = {
   <section class="bg-white">
     <div class="section grid gap-10 lg:grid-cols-12">
       <div class="flex gap-5 rounded-[1.75rem] border border-pine-900/[0.08] bg-cream p-6 lg:col-span-7" data-reveal>
-        <Image src={drCopur} alt={DOCTOR.name} width={160} height={160} class="h-20 w-20 shrink-0 rounded-2xl object-cover object-top" />
+        <Image src={drCopurHeadshot} alt={DOCTOR.name} width={160} height={160} class="h-20 w-20 shrink-0 rounded-2xl object-cover" />
         <div class="text-sm leading-relaxed text-ink/70">
           <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-pine-500">Medically reviewed</p>
           <p class="mt-1 font-semibold text-pine-900">{DOCTOR.name}</p>
