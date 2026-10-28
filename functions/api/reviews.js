@@ -18,7 +18,7 @@
  * the site silently keeps its built in verified snapshot. Nothing breaks.
  */
 
-// FirstChoice ObGyn LLC: Copur Huseyin MD, 1115 Clifton Ave STE 104, Clifton NJ.
+// Google listing for Copur Huseyin MD (formerly the Clifton, NJ office).
 // Verified against the live Google Maps listing on 2026-08-24. Override with
 // the GOOGLE_PLACE_ID env var if the listing ever changes.
 const DEFAULT_PLACE_ID = "ChIJkxAbtCH6wokR_D9rgBZEMKQ";

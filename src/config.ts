@@ -52,12 +52,10 @@ export const PORTAL_URL = "/book";
 export const PORTAL_LIVE = true;
 
 /**
- * Federal rules stop a Medicare enrolled physician from taking cash from a
- * Medicare beneficiary for covered care unless he has opted out and the
- * patient signs a private contract. Until Dr. Copur's Medicare status is
- * confirmed, the guided start asks about Medicare and Medicaid and routes
- * those visitors to email instead of online booking. Set to false once an
- * opt out (with the private contract loaded in OptiMantra) is in place.
+ * SheWellRX does not see Medicare patients (decided 2026-10-28). The guided
+ * start asks about Medicare and Medicaid before booking: Medicare patients
+ * are told kindly that the practice cannot see them, and Medicaid patients
+ * are asked to email so their situation can be reviewed.
  */
 export const SCREEN_MEDICARE = true;
 
@@ -82,7 +80,8 @@ export const DOCTOR = {
   name: "Huseyin Copur, MD",
   shortName: "Dr. Copur",
   credentials: "MD, FACOG",
-  practice: "FirstChoice ObGyn LLC",
+  /** A solo clinic of Huseyin Copur, MD; not an LLC (confirmed 2026-10-28). */
+  practice: "Huseyin Copur, MD",
   specialty: "Obstetrics & Gynecology",
   boardCertifiedSince: 1989,
   practicingSince: 2002, // private practice in northern NJ
@@ -175,12 +174,11 @@ export const TREATMENTS = [
  * Never display the street address on any page or invite office visits.
  */
 export const PRACTICE = {
-  address: "1115 Clifton Ave, Suite 104, Clifton, NJ 07013",
+  address: "519 Pompton Ave #43, Cedar Grove, NJ 07009",
   phone: "(201) 441-9300",
   phoneHref: "tel:+12014419300",
-  website: "https://firstchoiceobgyn.com",
   googleMapsUrl:
-    "https://www.google.com/maps/place/FirstChoice+ObGyn+LLC:+Copur+Huseyin+MD/@40.8600465,-74.166835,17z",
+    "https://www.google.com/maps/search/?api=1&query=Copur%20Huseyin%20MD&query_place_id=ChIJkxAbtCH6wokR_D9rgBZEMKQ",
 } as const;
 
 /**
