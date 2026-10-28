@@ -36,7 +36,7 @@ export const CONDITIONS: Condition[] = [
     h1: "Relief from perimenopause and menopause symptoms, by video, across New Jersey",
     eyebrow: "Menopause · New Jersey telehealth",
     intro:
-      "Night sweats that interrupt sleep, hot flashes during the day, and changes in mood or memory are common signs of perimenopause, which often begins in the forties and can continue for years before periods stop. These symptoms are well understood and respond to treatment. SheWellRX offers thirty minute video visits with a board certified ObGyn with more than thirty five years of experience in menopause care, for women anywhere in New Jersey.",
+      "Night sweats that interrupt sleep, hot flashes during the day, and changes in mood or memory are common signs of perimenopause, which often begins in the forties and can continue for years before periods stop. These symptoms are well understood and respond to treatment. SheWellRX offers one hour video visits with a board certified ObGyn with more than thirty five years of experience in menopause care, for women anywhere in New Jersey.",
     symptoms: [
       "Hot flashes or night sweats",
       "Waking at night and not getting back to sleep",
@@ -50,7 +50,7 @@ export const CONDITIONS: Condition[] = [
     whatWeDo: [
       {
         title: "Your history, reviewed before you meet",
-        body: "Your intake asks about your cycle, your symptoms and how much they bother you, and the conditions that decide which treatments are safe. Your clinician reviews it before the visit begins, so the thirty minutes are spent on you.",
+        body: "Your intake asks about your cycle, your symptoms and how much they bother you, and the conditions that decide which treatments are safe. Your clinician reviews it before the visit begins, so the hour is spent on you.",
       },
       {
         title: "Diagnosis from your history, with testing only when it changes the plan",
@@ -186,7 +186,7 @@ export const CONDITIONS: Condition[] = [
     h1: "Birth control prescribed online, matched to your health and your plans",
     eyebrow: "Birth control · New Jersey telehealth",
     intro:
-      "There is no single best contraceptive, only the one that fits your history and what you want the next few years to look like. In a thirty minute video visit, a board certified ObGyn walks through the options with you, checks the safety questions that matter, and sends the prescription to the New Jersey pharmacy you choose, the same day when it is appropriate.",
+      "There is no single best contraceptive, only the one that fits your history and what you want the next few years to look like. In a one hour video visit, a board certified ObGyn walks through the options with you, checks the safety questions that matter, and sends the prescription to the New Jersey pharmacy you choose, the same day when it is appropriate.",
     symptoms: [
       "Starting birth control for the first time",
       "Switching because of side effects, bleeding, or mood",

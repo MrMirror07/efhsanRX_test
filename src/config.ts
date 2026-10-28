@@ -223,9 +223,9 @@ export const PRICING = {
   visit: {
     price: 250,
     label: "Video visit",
-    duration: "30 minutes",
+    duration: "60 minutes",
     includes: [
-      "A thirty minute video visit with a board certified ObGyn",
+      "A one hour video visit with a board certified ObGyn",
       "Review of your complete health history",
       "Prescriptions and renewals sent to your pharmacy when appropriate",
       "Laboratory orders when they will guide your care",
