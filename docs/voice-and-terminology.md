@@ -36,7 +36,7 @@ Say the term on the left. The right column is what it replaces.
 | perimenopause and menopause | the change, "meno" |
 | vasomotor symptoms (hot flashes and night sweats) | hot flashes that wreck your sleep |
 | menopausal hormone therapy (MHT), then hormone therapy | HRT, hormones |
-| genitourinary syndrome of menopause (GSM), vaginal dryness | down-there dryness |
+| genitourinary syndrome of menopause (GSM) in clinical text; vaginal health, vaginal comfort, intimate health in headings and labels | vaginal dryness (too blunt, decided 2026-10-28), down-there dryness |
 | pain with intimacy; dyspareunia (pain during sex) in clinical lists | painful sex (headlines), sex problems |
 | low sexual desire | low libido issues |
 | heavy menstrual bleeding | flooding, heavy periods (clinical lists) |
@@ -68,7 +68,7 @@ Style points: "board certified" without a hyphen, "ObGyn" as written, "follow-up
 | Rated 4.9 by the women he treats. | Rated 4.9 on Google by the women in our care. |
 | Care that listens until it finds the answer. | Women's health care that listens, and follows through. |
 | Hot flashes, night sweats, and sleep that fell apart. There are real treatments. | Hot flashes, night sweats, and disrupted sleep respond to treatment. |
-| Dryness, discomfort, and low desire are medical concerns, not embarrassments. | Vaginal dryness, discomfort, and low desire are medical conditions with effective treatment. |
+| Dryness, discomfort, and low desire are medical concerns, not embarrassments. | Changes in vaginal comfort and low desire are medical conditions with effective treatment. |
 | Heavy, painful, or unpredictable cycles deserve answers, not a shrug. | Heavy, painful, or irregular cycles are evaluated carefully and treated. |
 | A full video visit with our doctors, never a chatbot | A thirty minute video visit with a board certified ObGyn |
 | Dr. Copur reads it before the visit, so the thirty minutes are spent on you. | Your history is reviewed before the visit begins, so the thirty minutes are spent on you. |

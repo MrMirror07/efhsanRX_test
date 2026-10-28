@@ -150,7 +150,7 @@ export const TREATMENTS = [
   {
     slug: "sexual-health",
     title: "Sexual health",
-    blurb: "Vaginal dryness, discomfort, and low desire are medical conditions with effective, private treatment.",
+    blurb: "Changes in vaginal comfort and low desire are medical conditions with effective, private treatment.",
     examples: ["Vaginal estrogen", "Moisturizers and comfort care", "Evaluation of low desire"],
   },
   {

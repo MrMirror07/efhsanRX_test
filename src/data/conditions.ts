@@ -32,7 +32,7 @@ export const CONDITIONS: Condition[] = [
     name: "Menopause and perimenopause",
     title: "Menopause Treatment Online in New Jersey | SheWellRX",
     description:
-      "Perimenopause and menopause care by video in New Jersey. Hot flashes, sleep, mood, and dryness treated by a board certified ObGyn. $249 flat, no insurance.",
+      "Perimenopause and menopause care by video in New Jersey. Hot flashes, sleep, mood, and vaginal comfort treated by a board certified OB-GYN. $249, self-pay.",
     h1: "Relief from perimenopause and menopause symptoms, by video, across New Jersey",
     eyebrow: "Menopause · New Jersey telehealth",
     intro:
@@ -43,7 +43,7 @@ export const CONDITIONS: Condition[] = [
       "Irritability, anxiety, or low mood",
       "Difficulty with concentration or word finding",
       "Periods that come closer together, farther apart, or heavier",
-      "Vaginal dryness or pain with sex",
+      "Vaginal discomfort or pain with intimacy",
       "New joint aches or palpitations",
       "Changes in weight distribution",
     ],
@@ -68,7 +68,7 @@ export const CONDITIONS: Condition[] = [
     prescribe: [
       "Menopausal hormone therapy: estradiol patches, gels, sprays, or tablets, with micronized progesterone when you have a uterus",
       "Non hormonal treatments for hot flashes, including fezolinetant, low dose paroxetine, gabapentin, and others when appropriate",
-      "Vaginal estrogen creams, tablets, or rings for dryness and pain with sex",
+      "Vaginal estrogen creams, tablets, or rings for vaginal comfort and pain with intimacy",
       "Sleep and mood support as part of the same plan, with referral when specialist care is needed",
     ],
     inPerson: [
@@ -121,7 +121,7 @@ export const CONDITIONS: Condition[] = [
       "A current prescription that has never been adjusted",
       "You were told hormone therapy was not an option, without a full explanation",
       "Early menopause or surgical menopause before forty five",
-      "Vaginal dryness that moisturizers have not relieved",
+      "Vaginal discomfort that moisturizers have not relieved",
     ],
     whatWeDo: [
       {
@@ -130,7 +130,7 @@ export const CONDITIONS: Condition[] = [
       },
       {
         title: "Choose the form and the dose",
-        body: "Transdermal estradiol (patch, gel, or spray) is preferred for many women because it carries a lower clot risk than tablets. Women with a uterus take progesterone to protect the lining. Vaginal estrogen treats dryness with minimal absorption. Doses start low and are adjusted at follow ups.",
+        body: "Transdermal estradiol (patch, gel, or spray) is preferred for many women because it carries a lower clot risk than tablets. Women with a uterus take progesterone to protect the lining. Vaginal estrogen restores vaginal comfort with minimal absorption. Doses start low and are adjusted at follow ups.",
       },
       {
         title: "Explain benefits and risks in plain language",
@@ -323,16 +323,16 @@ export const CONDITIONS: Condition[] = [
   {
     slug: "vaginal-dryness-painful-sex-new-jersey",
     concern: "intimacy",
-    name: "Vaginal dryness, pain with intimacy, and low desire",
-    title: "Vaginal Dryness and Painful Sex Treatment in NJ | SheWellRX",
+    name: "Vaginal health and intimacy",
+    title: "Vaginal Health and Intimacy Care in New Jersey | SheWellRX",
     description:
-      "Vaginal dryness, pain with intimacy, and low desire treated by video in New Jersey. Vaginal estrogen and comfort care from a board certified ObGyn, in private.",
-    h1: "Vaginal dryness, pain with intimacy, and low desire are medical conditions, and they are treatable",
+      "Genitourinary syndrome of menopause, pain with intimacy, and low desire treated by video in New Jersey, in private, by a board certified OB-GYN.",
+    h1: "Care for vaginal health, comfort, and intimacy, in complete privacy",
     eyebrow: "Sexual health · New Jersey telehealth",
     intro:
-      "Dryness, burning, pain with intimacy, recurrent urinary symptoms, or a loss of desire that has not returned. These are medical conditions with established treatments, and they receive the same care and seriousness as any other diagnosis. A video visit is a private conversation from your own home with a board certified ObGyn, and treatment can often begin the same week.",
+      "Vaginal discomfort, burning, pain with intimacy, recurrent urinary symptoms, or a loss of desire that has not returned. These are medical conditions with established treatments, and they receive the same care and seriousness as any other diagnosis. A video visit is a private conversation from your own home with a board certified ObGyn, and treatment can often begin the same week.",
     symptoms: [
-      "Vaginal dryness, itching, or burning",
+      "Vaginal irritation, itching, or burning",
       "Pain at entry or deep pain during intimacy",
       "Bleeding or tearing with intimacy",
       "Urgency, frequency, or repeated urinary infections after menopause",
