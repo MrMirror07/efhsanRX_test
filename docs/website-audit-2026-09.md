@@ -87,3 +87,10 @@ Why: the previous look (cream ground, Fraunces serif, terracotta accent, Inter b
 - Keep the old domain and its Hostinger hosting renewed indefinitely; if either lapses, the redirects and the ranking they carry disappear. The domain's email (Hostinger MX) was not touched.
 - Known gap: the old Rank Math sitemap now returns 404 (Rank Math drops redirected pages); Google still recrawls the indexed old URLs and follows the 301s.
 - New site home title now includes "OB-GYN" to match the old site's keyword.
+
+## Google Business Profile and Search Console, 2026-10-28
+
+- Verified listing "FirstChoice ObGyn LLC: Copur Huseyin MD" (1115 Clifton Ave #104, category Obstetrician-gynecologist, 228 reviews) was kept and edited, not replaced, to preserve its ranking. Submitted and pending Google review: website changed to https://shewellrx.com/; hours Monday to Friday 9:00 AM to 5:00 PM (Friday added). Google refused further edits while those were pending ("Can't save edit. Try again later").
+- Still to submit once approved: business name "Huseyin Copur, MD" and the new description (text in the session notes; uses "genitourinary syndrome of menopause", no FirstChoice). Address left unchanged on purpose: the new Cedar Grove address is a PO box, which Google does not allow, and an address change triggers re-verification and can move the listing in local results.
+- The two unverified duplicates ("First Choice Ob Gyn, LLC" and "Huseyin Copur, M.D., F.A.C.O.G") were left untouched; Google already marks them as duplicates.
+- Search Console: domain property shewellrx.com verified through a Cloudflare TXT record (keep it). firstchoiceobgyn.com added as a domain property, pending: its TXT record `google-site-verification=XO0HDs6SM98LxJrqeyFTy8iqwu59W2A3o9pzzUAUVeA` must be added in Hostinger DNS, then run Settings > Change of address from firstchoiceobgyn.com to shewellrx.com.
