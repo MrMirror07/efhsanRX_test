@@ -21,7 +21,7 @@ const teamSchema = {
       "@type": "ProfilePage",
       "@id": `${SITE.url}/doctor/#page`,
       url: `${SITE.url}/doctor/`,
-      name: `Dr. Huseyin Copur, MD, FACOG, and the SheWellRX care team`,
+      name: `Dr. Huseyin Copur, MD, and the SheWellRX care team`,
       isPartOf: { "@id": `${SITE.url}/#website` },
       mainEntity: { "@id": `${SITE.url}/doctor/#huseyin-copur` },
     },
@@ -39,7 +39,7 @@ const teamSchema = {
 ---
 
 <Layout
-  title={`Dr. Huseyin Copur, MD, FACOG, OB-GYN | ${SITE.name}`}
+  title={`Dr. Huseyin Copur, MD, Board Certified OB-GYN | ${SITE.name}`}
   description={`Your care team at SheWellRX: ${DOCTOR.name}, board certified ObGyn (ABOG) rated ${REVIEWS.google.rating} on Google, and ${DOCTOR2.shortName}, certified nurse midwife, joining soon.`}
 >
   <script type="application/ld+json" set:html={JSON.stringify(teamSchema)} />
@@ -129,7 +129,7 @@ const teamSchema = {
             <li class="flex items-start gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-apricot-400" aria-hidden="true"></span>Contraception, and laboratory testing when it will guide your care</li>
           </ul>
           <ul class="mt-6 grid gap-2 text-sm text-ink/80">
-            <li class="rounded-xl bg-cream px-4 py-3">Board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology (an ABMS member board) since {DOCTOR.boardCertifiedSince}, FACOG</li>
+            <li class="rounded-xl bg-cream px-4 py-3">Board certified in obstetrics and gynecology by the American Board of Obstetrics and Gynecology (an ABMS member board) since {DOCTOR.boardCertifiedSince}</li>
             <li class="rounded-xl bg-cream px-4 py-3">Licensed physician in New Jersey; all visits by live video</li>
             <li class="rounded-xl bg-cream px-4 py-3">Former residency program director who taught physicians training in women's health</li>
             <li class="rounded-xl bg-cream px-4 py-3">{REVIEWS.google.rating} stars across {REVIEWS.google.count} Google reviews</li>

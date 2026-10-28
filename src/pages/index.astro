@@ -126,14 +126,14 @@ const faqSchema = {
             <span class="h-px w-8 bg-pine-500/50" aria-hidden="true"></span>
             Women's telehealth · New Jersey
           </p>
-          <h1 class="display mt-6 text-[2.85rem] !font-light leading-[1.02] tracking-[-0.03em] sm:text-6xl lg:text-[3.6rem] xl:text-[3.85rem]">
+          <h1 class="display mt-6 text-[2.75rem] leading-[1.02] sm:text-6xl lg:text-[3.1rem] xl:text-[3.6rem]">
             <span class="block" data-hero-line>Women's health care,</span>
             <span class="block" data-hero-line>by video, that</span>
-            <span class="block" data-hero-line><em class="!font-light">listens</em> to you.</span>
+            <span class="block" data-hero-line><em>listens</em> to you.</span>
           </h1>
           <p class="mt-8 max-w-[34rem] text-lg leading-[1.75] text-ink/65" data-hero-fade>
             Perimenopause and menopause, contraception, cycle concerns, and intimate health,
-            cared for in a one hour video visit with <strong class="font-semibold text-pine-900">Dr. Huseyin Copur, MD, FACOG</strong>,
+            cared for in a one hour video visit with <strong class="font-semibold text-pine-900">Dr. Huseyin Copur, MD</strong>,
             a board certified ObGyn. One transparent fee of ${PRICING.visit.price}, with no insurance required.
           </p>
           <div class="mt-10 flex flex-wrap items-center gap-4" data-hero-fade>
@@ -191,7 +191,7 @@ const faqSchema = {
             <div class="leading-tight">
               <p class="text-[10px] font-semibold uppercase tracking-[0.18em] text-pine-500">Your physician</p>
               <p class="mt-1 font-display text-[1.05rem] text-pine-900">Dr. Huseyin Copur, MD</p>
-              <p class="mt-0.5 text-xs text-ink/55">Board certified ObGyn · FACOG</p>
+              <p class="mt-0.5 text-xs text-ink/55">Board certified ObGyn</p>
             </div>
           </div>
           <div class="absolute right-4 top-6 sm:right-6" data-hero-float>
@@ -207,9 +207,9 @@ const faqSchema = {
             [0, 1].map(() => (
               <div class="marquee-track">
                 {marquee.map((m) => (
-                  <span class="flex items-center gap-10 whitespace-nowrap font-display text-lg font-light italic text-pine-900/60">
+                  <span class="flex items-center gap-10 whitespace-nowrap font-display text-lg text-pine-900/80">
                     {m}
-                    <span class="h-1 w-1 rounded-full bg-apricot-300" />
+                    <span class="h-1.5 w-1.5 rounded-full bg-apricot-400" />
                   </span>
                 ))}
               </div>
@@ -223,29 +223,13 @@ const faqSchema = {
     <!-- The care team -->
     <section class="relative">
       <div class="section grid items-center gap-16 lg:grid-cols-12 lg:gap-12">
-        <figure class="relative mx-auto w-full max-w-[22rem] lg:col-span-5 lg:max-w-[24rem]" data-reveal>
-          <span class="arch-line" aria-hidden="true"></span>
-          <div class="arch relative aspect-[4/5] overflow-hidden bg-sand shadow-[0_50px_100px_-50px_rgba(15,39,51,0.5)]">
-            <Image
-              src={drCopur}
-              alt={`${DOCTOR.name}, board certified obstetrician gynecologist`}
-              class="h-full w-full object-cover object-top"
-              widths={[480, 640]}
-              sizes="(min-width: 1024px) 24rem, 90vw"
-            />
-          </div>
-          <figcaption class="glass absolute -bottom-6 left-1/2 w-[86%] -translate-x-1/2 rounded-[1.25rem] px-5 py-4 text-center">
-            <p class="font-display text-lg text-pine-900">Dr. Huseyin Copur, MD, FACOG</p>
-            <p class="mt-0.5 text-xs text-ink/55">Board certified ObGyn (ABOG) since {DOCTOR.boardCertifiedSince}</p>
-          </figcaption>
-        </figure>
 
-        <div class="lg:col-span-7 lg:pl-6" data-reveal>
+        <div class="lg:col-span-7 lg:pr-6" data-reveal>
           <p class="eyebrow flex items-center gap-3">
             <span class="h-px w-8 bg-pine-500/50" aria-hidden="true"></span>
             Your care team
           </p>
-          <h2 class="display mt-5 text-4xl !font-light tracking-[-0.03em] sm:text-[3.4rem] sm:leading-[1.05]">A small team that <em class="!font-light">knows</em> your history.</h2>
+          <h2 class="display mt-5 text-4xl sm:text-5xl">A small team that <em>knows</em> your history.</h2>
           <p class="mt-7 max-w-xl text-lg leading-[1.75] text-ink/65">
             Your care stays with a small team rather than a rotating roster, so at every follow-up visit your history is already known. Today each visit is with Dr. Copur, and you may always request the physician.
           </p>
@@ -254,10 +238,6 @@ const faqSchema = {
             <div class="flex items-baseline justify-between gap-6 py-4">
               <dt class="text-ink/50">Board certification</dt>
               <dd class="text-right font-medium text-pine-900">American Board of Obstetrics and Gynecology, since {DOCTOR.boardCertifiedSince}</dd>
-            </div>
-            <div class="flex items-baseline justify-between gap-6 py-4">
-              <dt class="text-ink/50">Fellowship</dt>
-              <dd class="text-right font-medium text-pine-900">American College of Obstetricians and Gynecologists</dd>
             </div>
             <div class="flex items-baseline justify-between gap-6 py-4">
               <dt class="text-ink/50">Experience</dt>
@@ -281,6 +261,22 @@ const faqSchema = {
             <a href={PORTAL_URL} class="text-sm font-semibold text-pine-700 underline decoration-pine-900/20 underline-offset-[6px] transition-colors hover:text-apricot-600 hover:decoration-apricot-600/40">Schedule a video visit</a>
           </div>
         </div>
+        <figure class="relative order-first mx-auto mb-6 w-full max-w-[22rem] lg:order-last lg:col-span-5 lg:max-w-[24rem]" data-reveal>
+          <span class="arch-line" aria-hidden="true"></span>
+          <div class="arch relative aspect-[4/5] overflow-hidden bg-sand shadow-[0_50px_100px_-50px_rgba(15,39,51,0.5)]">
+            <Image
+              src={drCopur}
+              alt={`${DOCTOR.name}, board certified obstetrician gynecologist`}
+              class="h-full w-full object-cover object-top"
+              widths={[480, 640]}
+              sizes="(min-width: 1024px) 24rem, 90vw"
+            />
+          </div>
+          <figcaption class="glass absolute -bottom-6 left-1/2 w-[86%] -translate-x-1/2 rounded-[1.25rem] px-5 py-4 text-center">
+            <p class="font-display text-lg text-pine-900">Dr. Huseyin Copur, MD</p>
+            <p class="mt-0.5 text-xs text-ink/55">Board certified ObGyn (ABOG) since {DOCTOR.boardCertifiedSince}</p>
+          </figcaption>
+        </figure>
       </div>
     </section>
   </div>
